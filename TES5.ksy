@@ -10,7 +10,7 @@ meta:
     - esm
     - esl
   endian: le
-  
+
 ###############################################################################
 #                            ROOT FILE STRUCTURE                              #
 ###############################################################################
@@ -38,7 +38,7 @@ enums:
     8: cell_persistent_children
     9: cell_temporary_children
     10: cell_visible_distant_children
-    
+
   glob_fnam_type:
     0x73: short
     0x6C: long
@@ -182,7 +182,7 @@ types:
         size: data_size
         if: not _root.header.header.flags.localized
         doc: Full string if file is not localized
-        
+
   actor_value_skills:
     seq:
       - id: one_handed
@@ -202,7 +202,7 @@ types:
         doc: Smithing skill
       - id: heavy_armor
         type: u1
-        doc: Heavy armor skill 
+        doc: Heavy armor skill
       - id: light_armor
         type: u1
         doc: Light armor skill
@@ -242,7 +242,7 @@ types:
 
 ###############################################################################
 #                              FILE HEADER (TES4)                             #
-###############################################################################  
+###############################################################################
   file_header:
     seq:
       - id: header
@@ -251,7 +251,7 @@ types:
       - id: fields
         type: tes4_fields
         size: header.data_size
-        doc: TES4 form-specific fields  
+        doc: TES4 form-specific fields
 
   tes4_header:
     seq:
@@ -293,14 +293,14 @@ types:
         type: b1
         doc: Light master (ESL) file flag
       - type: b22
-  
+
   tes4_fields:
     seq:
       - id: fields
         type: tes4_field
         repeat: eos
         doc: TES4 form-specific fields
-  
+
   tes4_field:
     seq:
       - id: type
@@ -312,7 +312,7 @@ types:
         type: u2
         doc: Size, in bytes, of field (minus header)
       - id: data
-        type: 
+        type:
           switch-on: type
           cases:
             '"HEDR"': tes4_hedr_field
@@ -323,7 +323,7 @@ types:
             '"ONAM"': tes4_onam_field
             '"INTV"': tes4_intv_field
         doc: Field data
-        
+
   tes4_hedr_field:
     seq:
       - id: version
@@ -335,7 +335,7 @@ types:
       - id: next_object_id
         type: u4
         doc: Next form ID
-  
+
   tes4_cnam_field:
     seq:
       - id: author
@@ -343,7 +343,7 @@ types:
         size: _parent.data_size
         encoding: UTF-8
         doc: Author of file (optional)
-        
+
   tes4_snam_field:
     seq:
       - id: description
@@ -351,7 +351,7 @@ types:
         size: _parent.data_size
         encoding: UTF-8
         doc: Description of file (optional)
-        
+
   tes4_mast_field:
     seq:
       - id: master
@@ -359,13 +359,13 @@ types:
         size: _parent.data_size
         encoding: UTF-8
         doc: Master filename
-        
+
   tes4_data_field:
     seq:
       - id: file_size
         type: u8
         doc: Master filesize
-  
+
   tes4_onam_field:
     seq:
       - id: overrides
@@ -373,13 +373,13 @@ types:
         repeat: expr
         repeat-expr: _parent.data_size / 4
         doc: Overriden form IDs
-        
+
   tes4_intv_field:
     seq:
       - id: intv
         type: u4
         doc: Internal version (?)
-        
+
   tes4_incc_field:
     seq:
       - id: incc
@@ -390,7 +390,7 @@ types:
 #                                 GROUPS (GRUP)                               #
 ###############################################################################
   esp_groups:
-    seq: 
+    seq:
       - id: groups
         type: esp_group
         repeat: eos
@@ -535,6 +535,7 @@ types:
             '"ASPC"': aspc_form
             '"LTEX"': ltex_form
             '"ENCH"': ench_form
+            '"SCRL"': scrl_form
             '"SPEL"': spel_form
             '"STAT"': stat_form
             '"GRAS"': gras_form
@@ -577,7 +578,7 @@ types:
         repeat: expr
         repeat-expr: data_size
 
-  edid_field:        
+  edid_field:
     params:
       - id: data_size
         type: u2
@@ -598,7 +599,7 @@ types:
       - id: full
         type: lstring(data_size)
         doc: Full in-game text
-        
+
   color:
     seq:
       - id: r
@@ -941,7 +942,7 @@ types:
         type: mods_alternate_texture
         repeat: expr
         repeat-expr: remaining_textures
-  
+
   mods_alternate_texture:
     seq:
       - id: string_length
@@ -989,6 +990,13 @@ types:
         type: f4
         doc: Item condition
 
+  dest_field:
+    seq:
+      - id: destruction_data
+        size: 8
+        doc: Destruction Data
+
+
 ###############################################################################
 #                           GMST (GAME SETTING) FORM                          #
 ###############################################################################
@@ -999,7 +1007,7 @@ types:
         repeat: expr
         repeat-expr: 2
         doc: GMST fields (EDID, DATA)
-        
+
   gmst_field:
     seq:
       - id: type
@@ -1017,23 +1025,23 @@ types:
             '"EDID"': edid_field(data_size)
             '"DATA"': gmst_data_field
         doc: Fields contained by GMST form
-            
+
   gmst_data_field:
     seq:
       - id: value
         type: u4
         doc: Game setting value (TODO, conditional type switching)
-        
+
 ###############################################################################
 #                             KYWD (KEYWORD) FORM                             #
-###############################################################################        
+###############################################################################
   kywd_form:
     seq:
       - id: fields
         type: kywd_field
         repeat: eos
         doc: Fields contained by KYWD form
-        
+
   kywd_field:
     seq:
       - id: type
@@ -1045,7 +1053,7 @@ types:
         type: u2
         doc: Size, in bytes, of field (minus header)
       - id: data
-        type: 
+        type:
           switch-on: type
           cases:
             '"EDID"': edid_field(data_size)
@@ -1054,14 +1062,14 @@ types:
 
 ###############################################################################
 #                      LCRT (LOCATION REFERENCE TYPE) FORM                    #
-###############################################################################   
+###############################################################################
   lcrt_form:
     seq:
       - id: fields
         type: lcrt_field
         repeat: eos
         doc: Fields contained by LCRT form
-        
+
   lcrt_field:
     seq:
       - id: type
@@ -1082,14 +1090,14 @@ types:
 
 ###############################################################################
 #                               AACT (ACTOR) FORM                             #
-###############################################################################              
+###############################################################################
   aact_form:
     seq:
       - id: fields
         type: aact_field
         repeat: eos
         doc: Fields contained by AACT form
-        
+
   aact_field:
     seq:
       - id: type
@@ -1107,17 +1115,17 @@ types:
             '"EDID"': edid_field(data_size)
             '"CNAM"': color
         doc: Fields contained by AACT form
-            
+
 ###############################################################################
 #                           TXST (TEXTURE SET) FORM                           #
-###############################################################################              
+###############################################################################
   txst_form:
     seq:
       - id: fields
         type: txst_field
         repeat: eos
         doc: Fields contained by TXST form
-        
+
   txst_field:
     seq:
       - id: type
@@ -1145,14 +1153,14 @@ types:
             '"DODT"': txst_dodt_field
             '"DNAM"': txst_dnam_field
         doc: Fields contained by TXST form
-  
+
   txst_tx_field:
     seq:
       - id: path
         type: strz
         encoding: UTF-8
         size: _parent.data_size
-        doc: | 
+        doc: |
           Path to texture, types as follows
           TX00 (required) - Color map
           TX01 - Normal map (tangent or model-space)
@@ -1162,7 +1170,7 @@ types:
           TX05 - Environment map
           TX06 - Unknown (does not occur in Skyrim.esm)
           TX07 - Specularity map (for bodies)
-                    
+
   txst_dodt_field:
     seq:
       - id: min_width
@@ -1198,7 +1206,7 @@ types:
       - id: rgb
         type: color
         doc: Decal color
-        
+
   txst_dodt_flags:
     seq:
       - id: parallax
@@ -1214,13 +1222,13 @@ types:
         type: b1
       - type: b4
         doc: Padding
-      
+
   txst_dnam_field:
     seq:
       - id: flags
         type: txst_dnam_flags
         doc: Texture set flags
-        
+
   txst_dnam_flags:
     seq:
       - id: not_has_specular_map
@@ -1234,17 +1242,17 @@ types:
         doc: Normal map is model-space
       - type: b13
         doc: Padding
-  
+
 ###############################################################################
 #                          GLOB (GLOBAL VARIABLE) FORM                        #
-###############################################################################  
+###############################################################################
   glob_form:
     seq:
       - id: fields
         type: glob_field
         repeat: eos
         doc: Fields contained by GLOB form
-  
+
   glob_field:
     seq:
       - id: type
@@ -1270,23 +1278,23 @@ types:
         type: u1
         enum: glob_fnam_type
         doc: Type of value (in FLTV field)
-        
+
   glob_fltv_field:
     seq:
       - id: value
         type: f4
         doc: Global variable value (always stored as float)
-        
+
 ###############################################################################
 #                               CLAS (CLASS) FORM                             #
-###############################################################################         
+###############################################################################
   clas_form:
     seq:
       - id: fields
         type: clas_field
         repeat: eos
         doc: Fields contained by CLAS form
-  
+
   clas_field:
     seq:
       - id: type
@@ -1307,13 +1315,13 @@ types:
             '"ICON"': clas_icon_field
             '"DATA"': clas_data_field
         doc: Fields contained by CLAS form
-        
+
   clas_desc_field:
     seq:
       - id: description
         type: lstring(_parent.data_size)
         doc: Class description
-        
+
   clas_icon_field:
     seq:
       - id: icon
@@ -1321,7 +1329,7 @@ types:
         encoding: UTF-8
         size: _parent.data_size
         doc: Path to menu image
-        
+
   clas_data_field:
     seq:
       - id: unknown
@@ -1354,7 +1362,7 @@ types:
       - id: flags
         type: clas_data_flags
         doc: Class flags
-        
+
   clas_data_flags:
     seq:
       - id: guard
@@ -1362,10 +1370,10 @@ types:
         doc: Inidicates Guard
       - type: b7
         doc: Padding
-      
+
 ###############################################################################
 #                              FACT (FACTION) FORM                            #
-###############################################################################  
+###############################################################################
   fact_form:
     seq:
       - id: fields
@@ -1384,7 +1392,7 @@ types:
         type: u2
         doc: Size, in bytes, of field (minus header)
       - id: data
-        type: 
+        type:
           switch-on: type
           cases:
             '"EDID"': edid_field(data_size)
@@ -1466,19 +1474,19 @@ types:
       - id: jail_exterior_marker
         type: u4
         doc: Exterior marker for faction prison (REFR)
-  
+
   fact_wait_field:
     seq:
       - id: follower_wait_marker
         type: u4
         doc: Marker that faction player followers are assigned to wait at (REFR)
-  
+
   fact_stol_field:
     seq:
       - id: evidence_chest
         type: u4
         doc: Stolen goods chest (REFR)
-  
+
   fact_plcn_field:
     seq:
       - id: belongings_chest
@@ -1589,7 +1597,7 @@ types:
 
 ###############################################################################
 #                             HEAD PART (HDPT) FORM                           #
-############################################################################### 
+###############################################################################
   hdpt_form:
     seq:
       - id: fields
@@ -1675,7 +1683,7 @@ types:
       - id: base_texture_set
         type: u4
         doc: Form ID of related TXST form
-  
+
   hdpt_rnam_field:
     seq:
       - id: resource_list
@@ -1684,7 +1692,7 @@ types:
 
 ###############################################################################
 #                                EYES (EYES) FORM                             #
-############################################################################### 
+###############################################################################
   eyes_form:
     seq:
       - id: fields
@@ -1719,7 +1727,7 @@ types:
         encoding: UTF-8
         size: _parent.data_size
         doc: Relative path to .dds from Textures directory
-  
+
   eyes_data_field:
     seq:
       - id: flags
@@ -1940,7 +1948,7 @@ types:
       - id: unarmed_reach
         type: f4
         doc: Unarmed reach
-      - id: body_biped_obj 
+      - id: body_biped_obj
         type: u4
         doc: Body biped object
       - id: aim_angle_tolerance
@@ -1975,7 +1983,7 @@ types:
       - id: flags
         type: u4
         doc: Racial flags
-  
+
   race_data_flags:
     seq:
       - id: playable
@@ -2811,13 +2819,13 @@ types:
         type: u4
         repeat: expr
         repeat-expr: 7
-        
+
   race_rprm_field:
     seq:
       - id: preset_male_npc
         type: u4
         doc: FormID of associated NPC_ form
-  
+
   race_ahcm_field:
     seq:
       - id: available_hair_color_male
@@ -2841,7 +2849,7 @@ types:
       - id: preset_npc_female
         type: u4
         doc: FormID of associated NPC_ form
-  
+
   race_ahcf_field:
     seq:
       - id: available_hair_color_female
@@ -2977,7 +2985,7 @@ types:
         type: aspc_field
         repeat: eos
         doc: Fields contained by ASPC form
-  
+
   aspc_field:
     seq:
       - id: type
@@ -3010,7 +3018,7 @@ types:
       - id: region_data
         type: u4
         doc: Form ID of associated region sound REGN form
-  
+
   aspc_bnam_field:
     seq:
       - id: reverb
@@ -3054,7 +3062,7 @@ types:
       - id: texture_set
         type: u4
         doc: Form ID of associated TXST form
-  
+
   ltex_mnam_field:
     seq:
       - id: material
@@ -3091,7 +3099,7 @@ types:
         type: ench_field
         repeat: eos
         doc: Fields contained by ENCH form
-  
+
   ench_field:
     seq:
       - id: type
@@ -3160,6 +3168,150 @@ types:
       - type: b29
 
 ###############################################################################
+#                               SCROLL (SCRL) FORM                            #
+###############################################################################
+  scrl_form:
+    seq:
+      - id: fields
+        type: scrl_field
+        repeat: eos
+        doc: Fields contained by SCRL form
+
+  scrl_field:
+    seq:
+      - id: type
+        type: str
+        encoding: UTF-8
+        size: 4
+        doc: Unique type code
+      - id: data_size
+        type: u2
+        doc: Size, in bytes, of field (minus header)
+      - id: data
+        type:
+          switch-on: type
+          cases:
+            '"EDID"': edid_field(data_size)
+            '"OBND"': obnd_field
+            '"FULL"': full_field(data_size)
+            '"KSIZ"': scrl_ksiz_field
+            '"KWDA"': scrl_kwda_field
+            '"MDOB"': scrl_mdob_field
+            '"ETYP"': scrl_etyp_field
+            '"DESC"': scrl_desc_field
+            '"MODL"': modl_field(data_size)
+            '"YNAM"': scrl_ynam_field
+            '"ZNAM"': scrl_znam_field
+            '"DATA"': scrl_data_field
+            '"SPIT"': scrl_spit_field
+            '"DEST"': dest_field
+            '"EFID"': efid_field
+            '"EFIT"': efit_field
+            '"CTDA"': ctda_field
+        doc: Fields contained by SCRL form
+
+  scrl_ksiz_field:
+    seq:
+      - id: keyword_count
+        type: u4
+        doc: Count of KYWD formIDs in following KWDA field
+
+  scrl_kwda_field:
+    seq:
+      - id: keyword
+        type: u4
+        repeat: expr
+        repeat-expr: _parent.data_size / 4
+        doc: KYWD formIDs
+
+  scrl_mdob_field:
+    seq:
+      - id: menu_icon
+        type: u4
+        doc: Menu display object STAT FormID
+
+  scrl_etyp_field:
+    seq:
+      - id: equip_type
+        type: u4
+        doc: Equip slot EQUP formID
+
+  scrl_desc_field:
+    seq:
+      - id: description
+        type: lstring(_parent.data_size)
+        doc: In-game description
+
+  # TODO: Produce the YNAM and ZNAM fields from SNDR
+
+  scrl_ynam_field:
+    seq:
+      - id: pickup_sound
+        type: u4
+        doc: Pickup sound
+
+  scrl_znam_field:
+    seq:
+      - id: drop_sound
+        type: u4
+        doc: Drop sound
+
+  scrl_data_field:
+    seq:
+      - id: value
+        type: u4
+        doc: Scroll value
+      - id: weight
+        type: f4
+        doc: Scroll weight
+
+  scrl_spit_field:
+    seq:
+      - id: spell_cost
+        type: u4
+        doc: Spell Cost
+      - id: flags
+        type: scrl_spit_flags
+        doc: Scrl item flags
+      - id: unknown_1
+        type: u4
+        doc: Unknown - Always 0?
+      - id: charge_time
+        type: f4
+        doc: Charge time
+      - id: unknown_2
+        type: u4
+        doc: Unknown - Always 0x03 or 0x02
+      - id: target_type
+        type: u4
+        enum: effect_delivery   # Uses the same enum as effect_delivery
+        doc: Target type
+      - id: unknown_3
+        type: u4
+        doc: Unknown - Always 0?
+      - id: unknown_4
+        type: u4
+        doc: Unknown - Always 0?
+      - id: unknown_5
+        type: u4
+        doc: Unknown - Always 0?
+
+  scrl_spit_flags:
+    seq:
+      - id: manual_calc
+        type: b1
+      - type: b18
+      - id: area_effect_ignores_los
+        type: b1
+      - id: script_effect_always_applies
+        type: b1
+      - id: no_absorb_reflect
+        type: b1
+      - id: force_touch_explode
+        type: b1
+      - type: b2
+
+###############################################################################
 #                               SPELL (SPEL) FORM                             #
 ###############################################################################
   spel_form:
@@ -3168,7 +3320,7 @@ types:
         type: spel_field
         repeat: eos
         doc: Fields contained by SPEL form
-    
+
   spel_field:
     seq:
       - id: type
@@ -3195,7 +3347,7 @@ types:
             '"CIS2"': cis2_field(data_size)
             '"CTDA"': ctda_field
         doc: Fields contained by SPEL form
-  
+
   spel_mdob_field:
     seq:
       - id: menu_icon
@@ -3207,7 +3359,7 @@ types:
       - id: equip_type
         type: u4
         doc: Equip slot EQUP FormID
-  
+
   spel_desc_field:
     seq:
       - id: description
@@ -3414,7 +3566,7 @@ types:
       - id: fit_to_slope
         type: b1
       - type: b29
-      
+
 
 ###############################################################################
 #                                TREE (TREE) FORM                             #
@@ -3528,7 +3680,7 @@ types:
       - id: chance_none
         type: u1
         doc: Chance for item not to spawn (not in CK, always 0)
-  
+
   lvln_lvlf_field:
     seq:
       - id: flags
@@ -3542,7 +3694,7 @@ types:
       - id: each
         type: b1
       - type: b6
-  
+
   lvln_llct_field:
     seq:
       - id: list_count
@@ -3663,7 +3815,7 @@ types:
       - id: object_count
         type: u4
         doc: Number of input objects (CNTO fields) required
-  
+
   cobj_cnto_field:
     seq:
       - id: item
@@ -3672,7 +3824,7 @@ types:
       - id: quantity
         type: u4
         doc: Quantity needed of linked INGR object
-  
+
   cobj_cnam_field:
     seq:
       - id: output_object
@@ -3874,7 +4026,7 @@ types:
         type: spgd_field
         repeat: eos
         doc: Fields contained by SPGD form
-  
+
   spgd_field:
     seq:
       - id: type
@@ -3953,7 +4105,7 @@ types:
         type: rfct_field
         repeat: eos
         doc: Fields contained by RFCT form
-  
+
   rfct_field:
     seq:
       - id: type
@@ -3970,7 +4122,7 @@ types:
           cases:
             '"EDID"': edid_field(data_size)
             '"DATA"': rfct_data_field
-  
+
   rfct_data_field:
     seq:
       - id: effect_art
@@ -3982,7 +4134,7 @@ types:
       - id: flags
         type: rfct_data_flags
         doc: Effect flags
-    
+
   rfct_data_flags:
     seq:
       - id: rotate_to_face_target
@@ -4002,7 +4154,7 @@ types:
         type: efsh_field
         repeat: eos
         doc: Fields contained by EFSH form
-  
+
   efsh_field:
     seq:
       - id: type
@@ -4032,7 +4184,7 @@ types:
         encoding: UTF-8
         size: _parent.data_size
         doc: Path to start effect .dds
-  
+
   efsh_ico2_field:
     seq:
       - id: looped_effect
@@ -4074,7 +4226,7 @@ types:
         type: lscr_field
         repeat: eos
         doc: Fields contained by LSCR form
-  
+
   lscr_field:
     seq:
       - id: type
@@ -4111,7 +4263,7 @@ types:
       - id: screen_model
         type: u4
         doc: Static model (STAT) FormID
-  
+
   lscr_snam_field:
     seq:
       - id: initial_scale
@@ -4129,7 +4281,7 @@ types:
       - id: initial_rotation_z
         type: u2
         doc: Initial model rotation Z
-  
+
   lscr_onam_field:
     seq:
       - id: min_rotation
@@ -4138,7 +4290,7 @@ types:
       - id: max_rotation
         type: u2
         doc: Maximum model rotation
-  
+
   lscr_xnam_field:
     seq:
       - id: initial_offset_x
@@ -4168,7 +4320,7 @@ types:
         type: flst_field
         repeat: eos
         doc: Fields contained by FLST form
-  
+
   flst_field:
     seq:
       - id: type
@@ -4202,7 +4354,7 @@ types:
         type: shou_field
         repeat: eos
         doc: Fields contained by SHOU form
-  
+
   shou_field:
     seq:
       - id: type
@@ -4223,7 +4375,7 @@ types:
             '"DESC"': shou_desc_field
             '"SNAM"': shou_snam_field
         doc: Fields contained by SHOU form
-  
+
   shou_mdob_field:
     seq:
       - id: model
@@ -4257,7 +4409,7 @@ types:
         type: equp_field
         repeat: eos
         doc: Fields contained by EQUP form
-  
+
   equp_field:
     seq:
       - id: type
@@ -4299,7 +4451,7 @@ types:
         type: otft_field
         repeat: eos
         doc: Fields contained by OTFT form
-  
+
   otft_field:
     seq:
       - id: type
@@ -4334,7 +4486,7 @@ types:
         type: clfm_field
         repeat: eos
         doc: Fields contained by CLFM form
-  
+
   clfm_field:
     seq:
       - id: type
@@ -4371,7 +4523,7 @@ types:
         type: revb_field
         repeat: eos
         doc: Fields contained by REVB form
-  
+
   revb_field:
     seq:
       - id: type

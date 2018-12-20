@@ -164,6 +164,17 @@ class Tes5(KaitaiStruct):
             self.combat = self._root.FactXnamCombat(self._io.read_u4le())
 
 
+    class ScrlKsizField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.keyword_count = self._io.read_u4le()
+
+
     class FactDataFlags(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -187,6 +198,17 @@ class Tes5(KaitaiStruct):
             self.can_be_owner = self._io.read_bits_int(1) != 0
             self.ignore_werewolf = self._io.read_bits_int(1) != 0
             self._unnamed14 = self._io.read_bits_int(15)
+
+
+    class ScrlZnamField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.drop_sound = self._io.read_u4le()
 
 
     class Cis1Field(KaitaiStruct):
@@ -620,6 +642,17 @@ class Tes5(KaitaiStruct):
             self.screen_model = self._io.read_u4le()
 
 
+    class ScrlDescField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.description = self._root.Lstring(self._parent.data_size, self._io, self, self._root)
+
+
     class RaceKwdaField(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -673,6 +706,17 @@ class Tes5(KaitaiStruct):
 
         def _read(self):
             self.description = (self._io.read_bytes(self._parent.data_size)).decode(u"UTF-8")
+
+
+    class ScrlYnamField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.pickup_sound = self._io.read_u4le()
 
 
     class RaceUnamField(KaitaiStruct):
@@ -1011,6 +1055,32 @@ class Tes5(KaitaiStruct):
             self.end_gradient = (KaitaiStream.bytes_terminate(self._io.read_bytes(self._parent.data_size), 0, False)).decode(u"UTF-8")
 
 
+    class ScrlDataField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.value = self._io.read_u4le()
+            self.weight = self._io.read_f4le()
+
+
+    class ScrlKwdaField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.keyword = [None] * (self._parent.data_size // 4)
+            for i in range(self._parent.data_size // 4):
+                self.keyword[i] = self._io.read_u4le()
+
+
+
     class EqupPnamField(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -1161,6 +1231,17 @@ class Tes5(KaitaiStruct):
             self.magicka_weight = self._io.read_u1()
             self.stamina_weight = self._io.read_u1()
             self.flags = self._root.ClasDataFlags(self._io, self, self._root)
+
+
+    class ScrlMdobField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.menu_icon = self._io.read_u4le()
 
 
     class ModsField(KaitaiStruct):
@@ -1830,6 +1911,25 @@ class Tes5(KaitaiStruct):
 
 
 
+    class ScrlSpitField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.spell_cost = self._io.read_u4le()
+            self.flags = self._root.ScrlSpitFlags(self._io, self, self._root)
+            self.unknown_1 = self._io.read_u4le()
+            self.charge_time = self._io.read_f4le()
+            self.unknown_2 = self._io.read_u4le()
+            self.target_type = self._root.EffectDelivery(self._io.read_u4le())
+            self.unknown_3 = self._io.read_u4le()
+            self.unknown_4 = self._io.read_u4le()
+            self.unknown_5 = self._io.read_u4le()
+
+
     class CtdaParameters(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -1933,6 +2033,17 @@ class Tes5(KaitaiStruct):
 
         def _read(self):
             self.default_face_texture_male = self._io.read_u4le()
+
+
+    class HazdMnamField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.image_space_modifier = self._io.read_u4le()
 
 
     class FactFnamField(KaitaiStruct):
@@ -2137,6 +2248,22 @@ class Tes5(KaitaiStruct):
             self.version = self._io.read_f4le()
             self.num_records = self._io.read_s4le()
             self.next_object_id = self._io.read_u4le()
+
+
+    class HazdDataFlags(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.affects_player_only = self._io.read_bits_int(1) != 0
+            self.inherit_duration_from_spawn_spell = self._io.read_bits_int(1) != 0
+            self.align_to_impact_normal = self._io.read_bits_int(1) != 0
+            self.inherit_radius_from_spawn_spell = self._io.read_bits_int(1) != 0
+            self.drop_to_ground = self._io.read_bits_int(1) != 0
+            self._unnamed5 = self._io.read_bits_int(27)
 
 
     class CtdaParametersGetEventData(KaitaiStruct):
@@ -2353,6 +2480,33 @@ class Tes5(KaitaiStruct):
             self.g = self._io.read_u1()
             self.b = self._io.read_u1()
             self.a = self._io.read_u1()
+
+
+    class HazdField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.type = (self._io.read_bytes(4)).decode(u"UTF-8")
+            self.data_size = self._io.read_u2le()
+            _on = self.type
+            if _on == u"EDID":
+                self.data = self._root.EdidField(self.data_size, self._io, self, self._root)
+            elif _on == u"MODT":
+                self.data = self._root.ModtField(self.data_size, self._io, self, self._root)
+            elif _on == u"DATA":
+                self.data = self._root.HazdDataField(self._io, self, self._root)
+            elif _on == u"FULL":
+                self.data = self._root.FullField(self.data_size, self._io, self, self._root)
+            elif _on == u"OBND":
+                self.data = self._root.ObndField(self._io, self, self._root)
+            elif _on == u"MNAM":
+                self.data = self._root.HazdMnamField(self._io, self, self._root)
+            elif _on == u"MODL":
+                self.data = self._root.ModlField(self.data_size, self._io, self, self._root)
 
 
     class Tes4CnamField(KaitaiStruct):
@@ -2791,6 +2945,53 @@ class Tes5(KaitaiStruct):
             self.description = self._root.Lstring(self._parent.data_size, self._io, self, self._root)
 
 
+    class ScrlField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.type = (self._io.read_bytes(4)).decode(u"UTF-8")
+            self.data_size = self._io.read_u2le()
+            _on = self.type
+            if _on == u"CTDA":
+                self.data = self._root.CtdaField(self._io, self, self._root)
+            elif _on == u"EFID":
+                self.data = self._root.EfidField(self._io, self, self._root)
+            elif _on == u"EDID":
+                self.data = self._root.EdidField(self.data_size, self._io, self, self._root)
+            elif _on == u"DATA":
+                self.data = self._root.ScrlDataField(self._io, self, self._root)
+            elif _on == u"KWDA":
+                self.data = self._root.ScrlKwdaField(self._io, self, self._root)
+            elif _on == u"EFIT":
+                self.data = self._root.EfitField(self._io, self, self._root)
+            elif _on == u"MDOB":
+                self.data = self._root.ScrlMdobField(self._io, self, self._root)
+            elif _on == u"FULL":
+                self.data = self._root.FullField(self.data_size, self._io, self, self._root)
+            elif _on == u"KSIZ":
+                self.data = self._root.ScrlKsizField(self._io, self, self._root)
+            elif _on == u"DEST":
+                self.data = self._root.DestField(self._io, self, self._root)
+            elif _on == u"ETYP":
+                self.data = self._root.ScrlEtypField(self._io, self, self._root)
+            elif _on == u"DESC":
+                self.data = self._root.ScrlDescField(self._io, self, self._root)
+            elif _on == u"OBND":
+                self.data = self._root.ObndField(self._io, self, self._root)
+            elif _on == u"ZNAM":
+                self.data = self._root.ScrlZnamField(self._io, self, self._root)
+            elif _on == u"MODL":
+                self.data = self._root.ModlField(self.data_size, self._io, self, self._root)
+            elif _on == u"SPIT":
+                self.data = self._root.ScrlSpitField(self._io, self, self._root)
+            elif _on == u"YNAM":
+                self.data = self._root.ScrlYnamField(self._io, self, self._root)
+
+
     class GlobFltvField(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -2832,6 +3033,23 @@ class Tes5(KaitaiStruct):
                 self.fields.append(self._root.SpelField(self._io, self, self._root))
                 i += 1
 
+
+
+    class ScrlSpitFlags(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.manual_calc = self._io.read_bits_int(1) != 0
+            self._unnamed1 = self._io.read_bits_int(18)
+            self.area_effect_ignores_los = self._io.read_bits_int(1) != 0
+            self.script_effect_always_applies = self._io.read_bits_int(1) != 0
+            self.no_absorb_reflect = self._io.read_bits_int(1) != 0
+            self.force_touch_explode = self._io.read_bits_int(1) != 0
+            self._unnamed6 = self._io.read_bits_int(2)
 
 
     class TreeField(KaitaiStruct):
@@ -3521,6 +3739,26 @@ class Tes5(KaitaiStruct):
             self.belongings_chest = self._io.read_u4le()
 
 
+    class HazdDataField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.limit = self._io.read_u4le()
+            self.radius = self._io.read_f4le()
+            self.lifetime = self._io.read_f4le()
+            self.image_space_radius = self._io.read_f4le()
+            self.target_interval = self._io.read_f4le()
+            self.flags = self._root.HazdDataFlags(self._io, self, self._root)
+            self.spell = self._io.read_u4le()
+            self.light = self._io.read_u4le()
+            self.impact_data_set = self._io.read_u4le()
+            self.sound = self._io.read_u4le()
+
+
     class RaceSpctField(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -3591,6 +3829,22 @@ class Tes5(KaitaiStruct):
             self.flags = self._root.TxstDodtFlags(self._io, self, self._root)
             self.unknown = self._io.read_u2le()
             self.rgb = self._root.Color(self._io, self, self._root)
+
+
+    class ScrlForm(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.fields = []
+            i = 0
+            while not self._io.is_eof():
+                self.fields.append(self._root.ScrlField(self._io, self, self._root))
+                i += 1
+
 
 
     class RaceNam5Field(KaitaiStruct):
@@ -4207,6 +4461,14 @@ class Tes5(KaitaiStruct):
                 self._raw_form_data = self._io.read_bytes(self.header.data_size)
                 io = KaitaiStream(BytesIO(self._raw_form_data))
                 self.form_data = self._root.LtexForm(io, self, self._root)
+            elif _on == u"HAZD":
+                self._raw_form_data = self._io.read_bytes(self.header.data_size)
+                io = KaitaiStream(BytesIO(self._raw_form_data))
+                self.form_data = self._root.HazdForm(io, self, self._root)
+            elif _on == u"SCRL":
+                self._raw_form_data = self._io.read_bytes(self.header.data_size)
+                io = KaitaiStream(BytesIO(self._raw_form_data))
+                self.form_data = self._root.ScrlForm(io, self, self._root)
             elif _on == u"SHOU":
                 self._raw_form_data = self._io.read_bytes(self.header.data_size)
                 io = KaitaiStream(BytesIO(self._raw_form_data))
@@ -4255,6 +4517,10 @@ class Tes5(KaitaiStruct):
                 self._raw_form_data = self._io.read_bytes(self.header.data_size)
                 io = KaitaiStream(BytesIO(self._raw_form_data))
                 self.form_data = self._root.EqupForm(io, self, self._root)
+            elif _on == u"COBJ":
+                self._raw_form_data = self._io.read_bytes(self.header.data_size)
+                io = KaitaiStream(BytesIO(self._raw_form_data))
+                self.form_data = self._root.CobjForm(io, self, self._root)
             elif _on == u"HDPT":
                 self._raw_form_data = self._io.read_bytes(self.header.data_size)
                 io = KaitaiStream(BytesIO(self._raw_form_data))
@@ -4444,6 +4710,28 @@ class Tes5(KaitaiStruct):
                 self.flags = self._root.MpavLipFlags(self._io, self, self._root)
 
 
+    class ScrlEtypField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.equip_type = self._io.read_u4le()
+
+
+    class DestField(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.destruction_data = self._io.read_bytes(8)
+
+
     class FactStolField(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
@@ -4578,6 +4866,22 @@ class Tes5(KaitaiStruct):
 
         def _read(self):
             self.icon = (KaitaiStream.bytes_terminate(self._io.read_bytes(self._parent.data_size), 0, False)).decode(u"UTF-8")
+
+
+    class HazdForm(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
+            self.fields = []
+            i = 0
+            while not self._io.is_eof():
+                self.fields.append(self._root.HazdField(self._io, self, self._root))
+                i += 1
+
 
 
     class FactPlvdField(KaitaiStruct):

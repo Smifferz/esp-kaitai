@@ -315,6 +315,25 @@ var Tes5 = (function() {
     return FactXnamField;
   })();
 
+  var ScrlKsizField = Tes5.ScrlKsizField = (function() {
+    function ScrlKsizField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlKsizField.prototype._read = function() {
+      this.keywordCount = this._io.readU4le();
+    }
+
+    /**
+     * Count of KYWD formIDs in following KWDA field
+     */
+
+    return ScrlKsizField;
+  })();
+
   var FactDataFlags = Tes5.FactDataFlags = (function() {
     function FactDataFlags(_io, _parent, _root) {
       this._io = _io;
@@ -342,6 +361,25 @@ var Tes5 = (function() {
     }
 
     return FactDataFlags;
+  })();
+
+  var ScrlZnamField = Tes5.ScrlZnamField = (function() {
+    function ScrlZnamField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlZnamField.prototype._read = function() {
+      this.dropSound = this._io.readU4le();
+    }
+
+    /**
+     * Drop sound
+     */
+
+    return ScrlZnamField;
   })();
 
   var Cis1Field = Tes5.Cis1Field = (function() {
@@ -1157,6 +1195,25 @@ var Tes5 = (function() {
     return LscrNnamField;
   })();
 
+  var ScrlDescField = Tes5.ScrlDescField = (function() {
+    function ScrlDescField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlDescField.prototype._read = function() {
+      this.description = new Lstring(this._io, this, this._root, this._parent.dataSize);
+    }
+
+    /**
+     * In-game description
+     */
+
+    return ScrlDescField;
+  })();
+
   var RaceKwdaField = Tes5.RaceKwdaField = (function() {
     function RaceKwdaField(_io, _parent, _root) {
       this._io = _io;
@@ -1274,6 +1331,25 @@ var Tes5 = (function() {
      */
 
     return Tes4SnamField;
+  })();
+
+  var ScrlYnamField = Tes5.ScrlYnamField = (function() {
+    function ScrlYnamField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlYnamField.prototype._read = function() {
+      this.pickupSound = this._io.readU4le();
+    }
+
+    /**
+     * Pickup sound
+     */
+
+    return ScrlYnamField;
   })();
 
   var RaceUnamField = Tes5.RaceUnamField = (function() {
@@ -1760,6 +1836,52 @@ var Tes5 = (function() {
     return EfshNam9Field;
   })();
 
+  var ScrlDataField = Tes5.ScrlDataField = (function() {
+    function ScrlDataField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlDataField.prototype._read = function() {
+      this.value = this._io.readU4le();
+      this.weight = this._io.readF4le();
+    }
+
+    /**
+     * Scroll value
+     */
+
+    /**
+     * Scroll weight
+     */
+
+    return ScrlDataField;
+  })();
+
+  var ScrlKwdaField = Tes5.ScrlKwdaField = (function() {
+    function ScrlKwdaField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlKwdaField.prototype._read = function() {
+      this.keyword = new Array(Math.floor(this._parent.dataSize / 4));
+      for (var i = 0; i < Math.floor(this._parent.dataSize / 4); i++) {
+        this.keyword[i] = this._io.readU4le();
+      }
+    }
+
+    /**
+     * KYWD formIDs
+     */
+
+    return ScrlKwdaField;
+  })();
+
   var EqupPnamField = Tes5.EqupPnamField = (function() {
     function EqupPnamField(_io, _parent, _root) {
       this._io = _io;
@@ -2120,6 +2242,25 @@ var Tes5 = (function() {
      */
 
     return ClasDataField;
+  })();
+
+  var ScrlMdobField = Tes5.ScrlMdobField = (function() {
+    function ScrlMdobField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlMdobField.prototype._read = function() {
+      this.menuIcon = this._io.readU4le();
+    }
+
+    /**
+     * Menu display object STAT FormID
+     */
+
+    return ScrlMdobField;
   })();
 
   var ModsField = Tes5.ModsField = (function() {
@@ -3367,6 +3508,65 @@ var Tes5 = (function() {
     return ClfmForm;
   })();
 
+  var ScrlSpitField = Tes5.ScrlSpitField = (function() {
+    function ScrlSpitField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlSpitField.prototype._read = function() {
+      this.spellCost = this._io.readU4le();
+      this.flags = new ScrlSpitFlags(this._io, this, this._root);
+      this.unknown1 = this._io.readU4le();
+      this.chargeTime = this._io.readF4le();
+      this.unknown2 = this._io.readU4le();
+      this.targetType = this._io.readU4le();
+      this.unknown3 = this._io.readU4le();
+      this.unknown4 = this._io.readU4le();
+      this.unknown5 = this._io.readU4le();
+    }
+
+    /**
+     * Spell Cost
+     */
+
+    /**
+     * Scrl item flags
+     */
+
+    /**
+     * Unknown - Always 0?
+     */
+
+    /**
+     * Charge time
+     */
+
+    /**
+     * Unknown - Always 0x03 or 0x02
+     */
+
+    /**
+     * Target type
+     */
+
+    /**
+     * Unknown - Always 0?
+     */
+
+    /**
+     * Unknown - Always 0?
+     */
+
+    /**
+     * Unknown - Always 0?
+     */
+
+    return ScrlSpitField;
+  })();
+
   var CtdaParameters = Tes5.CtdaParameters = (function() {
     function CtdaParameters(_io, _parent, _root) {
       this._io = _io;
@@ -3562,6 +3762,25 @@ var Tes5 = (function() {
      */
 
     return RaceDftmField;
+  })();
+
+  var HazdMnamField = Tes5.HazdMnamField = (function() {
+    function HazdMnamField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    HazdMnamField.prototype._read = function() {
+      this.imageSpaceModifier = this._io.readU4le();
+    }
+
+    /**
+     * Linked IMAD FormID
+     */
+
+    return HazdMnamField;
   })();
 
   var FactFnamField = Tes5.FactFnamField = (function() {
@@ -3909,6 +4128,26 @@ var Tes5 = (function() {
      */
 
     return Tes4HedrField;
+  })();
+
+  var HazdDataFlags = Tes5.HazdDataFlags = (function() {
+    function HazdDataFlags(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    HazdDataFlags.prototype._read = function() {
+      this.affectsPlayerOnly = this._io.readBitsInt(1) != 0;
+      this.inheritDurationFromSpawnSpell = this._io.readBitsInt(1) != 0;
+      this.alignToImpactNormal = this._io.readBitsInt(1) != 0;
+      this.inheritRadiusFromSpawnSpell = this._io.readBitsInt(1) != 0;
+      this.dropToGround = this._io.readBitsInt(1) != 0;
+      this._unnamed5 = this._io.readBitsInt(27);
+    }
+
+    return HazdDataFlags;
   })();
 
   var CtdaParametersGetEventData = Tes5.CtdaParametersGetEventData = (function() {
@@ -4287,6 +4526,57 @@ var Tes5 = (function() {
      */
 
     return Color;
+  })();
+
+  var HazdField = Tes5.HazdField = (function() {
+    function HazdField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    HazdField.prototype._read = function() {
+      this.type = KaitaiStream.bytesToStr(this._io.readBytes(4), "UTF-8");
+      this.dataSize = this._io.readU2le();
+      switch (this.type) {
+      case "EDID":
+        this.data = new EdidField(this._io, this, this._root, this.dataSize);
+        break;
+      case "MODT":
+        this.data = new ModtField(this._io, this, this._root, this.dataSize);
+        break;
+      case "DATA":
+        this.data = new HazdDataField(this._io, this, this._root);
+        break;
+      case "FULL":
+        this.data = new FullField(this._io, this, this._root, this.dataSize);
+        break;
+      case "OBND":
+        this.data = new ObndField(this._io, this, this._root);
+        break;
+      case "MNAM":
+        this.data = new HazdMnamField(this._io, this, this._root);
+        break;
+      case "MODL":
+        this.data = new ModlField(this._io, this, this._root, this.dataSize);
+        break;
+      }
+    }
+
+    /**
+     * unique type code
+     */
+
+    /**
+     * Size, in bytes, of field (minus header)
+     */
+
+    /**
+     * Fields contained by HAZD form
+     */
+
+    return HazdField;
   })();
 
   var Tes4CnamField = Tes5.Tes4CnamField = (function() {
@@ -5043,6 +5333,87 @@ var Tes5 = (function() {
     return RaceDescField;
   })();
 
+  var ScrlField = Tes5.ScrlField = (function() {
+    function ScrlField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlField.prototype._read = function() {
+      this.type = KaitaiStream.bytesToStr(this._io.readBytes(4), "UTF-8");
+      this.dataSize = this._io.readU2le();
+      switch (this.type) {
+      case "CTDA":
+        this.data = new CtdaField(this._io, this, this._root);
+        break;
+      case "EFID":
+        this.data = new EfidField(this._io, this, this._root);
+        break;
+      case "EDID":
+        this.data = new EdidField(this._io, this, this._root, this.dataSize);
+        break;
+      case "DATA":
+        this.data = new ScrlDataField(this._io, this, this._root);
+        break;
+      case "KWDA":
+        this.data = new ScrlKwdaField(this._io, this, this._root);
+        break;
+      case "EFIT":
+        this.data = new EfitField(this._io, this, this._root);
+        break;
+      case "MDOB":
+        this.data = new ScrlMdobField(this._io, this, this._root);
+        break;
+      case "FULL":
+        this.data = new FullField(this._io, this, this._root, this.dataSize);
+        break;
+      case "KSIZ":
+        this.data = new ScrlKsizField(this._io, this, this._root);
+        break;
+      case "DEST":
+        this.data = new DestField(this._io, this, this._root);
+        break;
+      case "ETYP":
+        this.data = new ScrlEtypField(this._io, this, this._root);
+        break;
+      case "DESC":
+        this.data = new ScrlDescField(this._io, this, this._root);
+        break;
+      case "OBND":
+        this.data = new ObndField(this._io, this, this._root);
+        break;
+      case "ZNAM":
+        this.data = new ScrlZnamField(this._io, this, this._root);
+        break;
+      case "MODL":
+        this.data = new ModlField(this._io, this, this._root, this.dataSize);
+        break;
+      case "SPIT":
+        this.data = new ScrlSpitField(this._io, this, this._root);
+        break;
+      case "YNAM":
+        this.data = new ScrlYnamField(this._io, this, this._root);
+        break;
+      }
+    }
+
+    /**
+     * Unique type code
+     */
+
+    /**
+     * Size, in bytes, of field (minus header)
+     */
+
+    /**
+     * Fields contained by SCRL form
+     */
+
+    return ScrlField;
+  })();
+
   var GlobFltvField = Tes5.GlobFltvField = (function() {
     function GlobFltvField(_io, _parent, _root) {
       this._io = _io;
@@ -5108,6 +5479,27 @@ var Tes5 = (function() {
      */
 
     return SpelForm;
+  })();
+
+  var ScrlSpitFlags = Tes5.ScrlSpitFlags = (function() {
+    function ScrlSpitFlags(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlSpitFlags.prototype._read = function() {
+      this.manualCalc = this._io.readBitsInt(1) != 0;
+      this._unnamed1 = this._io.readBitsInt(18);
+      this.areaEffectIgnoresLos = this._io.readBitsInt(1) != 0;
+      this.scriptEffectAlwaysApplies = this._io.readBitsInt(1) != 0;
+      this.noAbsorbReflect = this._io.readBitsInt(1) != 0;
+      this.forceTouchExplode = this._io.readBitsInt(1) != 0;
+      this._unnamed6 = this._io.readBitsInt(2);
+    }
+
+    return ScrlSpitFlags;
   })();
 
   var TreeField = Tes5.TreeField = (function() {
@@ -6412,6 +6804,70 @@ var Tes5 = (function() {
     return FactPlcnField;
   })();
 
+  var HazdDataField = Tes5.HazdDataField = (function() {
+    function HazdDataField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    HazdDataField.prototype._read = function() {
+      this.limit = this._io.readU4le();
+      this.radius = this._io.readF4le();
+      this.lifetime = this._io.readF4le();
+      this.imageSpaceRadius = this._io.readF4le();
+      this.targetInterval = this._io.readF4le();
+      this.flags = new HazdDataFlags(this._io, this, this._root);
+      this.spell = this._io.readU4le();
+      this.light = this._io.readU4le();
+      this.impactDataSet = this._io.readU4le();
+      this.sound = this._io.readU4le();
+    }
+
+    /**
+     * Limit
+     */
+
+    /**
+     * Radius
+     */
+
+    /**
+     * Lifetime
+     */
+
+    /**
+     * Image space radius
+     */
+
+    /**
+     * Target interval
+     */
+
+    /**
+     * Flags
+     */
+
+    /**
+     * Linked SPEL FormID
+     */
+
+    /**
+     * Linked LIGH FormID
+     */
+
+    /**
+     * Linked IPDS FormID
+     */
+
+    /**
+     * Linked SNDR FormID
+     */
+
+    return HazdDataField;
+  })();
+
   var RaceSpctField = Tes5.RaceSpctField = (function() {
     function RaceSpctField(_io, _parent, _root) {
       this._io = _io;
@@ -6574,6 +7030,30 @@ var Tes5 = (function() {
      */
 
     return TxstDodtField;
+  })();
+
+  var ScrlForm = Tes5.ScrlForm = (function() {
+    function ScrlForm(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlForm.prototype._read = function() {
+      this.fields = [];
+      var i = 0;
+      while (!this._io.isEof()) {
+        this.fields.push(new ScrlField(this._io, this, this._root));
+        i++;
+      }
+    }
+
+    /**
+     * Fields contained by SCRL form
+     */
+
+    return ScrlForm;
   })();
 
   var RaceNam5Field = Tes5.RaceNam5Field = (function() {
@@ -7099,7 +7579,6 @@ var Tes5 = (function() {
      * TX05 - Environment map
      * TX06 - Unknown (does not occur in Skyrim.esm)
      * TX07 - Specularity map (for bodies)
-     *           
      */
 
     return TxstTxField;
@@ -7689,6 +8168,16 @@ var Tes5 = (function() {
         var _io__raw_formData = new KaitaiStream(this._raw_formData);
         this.formData = new LtexForm(_io__raw_formData, this, this._root);
         break;
+      case "HAZD":
+        this._raw_formData = this._io.readBytes(this.header.dataSize);
+        var _io__raw_formData = new KaitaiStream(this._raw_formData);
+        this.formData = new HazdForm(_io__raw_formData, this, this._root);
+        break;
+      case "SCRL":
+        this._raw_formData = this._io.readBytes(this.header.dataSize);
+        var _io__raw_formData = new KaitaiStream(this._raw_formData);
+        this.formData = new ScrlForm(_io__raw_formData, this, this._root);
+        break;
       case "SHOU":
         this._raw_formData = this._io.readBytes(this.header.dataSize);
         var _io__raw_formData = new KaitaiStream(this._raw_formData);
@@ -7748,6 +8237,11 @@ var Tes5 = (function() {
         this._raw_formData = this._io.readBytes(this.header.dataSize);
         var _io__raw_formData = new KaitaiStream(this._raw_formData);
         this.formData = new EqupForm(_io__raw_formData, this, this._root);
+        break;
+      case "COBJ":
+        this._raw_formData = this._io.readBytes(this.header.dataSize);
+        var _io__raw_formData = new KaitaiStream(this._raw_formData);
+        this.formData = new CobjForm(_io__raw_formData, this, this._root);
         break;
       case "HDPT":
         this._raw_formData = this._io.readBytes(this.header.dataSize);
@@ -8118,6 +8612,44 @@ var Tes5 = (function() {
     return RaceMpavField;
   })();
 
+  var ScrlEtypField = Tes5.ScrlEtypField = (function() {
+    function ScrlEtypField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    ScrlEtypField.prototype._read = function() {
+      this.equipType = this._io.readU4le();
+    }
+
+    /**
+     * Equip slot EQUP formID
+     */
+
+    return ScrlEtypField;
+  })();
+
+  var DestField = Tes5.DestField = (function() {
+    function DestField(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    DestField.prototype._read = function() {
+      this.destructionData = this._io.readBytes(8);
+    }
+
+    /**
+     * Destruction Data
+     */
+
+    return DestField;
+  })();
+
   var FactStolField = Tes5.FactStolField = (function() {
     function FactStolField(_io, _parent, _root) {
       this._io = _io;
@@ -8436,6 +8968,30 @@ var Tes5 = (function() {
      */
 
     return ClasIconField;
+  })();
+
+  var HazdForm = Tes5.HazdForm = (function() {
+    function HazdForm(_io, _parent, _root) {
+      this._io = _io;
+      this._parent = _parent;
+      this._root = _root || this;
+
+      this._read();
+    }
+    HazdForm.prototype._read = function() {
+      this.fields = [];
+      var i = 0;
+      while (!this._io.isEof()) {
+        this.fields.push(new HazdField(this._io, this, this._root));
+        i++;
+      }
+    }
+
+    /**
+     * Fields contained by HAZD form
+     */
+
+    return HazdForm;
   })();
 
   var FactPlvdField = Tes5.FactPlvdField = (function() {

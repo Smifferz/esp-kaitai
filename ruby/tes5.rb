@@ -210,6 +210,21 @@ class Tes5 < Kaitai::Struct::Struct
     # Combat behaviour with faction
     attr_reader :combat
   end
+  class ScrlKsizField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @keyword_count = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Count of KYWD formIDs in following KWDA field
+    attr_reader :keyword_count
+  end
   class FactDataFlags < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -249,6 +264,21 @@ class Tes5 < Kaitai::Struct::Struct
     attr_reader :can_be_owner
     attr_reader :ignore_werewolf
     attr_reader :_unnamed14
+  end
+  class ScrlZnamField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @drop_sound = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Drop sound
+    attr_reader :drop_sound
   end
   class Cis1Field < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self, data_size)
@@ -918,6 +948,21 @@ class Tes5 < Kaitai::Struct::Struct
     # Static model (STAT) FormID
     attr_reader :screen_model
   end
+  class ScrlDescField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @description = Lstring.new(@_io, self, @_root, _parent.data_size)
+      self
+    end
+
+    ##
+    # In-game description
+    attr_reader :description
+  end
   class RaceKwdaField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -1020,6 +1065,21 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Description of file (optional)
     attr_reader :description
+  end
+  class ScrlYnamField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @pickup_sound = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Pickup sound
+    attr_reader :pickup_sound
   end
   class RaceUnamField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -1543,6 +1603,44 @@ class Tes5 < Kaitai::Struct::Struct
     # Path to end_gradient .dds
     attr_reader :end_gradient
   end
+  class ScrlDataField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @value = @_io.read_u4le
+      @weight = @_io.read_f4le
+      self
+    end
+
+    ##
+    # Scroll value
+    attr_reader :value
+
+    ##
+    # Scroll weight
+    attr_reader :weight
+  end
+  class ScrlKwdaField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @keyword = Array.new((_parent.data_size / 4))
+      ((_parent.data_size / 4)).times { |i|
+        @keyword[i] = @_io.read_u4le
+      }
+      self
+    end
+
+    ##
+    # KYWD formIDs
+    attr_reader :keyword
+  end
   class EqupPnamField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -1863,6 +1961,21 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Class flags
     attr_reader :flags
+  end
+  class ScrlMdobField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @menu_icon = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Menu display object STAT FormID
+    attr_reader :menu_icon
   end
   class ModsField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -2929,6 +3042,61 @@ class Tes5 < Kaitai::Struct::Struct
     # Fields contained by CLFM form
     attr_reader :fields
   end
+  class ScrlSpitField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @spell_cost = @_io.read_u4le
+      @flags = ScrlSpitFlags.new(@_io, self, @_root)
+      @unknown_1 = @_io.read_u4le
+      @charge_time = @_io.read_f4le
+      @unknown_2 = @_io.read_u4le
+      @target_type = Kaitai::Struct::Stream::resolve_enum(EFFECT_DELIVERY, @_io.read_u4le)
+      @unknown_3 = @_io.read_u4le
+      @unknown_4 = @_io.read_u4le
+      @unknown_5 = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Spell Cost
+    attr_reader :spell_cost
+
+    ##
+    # Scrl item flags
+    attr_reader :flags
+
+    ##
+    # Unknown - Always 0?
+    attr_reader :unknown_1
+
+    ##
+    # Charge time
+    attr_reader :charge_time
+
+    ##
+    # Unknown - Always 0x03 or 0x02
+    attr_reader :unknown_2
+
+    ##
+    # Target type
+    attr_reader :target_type
+
+    ##
+    # Unknown - Always 0?
+    attr_reader :unknown_3
+
+    ##
+    # Unknown - Always 0?
+    attr_reader :unknown_4
+
+    ##
+    # Unknown - Always 0?
+    attr_reader :unknown_5
+  end
   class CtdaParameters < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -3094,6 +3262,21 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # FormID of associated TXST form
     attr_reader :default_face_texture_male
+  end
+  class HazdMnamField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @image_space_modifier = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Linked IMAD FormID
+    attr_reader :image_space_modifier
   end
   class FactFnamField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -3420,6 +3603,28 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Next form ID
     attr_reader :next_object_id
+  end
+  class HazdDataFlags < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @affects_player_only = @_io.read_bits_int(1) != 0
+      @inherit_duration_from_spawn_spell = @_io.read_bits_int(1) != 0
+      @align_to_impact_normal = @_io.read_bits_int(1) != 0
+      @inherit_radius_from_spawn_spell = @_io.read_bits_int(1) != 0
+      @drop_to_ground = @_io.read_bits_int(1) != 0
+      @_unnamed5 = @_io.read_bits_int(27)
+      self
+    end
+    attr_reader :affects_player_only
+    attr_reader :inherit_duration_from_spawn_spell
+    attr_reader :align_to_impact_normal
+    attr_reader :inherit_radius_from_spawn_spell
+    attr_reader :drop_to_ground
+    attr_reader :_unnamed5
   end
   class CtdaParametersGetEventData < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -3761,6 +3966,46 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Alpha (?) value
     attr_reader :a
+  end
+  class HazdField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @type = (@_io.read_bytes(4)).force_encoding("UTF-8")
+      @data_size = @_io.read_u2le
+      case type
+      when "EDID"
+        @data = EdidField.new(@_io, self, @_root, data_size)
+      when "MODT"
+        @data = ModtField.new(@_io, self, @_root, data_size)
+      when "DATA"
+        @data = HazdDataField.new(@_io, self, @_root)
+      when "FULL"
+        @data = FullField.new(@_io, self, @_root, data_size)
+      when "OBND"
+        @data = ObndField.new(@_io, self, @_root)
+      when "MNAM"
+        @data = HazdMnamField.new(@_io, self, @_root)
+      when "MODL"
+        @data = ModlField.new(@_io, self, @_root, data_size)
+      end
+      self
+    end
+
+    ##
+    # unique type code
+    attr_reader :type
+
+    ##
+    # Size, in bytes, of field (minus header)
+    attr_reader :data_size
+
+    ##
+    # Fields contained by HAZD form
+    attr_reader :data
   end
   class Tes4CnamField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -4377,6 +4622,66 @@ class Tes5 < Kaitai::Struct::Struct
     # Race description (as it appears in-game)
     attr_reader :description
   end
+  class ScrlField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @type = (@_io.read_bytes(4)).force_encoding("UTF-8")
+      @data_size = @_io.read_u2le
+      case type
+      when "CTDA"
+        @data = CtdaField.new(@_io, self, @_root)
+      when "EFID"
+        @data = EfidField.new(@_io, self, @_root)
+      when "EDID"
+        @data = EdidField.new(@_io, self, @_root, data_size)
+      when "DATA"
+        @data = ScrlDataField.new(@_io, self, @_root)
+      when "KWDA"
+        @data = ScrlKwdaField.new(@_io, self, @_root)
+      when "EFIT"
+        @data = EfitField.new(@_io, self, @_root)
+      when "MDOB"
+        @data = ScrlMdobField.new(@_io, self, @_root)
+      when "FULL"
+        @data = FullField.new(@_io, self, @_root, data_size)
+      when "KSIZ"
+        @data = ScrlKsizField.new(@_io, self, @_root)
+      when "DEST"
+        @data = DestField.new(@_io, self, @_root)
+      when "ETYP"
+        @data = ScrlEtypField.new(@_io, self, @_root)
+      when "DESC"
+        @data = ScrlDescField.new(@_io, self, @_root)
+      when "OBND"
+        @data = ObndField.new(@_io, self, @_root)
+      when "ZNAM"
+        @data = ScrlZnamField.new(@_io, self, @_root)
+      when "MODL"
+        @data = ModlField.new(@_io, self, @_root, data_size)
+      when "SPIT"
+        @data = ScrlSpitField.new(@_io, self, @_root)
+      when "YNAM"
+        @data = ScrlYnamField.new(@_io, self, @_root)
+      end
+      self
+    end
+
+    ##
+    # Unique type code
+    attr_reader :type
+
+    ##
+    # Size, in bytes, of field (minus header)
+    attr_reader :data_size
+
+    ##
+    # Fields contained by SCRL form
+    attr_reader :data
+  end
   class GlobFltvField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -4431,6 +4736,30 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Fields contained by SPEL form
     attr_reader :fields
+  end
+  class ScrlSpitFlags < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @manual_calc = @_io.read_bits_int(1) != 0
+      @_unnamed1 = @_io.read_bits_int(18)
+      @area_effect_ignores_los = @_io.read_bits_int(1) != 0
+      @script_effect_always_applies = @_io.read_bits_int(1) != 0
+      @no_absorb_reflect = @_io.read_bits_int(1) != 0
+      @force_touch_explode = @_io.read_bits_int(1) != 0
+      @_unnamed6 = @_io.read_bits_int(2)
+      self
+    end
+    attr_reader :manual_calc
+    attr_reader :_unnamed1
+    attr_reader :area_effect_ignores_los
+    attr_reader :script_effect_always_applies
+    attr_reader :no_absorb_reflect
+    attr_reader :force_touch_explode
+    attr_reader :_unnamed6
   end
   class TreeField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -5585,6 +5914,66 @@ class Tes5 < Kaitai::Struct::Struct
     # Player inventory chest (REFR)
     attr_reader :belongings_chest
   end
+  class HazdDataField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @limit = @_io.read_u4le
+      @radius = @_io.read_f4le
+      @lifetime = @_io.read_f4le
+      @image_space_radius = @_io.read_f4le
+      @target_interval = @_io.read_f4le
+      @flags = HazdDataFlags.new(@_io, self, @_root)
+      @spell = @_io.read_u4le
+      @light = @_io.read_u4le
+      @impact_data_set = @_io.read_u4le
+      @sound = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Limit
+    attr_reader :limit
+
+    ##
+    # Radius
+    attr_reader :radius
+
+    ##
+    # Lifetime
+    attr_reader :lifetime
+
+    ##
+    # Image space radius
+    attr_reader :image_space_radius
+
+    ##
+    # Target interval
+    attr_reader :target_interval
+
+    ##
+    # Flags
+    attr_reader :flags
+
+    ##
+    # Linked SPEL FormID
+    attr_reader :spell
+
+    ##
+    # Linked LIGH FormID
+    attr_reader :light
+
+    ##
+    # Linked IPDS FormID
+    attr_reader :impact_data_set
+
+    ##
+    # Linked SNDR FormID
+    attr_reader :sound
+  end
   class RaceSpctField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -5728,6 +6117,26 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Decal color
     attr_reader :rgb
+  end
+  class ScrlForm < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @fields = []
+      i = 0
+      while not @_io.eof?
+        @fields << ScrlField.new(@_io, self, @_root)
+        i += 1
+      end
+      self
+    end
+
+    ##
+    # Fields contained by SCRL form
+    attr_reader :fields
   end
   class RaceNam5Field < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
@@ -6186,7 +6595,6 @@ class Tes5 < Kaitai::Struct::Struct
     # TX05 - Environment map
     # TX06 - Unknown (does not occur in Skyrim.esm)
     # TX07 - Specularity map (for bodies)
-    #           
     attr_reader :path
   end
   class RaceSploField < Kaitai::Struct::Struct
@@ -6679,6 +7087,14 @@ class Tes5 < Kaitai::Struct::Struct
         @_raw_form_data = @_io.read_bytes(header.data_size)
         io = Kaitai::Struct::Stream.new(@_raw_form_data)
         @form_data = LtexForm.new(io, self, @_root)
+      when "HAZD"
+        @_raw_form_data = @_io.read_bytes(header.data_size)
+        io = Kaitai::Struct::Stream.new(@_raw_form_data)
+        @form_data = HazdForm.new(io, self, @_root)
+      when "SCRL"
+        @_raw_form_data = @_io.read_bytes(header.data_size)
+        io = Kaitai::Struct::Stream.new(@_raw_form_data)
+        @form_data = ScrlForm.new(io, self, @_root)
       when "SHOU"
         @_raw_form_data = @_io.read_bytes(header.data_size)
         io = Kaitai::Struct::Stream.new(@_raw_form_data)
@@ -6727,6 +7143,10 @@ class Tes5 < Kaitai::Struct::Struct
         @_raw_form_data = @_io.read_bytes(header.data_size)
         io = Kaitai::Struct::Stream.new(@_raw_form_data)
         @form_data = EqupForm.new(io, self, @_root)
+      when "COBJ"
+        @_raw_form_data = @_io.read_bytes(header.data_size)
+        io = Kaitai::Struct::Stream.new(@_raw_form_data)
+        @form_data = CobjForm.new(io, self, @_root)
       when "HDPT"
         @_raw_form_data = @_io.read_bytes(header.data_size)
         io = Kaitai::Struct::Stream.new(@_raw_form_data)
@@ -7046,6 +7466,36 @@ class Tes5 < Kaitai::Struct::Struct
     # Number of field occurence
     attr_reader :occurence
   end
+  class ScrlEtypField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @equip_type = @_io.read_u4le
+      self
+    end
+
+    ##
+    # Equip slot EQUP formID
+    attr_reader :equip_type
+  end
+  class DestField < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @destruction_data = @_io.read_bytes(8)
+      self
+    end
+
+    ##
+    # Destruction Data
+    attr_reader :destruction_data
+  end
   class FactStolField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)
       super(_io, _parent, _root)
@@ -7332,6 +7782,26 @@ class Tes5 < Kaitai::Struct::Struct
     ##
     # Path to menu image
     attr_reader :icon
+  end
+  class HazdForm < Kaitai::Struct::Struct
+    def initialize(_io, _parent = nil, _root = self)
+      super(_io, _parent, _root)
+      _read
+    end
+
+    def _read
+      @fields = []
+      i = 0
+      while not @_io.eof?
+        @fields << HazdField.new(@_io, self, @_root)
+        i += 1
+      end
+      self
+    end
+
+    ##
+    # Fields contained by HAZD form
+    attr_reader :fields
   end
   class FactPlvdField < Kaitai::Struct::Struct
     def initialize(_io, _parent = nil, _root = self)

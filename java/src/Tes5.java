@@ -409,6 +409,39 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.FactField _parent() { return _parent; }
     }
+    public static class ScrlKsizField extends KaitaiStruct {
+        public static ScrlKsizField fromFile(String fileName) throws IOException {
+            return new ScrlKsizField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlKsizField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlKsizField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlKsizField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.keywordCount = this._io.readU4le();
+        }
+        private long keywordCount;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Count of KYWD formIDs in following KWDA field
+         */
+        public long keywordCount() { return keywordCount; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
     public static class FactDataFlags extends KaitaiStruct {
         public static FactDataFlags fromFile(String fileName) throws IOException {
             return new FactDataFlags(new ByteBufferKaitaiStream(fileName));
@@ -479,6 +512,39 @@ public class Tes5 extends KaitaiStruct {
         public long _unnamed14() { return _unnamed14; }
         public Tes5 _root() { return _root; }
         public Tes5.FactDataField _parent() { return _parent; }
+    }
+    public static class ScrlZnamField extends KaitaiStruct {
+        public static ScrlZnamField fromFile(String fileName) throws IOException {
+            return new ScrlZnamField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlZnamField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlZnamField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlZnamField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.dropSound = this._io.readU4le();
+        }
+        private long dropSound;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Drop sound
+         */
+        public long dropSound() { return dropSound; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
     }
     public static class Cis1Field extends KaitaiStruct {
 
@@ -1762,6 +1828,39 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.LscrField _parent() { return _parent; }
     }
+    public static class ScrlDescField extends KaitaiStruct {
+        public static ScrlDescField fromFile(String fileName) throws IOException {
+            return new ScrlDescField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlDescField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlDescField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlDescField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.description = new Lstring(this._io, this, _root, _parent().dataSize());
+        }
+        private Lstring description;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * In-game description
+         */
+        public Lstring description() { return description; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
     public static class RaceKwdaField extends KaitaiStruct {
         public static RaceKwdaField fromFile(String fileName) throws IOException {
             return new RaceKwdaField(new ByteBufferKaitaiStream(fileName));
@@ -1952,6 +2051,39 @@ public class Tes5 extends KaitaiStruct {
         public String description() { return description; }
         public Tes5 _root() { return _root; }
         public Tes5.Tes4Field _parent() { return _parent; }
+    }
+    public static class ScrlYnamField extends KaitaiStruct {
+        public static ScrlYnamField fromFile(String fileName) throws IOException {
+            return new ScrlYnamField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlYnamField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlYnamField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlYnamField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.pickupSound = this._io.readU4le();
+        }
+        private long pickupSound;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Pickup sound
+         */
+        public long pickupSound() { return pickupSound; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
     }
     public static class RaceUnamField extends KaitaiStruct {
         public static RaceUnamField fromFile(String fileName) throws IOException {
@@ -2898,6 +3030,82 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.EfshField _parent() { return _parent; }
     }
+    public static class ScrlDataField extends KaitaiStruct {
+        public static ScrlDataField fromFile(String fileName) throws IOException {
+            return new ScrlDataField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlDataField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlDataField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlDataField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.value = this._io.readU4le();
+            this.weight = this._io.readF4le();
+        }
+        private long value;
+        private float weight;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Scroll value
+         */
+        public long value() { return value; }
+
+        /**
+         * Scroll weight
+         */
+        public float weight() { return weight; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
+    public static class ScrlKwdaField extends KaitaiStruct {
+        public static ScrlKwdaField fromFile(String fileName) throws IOException {
+            return new ScrlKwdaField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlKwdaField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlKwdaField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlKwdaField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            keyword = new ArrayList<Long>((int) ((_parent().dataSize() / 4)));
+            for (int i = 0; i < (_parent().dataSize() / 4); i++) {
+                this.keyword.add(this._io.readU4le());
+            }
+        }
+        private ArrayList<Long> keyword;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * KYWD formIDs
+         */
+        public ArrayList<Long> keyword() { return keyword; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
     public static class EqupPnamField extends KaitaiStruct {
         public static EqupPnamField fromFile(String fileName) throws IOException {
             return new EqupPnamField(new ByteBufferKaitaiStream(fileName));
@@ -3118,11 +3326,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjCnamField(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjCnamField(KaitaiStream _io, Tes5.CobjField _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjCnamField(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjCnamField(KaitaiStream _io, Tes5.CobjField _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -3133,14 +3341,14 @@ public class Tes5 extends KaitaiStruct {
         }
         private long outputObject;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.CobjField _parent;
 
         /**
          * FormID of resulting output object
          */
         public long outputObject() { return outputObject; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.CobjField _parent() { return _parent; }
     }
     public static class ClasField extends KaitaiStruct {
         public static ClasField fromFile(String fileName) throws IOException {
@@ -3461,6 +3669,39 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.ClasField _parent() { return _parent; }
     }
+    public static class ScrlMdobField extends KaitaiStruct {
+        public static ScrlMdobField fromFile(String fileName) throws IOException {
+            return new ScrlMdobField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlMdobField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlMdobField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlMdobField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.menuIcon = this._io.readU4le();
+        }
+        private long menuIcon;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Menu display object STAT FormID
+         */
+        public long menuIcon() { return menuIcon; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
     public static class ModsField extends KaitaiStruct {
         public static ModsField fromFile(String fileName) throws IOException {
             return new ModsField(new ByteBufferKaitaiStream(fileName));
@@ -3698,11 +3939,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjCoctField(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjCoctField(KaitaiStream _io, Tes5.CobjField _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjCoctField(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjCoctField(KaitaiStream _io, Tes5.CobjField _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -3713,14 +3954,14 @@ public class Tes5 extends KaitaiStruct {
         }
         private long objectCount;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.CobjField _parent;
 
         /**
          * Number of input objects (CNTO fields) required
          */
         public long objectCount() { return objectCount; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.CobjField _parent() { return _parent; }
     }
     public static class RaceTiniField extends KaitaiStruct {
         public static RaceTiniField fromFile(String fileName) throws IOException {
@@ -5533,6 +5774,95 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.Form _parent() { return _parent; }
     }
+    public static class ScrlSpitField extends KaitaiStruct {
+        public static ScrlSpitField fromFile(String fileName) throws IOException {
+            return new ScrlSpitField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlSpitField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlSpitField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlSpitField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.spellCost = this._io.readU4le();
+            this.flags = new ScrlSpitFlags(this._io, this, _root);
+            this.unknown1 = this._io.readU4le();
+            this.chargeTime = this._io.readF4le();
+            this.unknown2 = this._io.readU4le();
+            this.targetType = Tes5.EffectDelivery.byId(this._io.readU4le());
+            this.unknown3 = this._io.readU4le();
+            this.unknown4 = this._io.readU4le();
+            this.unknown5 = this._io.readU4le();
+        }
+        private long spellCost;
+        private ScrlSpitFlags flags;
+        private long unknown1;
+        private float chargeTime;
+        private long unknown2;
+        private EffectDelivery targetType;
+        private long unknown3;
+        private long unknown4;
+        private long unknown5;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Spell Cost
+         */
+        public long spellCost() { return spellCost; }
+
+        /**
+         * Scrl item flags
+         */
+        public ScrlSpitFlags flags() { return flags; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        public long unknown1() { return unknown1; }
+
+        /**
+         * Charge time
+         */
+        public float chargeTime() { return chargeTime; }
+
+        /**
+         * Unknown - Always 0x03 or 0x02
+         */
+        public long unknown2() { return unknown2; }
+
+        /**
+         * Target type
+         */
+        public EffectDelivery targetType() { return targetType; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        public long unknown3() { return unknown3; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        public long unknown4() { return unknown4; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        public long unknown5() { return unknown5; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
     public static class CtdaParameters extends KaitaiStruct {
         public static CtdaParameters fromFile(String fileName) throws IOException {
             return new CtdaParameters(new ByteBufferKaitaiStream(fileName));
@@ -5851,6 +6181,39 @@ public class Tes5 extends KaitaiStruct {
         public long defaultFaceTextureMale() { return defaultFaceTextureMale; }
         public Tes5 _root() { return _root; }
         public Tes5.RaceField _parent() { return _parent; }
+    }
+    public static class HazdMnamField extends KaitaiStruct {
+        public static HazdMnamField fromFile(String fileName) throws IOException {
+            return new HazdMnamField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public HazdMnamField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public HazdMnamField(KaitaiStream _io, Tes5.HazdField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public HazdMnamField(KaitaiStream _io, Tes5.HazdField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.imageSpaceModifier = this._io.readU4le();
+        }
+        private long imageSpaceModifier;
+        private Tes5 _root;
+        private Tes5.HazdField _parent;
+
+        /**
+         * Linked IMAD FormID
+         */
+        public long imageSpaceModifier() { return imageSpaceModifier; }
+        public Tes5 _root() { return _root; }
+        public Tes5.HazdField _parent() { return _parent; }
     }
     public static class FactFnamField extends KaitaiStruct {
         public static FactFnamField fromFile(String fileName) throws IOException {
@@ -6473,6 +6836,50 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.Tes4Field _parent() { return _parent; }
     }
+    public static class HazdDataFlags extends KaitaiStruct {
+        public static HazdDataFlags fromFile(String fileName) throws IOException {
+            return new HazdDataFlags(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public HazdDataFlags(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public HazdDataFlags(KaitaiStream _io, Tes5.HazdDataField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public HazdDataFlags(KaitaiStream _io, Tes5.HazdDataField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.affectsPlayerOnly = this._io.readBitsInt(1) != 0;
+            this.inheritDurationFromSpawnSpell = this._io.readBitsInt(1) != 0;
+            this.alignToImpactNormal = this._io.readBitsInt(1) != 0;
+            this.inheritRadiusFromSpawnSpell = this._io.readBitsInt(1) != 0;
+            this.dropToGround = this._io.readBitsInt(1) != 0;
+            this._unnamed5 = this._io.readBitsInt(27);
+        }
+        private boolean affectsPlayerOnly;
+        private boolean inheritDurationFromSpawnSpell;
+        private boolean alignToImpactNormal;
+        private boolean inheritRadiusFromSpawnSpell;
+        private boolean dropToGround;
+        private long _unnamed5;
+        private Tes5 _root;
+        private Tes5.HazdDataField _parent;
+        public boolean affectsPlayerOnly() { return affectsPlayerOnly; }
+        public boolean inheritDurationFromSpawnSpell() { return inheritDurationFromSpawnSpell; }
+        public boolean alignToImpactNormal() { return alignToImpactNormal; }
+        public boolean inheritRadiusFromSpawnSpell() { return inheritRadiusFromSpawnSpell; }
+        public boolean dropToGround() { return dropToGround; }
+        public long _unnamed5() { return _unnamed5; }
+        public Tes5 _root() { return _root; }
+        public Tes5.HazdDataField _parent() { return _parent; }
+    }
     public static class CtdaParametersGetEventData extends KaitaiStruct {
         public static CtdaParametersGetEventData fromFile(String fileName) throws IOException {
             return new CtdaParametersGetEventData(new ByteBufferKaitaiStream(fileName));
@@ -7044,11 +7451,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjNam1Field(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjNam1Field(KaitaiStream _io, Tes5.CobjField _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjNam1Field(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjNam1Field(KaitaiStream _io, Tes5.CobjField _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -7059,14 +7466,14 @@ public class Tes5 extends KaitaiStruct {
         }
         private int outputQuantity;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.CobjField _parent;
 
         /**
          * Quantity of output object created by recipe
          */
         public int outputQuantity() { return outputQuantity; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.CobjField _parent() { return _parent; }
     }
     public static class Color extends KaitaiStruct {
         public static Color fromFile(String fileName) throws IOException {
@@ -7121,6 +7528,82 @@ public class Tes5 extends KaitaiStruct {
         public int a() { return a; }
         public Tes5 _root() { return _root; }
         public KaitaiStruct _parent() { return _parent; }
+    }
+    public static class HazdField extends KaitaiStruct {
+        public static HazdField fromFile(String fileName) throws IOException {
+            return new HazdField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public HazdField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public HazdField(KaitaiStream _io, Tes5.HazdForm _parent) {
+            this(_io, _parent, null);
+        }
+
+        public HazdField(KaitaiStream _io, Tes5.HazdForm _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.type = new String(this._io.readBytes(4), Charset.forName("UTF-8"));
+            this.dataSize = this._io.readU2le();
+            switch (type()) {
+            case "EDID": {
+                this.data = new EdidField(this._io, this, _root, dataSize());
+                break;
+            }
+            case "MODT": {
+                this.data = new ModtField(this._io, this, _root, dataSize());
+                break;
+            }
+            case "DATA": {
+                this.data = new HazdDataField(this._io, this, _root);
+                break;
+            }
+            case "FULL": {
+                this.data = new FullField(this._io, this, _root, dataSize());
+                break;
+            }
+            case "OBND": {
+                this.data = new ObndField(this._io, this, _root);
+                break;
+            }
+            case "MNAM": {
+                this.data = new HazdMnamField(this._io, this, _root);
+                break;
+            }
+            case "MODL": {
+                this.data = new ModlField(this._io, this, _root, dataSize());
+                break;
+            }
+            }
+        }
+        private String type;
+        private int dataSize;
+        private KaitaiStruct data;
+        private Tes5 _root;
+        private Tes5.HazdForm _parent;
+
+        /**
+         * unique type code
+         */
+        public String type() { return type; }
+
+        /**
+         * Size, in bytes, of field (minus header)
+         */
+        public int dataSize() { return dataSize; }
+
+        /**
+         * Fields contained by HAZD form
+         */
+        public KaitaiStruct data() { return data; }
+        public Tes5 _root() { return _root; }
+        public Tes5.HazdForm _parent() { return _parent; }
     }
     public static class Tes4CnamField extends KaitaiStruct {
         public static Tes4CnamField fromFile(String fileName) throws IOException {
@@ -7938,11 +8421,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjCntoField(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjCntoField(KaitaiStream _io, Tes5.CobjField _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjCntoField(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjCntoField(KaitaiStream _io, Tes5.CobjField _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -7955,7 +8438,7 @@ public class Tes5 extends KaitaiStruct {
         private long item;
         private long quantity;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.CobjField _parent;
 
         /**
          * FormID of INGR required to craft
@@ -7967,7 +8450,7 @@ public class Tes5 extends KaitaiStruct {
          */
         public long quantity() { return quantity; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.CobjField _parent() { return _parent; }
     }
     public static class BodtFlags extends KaitaiStruct {
         public static BodtFlags fromFile(String fileName) throws IOException {
@@ -8376,6 +8859,122 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.RaceField _parent() { return _parent; }
     }
+    public static class ScrlField extends KaitaiStruct {
+        public static ScrlField fromFile(String fileName) throws IOException {
+            return new ScrlField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlField(KaitaiStream _io, Tes5.ScrlForm _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlField(KaitaiStream _io, Tes5.ScrlForm _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.type = new String(this._io.readBytes(4), Charset.forName("UTF-8"));
+            this.dataSize = this._io.readU2le();
+            switch (type()) {
+            case "CTDA": {
+                this.data = new CtdaField(this._io, this, _root);
+                break;
+            }
+            case "EFID": {
+                this.data = new EfidField(this._io, this, _root);
+                break;
+            }
+            case "EDID": {
+                this.data = new EdidField(this._io, this, _root, dataSize());
+                break;
+            }
+            case "DATA": {
+                this.data = new ScrlDataField(this._io, this, _root);
+                break;
+            }
+            case "KWDA": {
+                this.data = new ScrlKwdaField(this._io, this, _root);
+                break;
+            }
+            case "EFIT": {
+                this.data = new EfitField(this._io, this, _root);
+                break;
+            }
+            case "MDOB": {
+                this.data = new ScrlMdobField(this._io, this, _root);
+                break;
+            }
+            case "FULL": {
+                this.data = new FullField(this._io, this, _root, dataSize());
+                break;
+            }
+            case "KSIZ": {
+                this.data = new ScrlKsizField(this._io, this, _root);
+                break;
+            }
+            case "DEST": {
+                this.data = new DestField(this._io, this, _root);
+                break;
+            }
+            case "ETYP": {
+                this.data = new ScrlEtypField(this._io, this, _root);
+                break;
+            }
+            case "DESC": {
+                this.data = new ScrlDescField(this._io, this, _root);
+                break;
+            }
+            case "OBND": {
+                this.data = new ObndField(this._io, this, _root);
+                break;
+            }
+            case "ZNAM": {
+                this.data = new ScrlZnamField(this._io, this, _root);
+                break;
+            }
+            case "MODL": {
+                this.data = new ModlField(this._io, this, _root, dataSize());
+                break;
+            }
+            case "SPIT": {
+                this.data = new ScrlSpitField(this._io, this, _root);
+                break;
+            }
+            case "YNAM": {
+                this.data = new ScrlYnamField(this._io, this, _root);
+                break;
+            }
+            }
+        }
+        private String type;
+        private int dataSize;
+        private KaitaiStruct data;
+        private Tes5 _root;
+        private Tes5.ScrlForm _parent;
+
+        /**
+         * Unique type code
+         */
+        public String type() { return type; }
+
+        /**
+         * Size, in bytes, of field (minus header)
+         */
+        public int dataSize() { return dataSize; }
+
+        /**
+         * Fields contained by SCRL form
+         */
+        public KaitaiStruct data() { return data; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlForm _parent() { return _parent; }
+    }
     public static class GlobFltvField extends KaitaiStruct {
         public static GlobFltvField fromFile(String fileName) throws IOException {
             return new GlobFltvField(new ByteBufferKaitaiStream(fileName));
@@ -8488,6 +9087,53 @@ public class Tes5 extends KaitaiStruct {
         public ArrayList<SpelField> fields() { return fields; }
         public Tes5 _root() { return _root; }
         public Tes5.Form _parent() { return _parent; }
+    }
+    public static class ScrlSpitFlags extends KaitaiStruct {
+        public static ScrlSpitFlags fromFile(String fileName) throws IOException {
+            return new ScrlSpitFlags(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlSpitFlags(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlSpitFlags(KaitaiStream _io, Tes5.ScrlSpitField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlSpitFlags(KaitaiStream _io, Tes5.ScrlSpitField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.manualCalc = this._io.readBitsInt(1) != 0;
+            this._unnamed1 = this._io.readBitsInt(18);
+            this.areaEffectIgnoresLos = this._io.readBitsInt(1) != 0;
+            this.scriptEffectAlwaysApplies = this._io.readBitsInt(1) != 0;
+            this.noAbsorbReflect = this._io.readBitsInt(1) != 0;
+            this.forceTouchExplode = this._io.readBitsInt(1) != 0;
+            this._unnamed6 = this._io.readBitsInt(2);
+        }
+        private boolean manualCalc;
+        private long _unnamed1;
+        private boolean areaEffectIgnoresLos;
+        private boolean scriptEffectAlwaysApplies;
+        private boolean noAbsorbReflect;
+        private boolean forceTouchExplode;
+        private long _unnamed6;
+        private Tes5 _root;
+        private Tes5.ScrlSpitField _parent;
+        public boolean manualCalc() { return manualCalc; }
+        public long _unnamed1() { return _unnamed1; }
+        public boolean areaEffectIgnoresLos() { return areaEffectIgnoresLos; }
+        public boolean scriptEffectAlwaysApplies() { return scriptEffectAlwaysApplies; }
+        public boolean noAbsorbReflect() { return noAbsorbReflect; }
+        public boolean forceTouchExplode() { return forceTouchExplode; }
+        public long _unnamed6() { return _unnamed6; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlSpitField _parent() { return _parent; }
     }
     public static class TreeField extends KaitaiStruct {
         public static TreeField fromFile(String fileName) throws IOException {
@@ -9122,11 +9768,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CoedField(KaitaiStream _io, Tes5.LvlnField _parent) {
+        public CoedField(KaitaiStream _io, KaitaiStruct _parent) {
             this(_io, _parent, null);
         }
 
-        public CoedField(KaitaiStream _io, Tes5.LvlnField _parent, Tes5 _root) {
+        public CoedField(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -9141,7 +9787,7 @@ public class Tes5 extends KaitaiStruct {
         private long value;
         private float itemCondition;
         private Tes5 _root;
-        private Tes5.LvlnField _parent;
+        private KaitaiStruct _parent;
 
         /**
          * Owner FACT or NPC_ FormID
@@ -9158,7 +9804,7 @@ public class Tes5 extends KaitaiStruct {
          */
         public float itemCondition() { return itemCondition; }
         public Tes5 _root() { return _root; }
-        public Tes5.LvlnField _parent() { return _parent; }
+        public KaitaiStruct _parent() { return _parent; }
     }
     public static class ClmtField extends KaitaiStruct {
         public static ClmtField fromFile(String fileName) throws IOException {
@@ -9605,11 +10251,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjField(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjField(KaitaiStream _io, Tes5.CobjForm _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjField(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjField(KaitaiStream _io, Tes5.CobjForm _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -9657,7 +10303,7 @@ public class Tes5 extends KaitaiStruct {
         private int dataSize;
         private KaitaiStruct data;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.CobjForm _parent;
 
         /**
          * Unique type code
@@ -9674,7 +10320,7 @@ public class Tes5 extends KaitaiStruct {
          */
         public KaitaiStruct data() { return data; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.CobjForm _parent() { return _parent; }
     }
     public static class EfshIco2Field extends KaitaiStruct {
         public static EfshIco2Field fromFile(String fileName) throws IOException {
@@ -10634,6 +11280,102 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.FactField _parent() { return _parent; }
     }
+    public static class HazdDataField extends KaitaiStruct {
+        public static HazdDataField fromFile(String fileName) throws IOException {
+            return new HazdDataField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public HazdDataField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public HazdDataField(KaitaiStream _io, Tes5.HazdField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public HazdDataField(KaitaiStream _io, Tes5.HazdField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.limit = this._io.readU4le();
+            this.radius = this._io.readF4le();
+            this.lifetime = this._io.readF4le();
+            this.imageSpaceRadius = this._io.readF4le();
+            this.targetInterval = this._io.readF4le();
+            this.flags = new HazdDataFlags(this._io, this, _root);
+            this.spell = this._io.readU4le();
+            this.light = this._io.readU4le();
+            this.impactDataSet = this._io.readU4le();
+            this.sound = this._io.readU4le();
+        }
+        private long limit;
+        private float radius;
+        private float lifetime;
+        private float imageSpaceRadius;
+        private float targetInterval;
+        private HazdDataFlags flags;
+        private long spell;
+        private long light;
+        private long impactDataSet;
+        private long sound;
+        private Tes5 _root;
+        private Tes5.HazdField _parent;
+
+        /**
+         * Limit
+         */
+        public long limit() { return limit; }
+
+        /**
+         * Radius
+         */
+        public float radius() { return radius; }
+
+        /**
+         * Lifetime
+         */
+        public float lifetime() { return lifetime; }
+
+        /**
+         * Image space radius
+         */
+        public float imageSpaceRadius() { return imageSpaceRadius; }
+
+        /**
+         * Target interval
+         */
+        public float targetInterval() { return targetInterval; }
+
+        /**
+         * Flags
+         */
+        public HazdDataFlags flags() { return flags; }
+
+        /**
+         * Linked SPEL FormID
+         */
+        public long spell() { return spell; }
+
+        /**
+         * Linked LIGH FormID
+         */
+        public long light() { return light; }
+
+        /**
+         * Linked IPDS FormID
+         */
+        public long impactDataSet() { return impactDataSet; }
+
+        /**
+         * Linked SNDR FormID
+         */
+        public long sound() { return sound; }
+        public Tes5 _root() { return _root; }
+        public Tes5.HazdField _parent() { return _parent; }
+    }
     public static class RaceSpctField extends KaitaiStruct {
         public static RaceSpctField fromFile(String fileName) throws IOException {
             return new RaceSpctField(new ByteBufferKaitaiStream(fileName));
@@ -10894,6 +11636,46 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.TxstField _parent() { return _parent; }
     }
+    public static class ScrlForm extends KaitaiStruct {
+        public static ScrlForm fromFile(String fileName) throws IOException {
+            return new ScrlForm(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlForm(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlForm(KaitaiStream _io, Tes5.Form _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlForm(KaitaiStream _io, Tes5.Form _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.fields = new ArrayList<ScrlField>();
+            {
+                int i = 0;
+                while (!this._io.isEof()) {
+                    this.fields.add(new ScrlField(this._io, this, _root));
+                    i++;
+                }
+            }
+        }
+        private ArrayList<ScrlField> fields;
+        private Tes5 _root;
+        private Tes5.Form _parent;
+
+        /**
+         * Fields contained by SCRL form
+         */
+        public ArrayList<ScrlField> fields() { return fields; }
+        public Tes5 _root() { return _root; }
+        public Tes5.Form _parent() { return _parent; }
+    }
     public static class RaceNam5Field extends KaitaiStruct {
         public static RaceNam5Field fromFile(String fileName) throws IOException {
             return new RaceNam5Field(new ByteBufferKaitaiStream(fileName));
@@ -10936,11 +11718,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjBnamField(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjBnamField(KaitaiStream _io, Tes5.CobjField _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjBnamField(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjBnamField(KaitaiStream _io, Tes5.CobjField _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -10951,14 +11733,14 @@ public class Tes5 extends KaitaiStruct {
         }
         private long benchKeyword;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.CobjField _parent;
 
         /**
          * KYWD FormID
          */
         public long benchKeyword() { return benchKeyword; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.CobjField _parent() { return _parent; }
     }
     public static class RaceVnamEquipmentFlags extends KaitaiStruct {
         public static RaceVnamEquipmentFlags fromFile(String fileName) throws IOException {
@@ -11786,7 +12568,6 @@ public class Tes5 extends KaitaiStruct {
          * TX05 - Environment map
          * TX06 - Unknown (does not occur in Skyrim.esm)
          * TX07 - Specularity map (for bodies)
-         *           
          */
         public String path() { return path; }
         public Tes5 _root() { return _root; }
@@ -12716,6 +13497,18 @@ public class Tes5 extends KaitaiStruct {
                 this.formData = new LtexForm(_io__raw_formData, this, _root);
                 break;
             }
+            case "HAZD": {
+                this._raw_formData = this._io.readBytes(header().dataSize());
+                KaitaiStream _io__raw_formData = new ByteBufferKaitaiStream(_raw_formData);
+                this.formData = new HazdForm(_io__raw_formData, this, _root);
+                break;
+            }
+            case "SCRL": {
+                this._raw_formData = this._io.readBytes(header().dataSize());
+                KaitaiStream _io__raw_formData = new ByteBufferKaitaiStream(_raw_formData);
+                this.formData = new ScrlForm(_io__raw_formData, this, _root);
+                break;
+            }
             case "SHOU": {
                 this._raw_formData = this._io.readBytes(header().dataSize());
                 KaitaiStream _io__raw_formData = new ByteBufferKaitaiStream(_raw_formData);
@@ -12786,6 +13579,12 @@ public class Tes5 extends KaitaiStruct {
                 this._raw_formData = this._io.readBytes(header().dataSize());
                 KaitaiStream _io__raw_formData = new ByteBufferKaitaiStream(_raw_formData);
                 this.formData = new EqupForm(_io__raw_formData, this, _root);
+                break;
+            }
+            case "COBJ": {
+                this._raw_formData = this._io.readBytes(header().dataSize());
+                KaitaiStream _io__raw_formData = new ByteBufferKaitaiStream(_raw_formData);
+                this.formData = new CobjForm(_io__raw_formData, this, _root);
                 break;
             }
             case "HDPT": {
@@ -13372,6 +14171,72 @@ public class Tes5 extends KaitaiStruct {
         public Tes5 _root() { return _root; }
         public Tes5.RaceMorphInformation _parent() { return _parent; }
     }
+    public static class ScrlEtypField extends KaitaiStruct {
+        public static ScrlEtypField fromFile(String fileName) throws IOException {
+            return new ScrlEtypField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public ScrlEtypField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public ScrlEtypField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public ScrlEtypField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.equipType = this._io.readU4le();
+        }
+        private long equipType;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Equip slot EQUP formID
+         */
+        public long equipType() { return equipType; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
+    public static class DestField extends KaitaiStruct {
+        public static DestField fromFile(String fileName) throws IOException {
+            return new DestField(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public DestField(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public DestField(KaitaiStream _io, Tes5.ScrlField _parent) {
+            this(_io, _parent, null);
+        }
+
+        public DestField(KaitaiStream _io, Tes5.ScrlField _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.destructionData = this._io.readBytes(8);
+        }
+        private byte[] destructionData;
+        private Tes5 _root;
+        private Tes5.ScrlField _parent;
+
+        /**
+         * Destruction Data
+         */
+        public byte[] destructionData() { return destructionData; }
+        public Tes5 _root() { return _root; }
+        public Tes5.ScrlField _parent() { return _parent; }
+    }
     public static class FactStolField extends KaitaiStruct {
         public static FactStolField fromFile(String fileName) throws IOException {
             return new FactStolField(new ByteBufferKaitaiStream(fileName));
@@ -13876,6 +14741,46 @@ public class Tes5 extends KaitaiStruct {
         public String icon() { return icon; }
         public Tes5 _root() { return _root; }
         public Tes5.ClasField _parent() { return _parent; }
+    }
+    public static class HazdForm extends KaitaiStruct {
+        public static HazdForm fromFile(String fileName) throws IOException {
+            return new HazdForm(new ByteBufferKaitaiStream(fileName));
+        }
+
+        public HazdForm(KaitaiStream _io) {
+            this(_io, null, null);
+        }
+
+        public HazdForm(KaitaiStream _io, Tes5.Form _parent) {
+            this(_io, _parent, null);
+        }
+
+        public HazdForm(KaitaiStream _io, Tes5.Form _parent, Tes5 _root) {
+            super(_io);
+            this._parent = _parent;
+            this._root = _root;
+            _read();
+        }
+        private void _read() {
+            this.fields = new ArrayList<HazdField>();
+            {
+                int i = 0;
+                while (!this._io.isEof()) {
+                    this.fields.add(new HazdField(this._io, this, _root));
+                    i++;
+                }
+            }
+        }
+        private ArrayList<HazdField> fields;
+        private Tes5 _root;
+        private Tes5.Form _parent;
+
+        /**
+         * Fields contained by HAZD form
+         */
+        public ArrayList<HazdField> fields() { return fields; }
+        public Tes5 _root() { return _root; }
+        public Tes5.Form _parent() { return _parent; }
     }
     public static class FactPlvdField extends KaitaiStruct {
         public static FactPlvdField fromFile(String fileName) throws IOException {
@@ -14713,11 +15618,11 @@ public class Tes5 extends KaitaiStruct {
             this(_io, null, null);
         }
 
-        public CobjForm(KaitaiStream _io, KaitaiStruct _parent) {
+        public CobjForm(KaitaiStream _io, Tes5.Form _parent) {
             this(_io, _parent, null);
         }
 
-        public CobjForm(KaitaiStream _io, KaitaiStruct _parent, Tes5 _root) {
+        public CobjForm(KaitaiStream _io, Tes5.Form _parent, Tes5 _root) {
             super(_io);
             this._parent = _parent;
             this._root = _root;
@@ -14735,14 +15640,14 @@ public class Tes5 extends KaitaiStruct {
         }
         private ArrayList<CobjField> fields;
         private Tes5 _root;
-        private KaitaiStruct _parent;
+        private Tes5.Form _parent;
 
         /**
          * Fields contained by COBJ form
          */
         public ArrayList<CobjField> fields() { return fields; }
         public Tes5 _root() { return _root; }
-        public KaitaiStruct _parent() { return _parent; }
+        public Tes5.Form _parent() { return _parent; }
     }
     public static class RevbForm extends KaitaiStruct {
         public static RevbForm fromFile(String fileName) throws IOException {

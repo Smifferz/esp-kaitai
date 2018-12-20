@@ -16,7 +16,9 @@ class tes5_t : public kaitai::kstruct {
 
 public:
     class fact_xnam_field_t;
+    class scrl_ksiz_field_t;
     class fact_data_flags_t;
+    class scrl_znam_field_t;
     class cis1_field_t;
     class ltex_gnam_field_t;
     class lscr_field_t;
@@ -42,10 +44,12 @@ public:
     class aspc_snam_field_t;
     class fact_venv_field_t;
     class lscr_nnam_field_t;
+    class scrl_desc_field_t;
     class race_kwda_field_t;
     class hdpt_nam0_field_t;
     class spel_spit_field_t;
     class tes4_snam_field_t;
+    class scrl_ynam_field_t;
     class race_unam_field_t;
     class race_tirs_field_t;
     class equp_data_field_t;
@@ -62,6 +66,8 @@ public:
     class mpav_lip_flags_t;
     class stat_mnam_field_t;
     class efsh_nam9_field_t;
+    class scrl_data_field_t;
+    class scrl_kwda_field_t;
     class equp_pnam_field_t;
     class race_unes_field_t;
     class race_phwt_weights_t;
@@ -71,6 +77,7 @@ public:
     class race_atkr_field_t;
     class tree_form_t;
     class clas_data_field_t;
+    class scrl_mdob_field_t;
     class mods_field_t;
     class fact_data_field_t;
     class lvln_lvlf_flags_t;
@@ -117,6 +124,7 @@ public:
     class actor_value_skills_t;
     class soun_field_t;
     class clfm_form_t;
+    class scrl_spit_field_t;
     class ctda_parameters_t;
     class race_mpai_field_t;
     class tree_pfig_field_t;
@@ -125,6 +133,7 @@ public:
     class mods_alternate_texture_t;
     class race_indx_field_t;
     class race_dftm_field_t;
+    class hazd_mnam_field_t;
     class fact_fnam_field_t;
     class fact_venc_field_t;
     class aspc_form_t;
@@ -138,6 +147,7 @@ public:
     class clas_desc_field_t;
     class equp_field_t;
     class tes4_hedr_field_t;
+    class hazd_data_flags_t;
     class ctda_parameters_get_event_data_t;
     class shou_form_t;
     class lscr_rnam_field_t;
@@ -151,6 +161,7 @@ public:
     class race_ftsf_field_t;
     class cobj_nam1_field_t;
     class color_t;
+    class hazd_field_t;
     class tes4_cnam_field_t;
     class race_hclf_field_t;
     class race_pnam_field_t;
@@ -182,9 +193,11 @@ public:
     class soun_sndd_field_t;
     class race_qnam_field_t;
     class race_desc_field_t;
+    class scrl_field_t;
     class glob_fltv_field_t;
     class tes4_fields_t;
     class spel_form_t;
+    class scrl_spit_flags_t;
     class tree_field_t;
     class rfct_form_t;
     class generic_modt_t;
@@ -226,11 +239,13 @@ public:
     class race_phwt_weights_dragon_t;
     class clfm_field_t;
     class fact_plcn_field_t;
+    class hazd_data_field_t;
     class race_spct_field_t;
     class race_tinc_field_t;
     class race_phwt_field_t;
     class lscr_xnam_field_t;
     class txst_dodt_field_t;
+    class scrl_form_t;
     class race_nam5_field_t;
     class cobj_bnam_field_t;
     class race_vnam_equipment_flags_t;
@@ -283,6 +298,8 @@ public:
     class race_name_field_t;
     class tes4_onam_field_t;
     class race_mpav_field_t;
+    class scrl_etyp_field_t;
+    class dest_field_t;
     class fact_stol_field_t;
     class race_mtnm_field_t;
     class tes4_incc_field_t;
@@ -292,6 +309,7 @@ public:
     class glob_fnam_field_t;
     class race_data_field_t;
     class clas_icon_field_t;
+    class hazd_form_t;
     class fact_plvd_field_t;
     class race_ftsm_field_t;
     class form_header_t;
@@ -511,6 +529,33 @@ public:
         tes5_t::fact_field_t* _parent() const { return m__parent; }
     };
 
+    class scrl_ksiz_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_ksiz_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_ksiz_field_t();
+
+    private:
+        uint32_t m_keyword_count;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Count of KYWD formIDs in following KWDA field
+         */
+        uint32_t keyword_count() const { return m_keyword_count; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
     class fact_data_flags_t : public kaitai::kstruct {
 
     public:
@@ -560,6 +605,33 @@ public:
         uint64_t _unnamed14() const { return m__unnamed14; }
         tes5_t* _root() const { return m__root; }
         tes5_t::fact_data_field_t* _parent() const { return m__parent; }
+    };
+
+    class scrl_znam_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_znam_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_znam_field_t();
+
+    private:
+        uint32_t m_drop_sound;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Drop sound
+         */
+        uint32_t drop_sound() const { return m_drop_sound; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
     };
 
     class cis1_field_t : public kaitai::kstruct {
@@ -1475,6 +1547,33 @@ public:
         tes5_t::lscr_field_t* _parent() const { return m__parent; }
     };
 
+    class scrl_desc_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_desc_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_desc_field_t();
+
+    private:
+        lstring_t* m_description;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * In-game description
+         */
+        lstring_t* description() const { return m_description; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
     class race_kwda_field_t : public kaitai::kstruct {
 
     public:
@@ -1629,6 +1728,33 @@ public:
         std::string description() const { return m_description; }
         tes5_t* _root() const { return m__root; }
         tes5_t::tes4_field_t* _parent() const { return m__parent; }
+    };
+
+    class scrl_ynam_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_ynam_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_ynam_field_t();
+
+    private:
+        uint32_t m_pickup_sound;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Pickup sound
+         */
+        uint32_t pickup_sound() const { return m_pickup_sound; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
     };
 
     class race_unam_field_t : public kaitai::kstruct {
@@ -2329,6 +2455,66 @@ public:
         tes5_t::efsh_field_t* _parent() const { return m__parent; }
     };
 
+    class scrl_data_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_data_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_data_field_t();
+
+    private:
+        uint32_t m_value;
+        float m_weight;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Scroll value
+         */
+        uint32_t value() const { return m_value; }
+
+        /**
+         * Scroll weight
+         */
+        float weight() const { return m_weight; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
+    class scrl_kwda_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_kwda_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_kwda_field_t();
+
+    private:
+        std::vector<uint32_t>* m_keyword;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * KYWD formIDs
+         */
+        std::vector<uint32_t>* keyword() const { return m_keyword; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
     class equp_pnam_field_t : public kaitai::kstruct {
 
     public:
@@ -2504,7 +2690,7 @@ public:
 
     public:
 
-        cobj_cnam_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_cnam_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -2515,7 +2701,7 @@ public:
     private:
         uint32_t m_output_object;
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::cobj_field_t* m__parent;
 
     public:
 
@@ -2524,7 +2710,7 @@ public:
          */
         uint32_t output_object() const { return m_output_object; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::cobj_field_t* _parent() const { return m__parent; }
     };
 
     class clas_field_t : public kaitai::kstruct {
@@ -2776,6 +2962,33 @@ public:
         tes5_t::clas_field_t* _parent() const { return m__parent; }
     };
 
+    class scrl_mdob_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_mdob_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_mdob_field_t();
+
+    private:
+        uint32_t m_menu_icon;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Menu display object STAT FormID
+         */
+        uint32_t menu_icon() const { return m_menu_icon; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
     class mods_field_t : public kaitai::kstruct {
 
     public:
@@ -2958,7 +3171,7 @@ public:
 
     public:
 
-        cobj_coct_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_coct_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -2969,7 +3182,7 @@ public:
     private:
         uint32_t m_object_count;
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::cobj_field_t* m__parent;
 
     public:
 
@@ -2978,7 +3191,7 @@ public:
          */
         uint32_t object_count() const { return m_object_count; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::cobj_field_t* _parent() const { return m__parent; }
     };
 
     class race_tini_field_t : public kaitai::kstruct {
@@ -4384,6 +4597,81 @@ public:
         tes5_t::form_t* _parent() const { return m__parent; }
     };
 
+    class scrl_spit_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_spit_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_spit_field_t();
+
+    private:
+        uint32_t m_spell_cost;
+        scrl_spit_flags_t* m_flags;
+        uint32_t m_unknown_1;
+        float m_charge_time;
+        uint32_t m_unknown_2;
+        effect_delivery_t m_target_type;
+        uint32_t m_unknown_3;
+        uint32_t m_unknown_4;
+        uint32_t m_unknown_5;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Spell Cost
+         */
+        uint32_t spell_cost() const { return m_spell_cost; }
+
+        /**
+         * Scrl item flags
+         */
+        scrl_spit_flags_t* flags() const { return m_flags; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        uint32_t unknown_1() const { return m_unknown_1; }
+
+        /**
+         * Charge time
+         */
+        float charge_time() const { return m_charge_time; }
+
+        /**
+         * Unknown - Always 0x03 or 0x02
+         */
+        uint32_t unknown_2() const { return m_unknown_2; }
+
+        /**
+         * Target type
+         */
+        effect_delivery_t target_type() const { return m_target_type; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        uint32_t unknown_3() const { return m_unknown_3; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        uint32_t unknown_4() const { return m_unknown_4; }
+
+        /**
+         * Unknown - Always 0?
+         */
+        uint32_t unknown_5() const { return m_unknown_5; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
     class ctda_parameters_t : public kaitai::kstruct {
 
     public:
@@ -4660,6 +4948,33 @@ public:
         uint32_t default_face_texture_male() const { return m_default_face_texture_male; }
         tes5_t* _root() const { return m__root; }
         tes5_t::race_field_t* _parent() const { return m__parent; }
+    };
+
+    class hazd_mnam_field_t : public kaitai::kstruct {
+
+    public:
+
+        hazd_mnam_field_t(kaitai::kstream* p__io, tes5_t::hazd_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~hazd_mnam_field_t();
+
+    private:
+        uint32_t m_image_space_modifier;
+        tes5_t* m__root;
+        tes5_t::hazd_field_t* m__parent;
+
+    public:
+
+        /**
+         * Linked IMAD FormID
+         */
+        uint32_t image_space_modifier() const { return m_image_space_modifier; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::hazd_field_t* _parent() const { return m__parent; }
     };
 
     class fact_fnam_field_t : public kaitai::kstruct {
@@ -5139,6 +5454,39 @@ public:
         tes5_t::tes4_field_t* _parent() const { return m__parent; }
     };
 
+    class hazd_data_flags_t : public kaitai::kstruct {
+
+    public:
+
+        hazd_data_flags_t(kaitai::kstream* p__io, tes5_t::hazd_data_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~hazd_data_flags_t();
+
+    private:
+        bool m_affects_player_only;
+        bool m_inherit_duration_from_spawn_spell;
+        bool m_align_to_impact_normal;
+        bool m_inherit_radius_from_spawn_spell;
+        bool m_drop_to_ground;
+        uint64_t m__unnamed5;
+        tes5_t* m__root;
+        tes5_t::hazd_data_field_t* m__parent;
+
+    public:
+        bool affects_player_only() const { return m_affects_player_only; }
+        bool inherit_duration_from_spawn_spell() const { return m_inherit_duration_from_spawn_spell; }
+        bool align_to_impact_normal() const { return m_align_to_impact_normal; }
+        bool inherit_radius_from_spawn_spell() const { return m_inherit_radius_from_spawn_spell; }
+        bool drop_to_ground() const { return m_drop_to_ground; }
+        uint64_t _unnamed5() const { return m__unnamed5; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::hazd_data_field_t* _parent() const { return m__parent; }
+    };
+
     class ctda_parameters_get_event_data_t : public kaitai::kstruct {
 
     public:
@@ -5558,7 +5906,7 @@ public:
 
     public:
 
-        cobj_nam1_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_nam1_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -5569,7 +5917,7 @@ public:
     private:
         uint16_t m_output_quantity;
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::cobj_field_t* m__parent;
 
     public:
 
@@ -5578,7 +5926,7 @@ public:
          */
         uint16_t output_quantity() const { return m_output_quantity; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::cobj_field_t* _parent() const { return m__parent; }
     };
 
     class color_t : public kaitai::kstruct {
@@ -5624,6 +5972,51 @@ public:
         uint8_t a() const { return m_a; }
         tes5_t* _root() const { return m__root; }
         kaitai::kstruct* _parent() const { return m__parent; }
+    };
+
+    class hazd_field_t : public kaitai::kstruct {
+
+    public:
+
+        hazd_field_t(kaitai::kstream* p__io, tes5_t::hazd_form_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~hazd_field_t();
+
+    private:
+        std::string m_type;
+        uint16_t m_data_size;
+        kaitai::kstruct* m_data;
+        bool n_data;
+
+    public:
+        bool _is_null_data() { data(); return n_data; };
+
+    private:
+        tes5_t* m__root;
+        tes5_t::hazd_form_t* m__parent;
+
+    public:
+
+        /**
+         * unique type code
+         */
+        std::string type() const { return m_type; }
+
+        /**
+         * Size, in bytes, of field (minus header)
+         */
+        uint16_t data_size() const { return m_data_size; }
+
+        /**
+         * Fields contained by HAZD form
+         */
+        kaitai::kstruct* data() const { return m_data; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::hazd_form_t* _parent() const { return m__parent; }
     };
 
     class tes4_cnam_field_t : public kaitai::kstruct {
@@ -6225,7 +6618,7 @@ public:
 
     public:
 
-        cobj_cnto_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_cnto_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -6237,7 +6630,7 @@ public:
         uint32_t m_item;
         uint32_t m_quantity;
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::cobj_field_t* m__parent;
 
     public:
 
@@ -6251,7 +6644,7 @@ public:
          */
         uint32_t quantity() const { return m_quantity; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::cobj_field_t* _parent() const { return m__parent; }
     };
 
     class bodt_flags_t : public kaitai::kstruct {
@@ -6571,6 +6964,51 @@ public:
         tes5_t::race_field_t* _parent() const { return m__parent; }
     };
 
+    class scrl_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_field_t(kaitai::kstream* p__io, tes5_t::scrl_form_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_field_t();
+
+    private:
+        std::string m_type;
+        uint16_t m_data_size;
+        kaitai::kstruct* m_data;
+        bool n_data;
+
+    public:
+        bool _is_null_data() { data(); return n_data; };
+
+    private:
+        tes5_t* m__root;
+        tes5_t::scrl_form_t* m__parent;
+
+    public:
+
+        /**
+         * Unique type code
+         */
+        std::string type() const { return m_type; }
+
+        /**
+         * Size, in bytes, of field (minus header)
+         */
+        uint16_t data_size() const { return m_data_size; }
+
+        /**
+         * Fields contained by SCRL form
+         */
+        kaitai::kstruct* data() const { return m_data; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_form_t* _parent() const { return m__parent; }
+    };
+
     class glob_fltv_field_t : public kaitai::kstruct {
 
     public:
@@ -6650,6 +7088,41 @@ public:
         std::vector<spel_field_t*>* fields() const { return m_fields; }
         tes5_t* _root() const { return m__root; }
         tes5_t::form_t* _parent() const { return m__parent; }
+    };
+
+    class scrl_spit_flags_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_spit_flags_t(kaitai::kstream* p__io, tes5_t::scrl_spit_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_spit_flags_t();
+
+    private:
+        bool m_manual_calc;
+        uint64_t m__unnamed1;
+        bool m_area_effect_ignores_los;
+        bool m_script_effect_always_applies;
+        bool m_no_absorb_reflect;
+        bool m_force_touch_explode;
+        uint64_t m__unnamed6;
+        tes5_t* m__root;
+        tes5_t::scrl_spit_field_t* m__parent;
+
+    public:
+        bool manual_calc() const { return m_manual_calc; }
+        uint64_t _unnamed1() const { return m__unnamed1; }
+        bool area_effect_ignores_los() const { return m_area_effect_ignores_los; }
+        bool script_effect_always_applies() const { return m_script_effect_always_applies; }
+        bool no_absorb_reflect() const { return m_no_absorb_reflect; }
+        bool force_touch_explode() const { return m_force_touch_explode; }
+        uint64_t _unnamed6() const { return m__unnamed6; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_spit_field_t* _parent() const { return m__parent; }
     };
 
     class tree_field_t : public kaitai::kstruct {
@@ -7154,7 +7627,7 @@ public:
 
     public:
 
-        coed_field_t(kaitai::kstream* p__io, tes5_t::lvln_field_t* p__parent = 0, tes5_t* p__root = 0);
+        coed_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -7167,7 +7640,7 @@ public:
         uint32_t m_value;
         float m_item_condition;
         tes5_t* m__root;
-        tes5_t::lvln_field_t* m__parent;
+        kaitai::kstruct* m__parent;
 
     public:
 
@@ -7186,7 +7659,7 @@ public:
          */
         float item_condition() const { return m_item_condition; }
         tes5_t* _root() const { return m__root; }
-        tes5_t::lvln_field_t* _parent() const { return m__parent; }
+        kaitai::kstruct* _parent() const { return m__parent; }
     };
 
     class clmt_field_t : public kaitai::kstruct {
@@ -7496,7 +7969,7 @@ public:
 
     public:
 
-        cobj_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_field_t(kaitai::kstream* p__io, tes5_t::cobj_form_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -7515,7 +7988,7 @@ public:
 
     private:
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::cobj_form_t* m__parent;
 
     public:
 
@@ -7534,7 +8007,7 @@ public:
          */
         kaitai::kstruct* data() const { return m_data; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::cobj_form_t* _parent() const { return m__parent; }
     };
 
     class efsh_ico2_field_t : public kaitai::kstruct {
@@ -8313,6 +8786,87 @@ public:
         tes5_t::fact_field_t* _parent() const { return m__parent; }
     };
 
+    class hazd_data_field_t : public kaitai::kstruct {
+
+    public:
+
+        hazd_data_field_t(kaitai::kstream* p__io, tes5_t::hazd_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~hazd_data_field_t();
+
+    private:
+        uint32_t m_limit;
+        float m_radius;
+        float m_lifetime;
+        float m_image_space_radius;
+        float m_target_interval;
+        hazd_data_flags_t* m_flags;
+        uint32_t m_spell;
+        uint32_t m_light;
+        uint32_t m_impact_data_set;
+        uint32_t m_sound;
+        tes5_t* m__root;
+        tes5_t::hazd_field_t* m__parent;
+
+    public:
+
+        /**
+         * Limit
+         */
+        uint32_t limit() const { return m_limit; }
+
+        /**
+         * Radius
+         */
+        float radius() const { return m_radius; }
+
+        /**
+         * Lifetime
+         */
+        float lifetime() const { return m_lifetime; }
+
+        /**
+         * Image space radius
+         */
+        float image_space_radius() const { return m_image_space_radius; }
+
+        /**
+         * Target interval
+         */
+        float target_interval() const { return m_target_interval; }
+
+        /**
+         * Flags
+         */
+        hazd_data_flags_t* flags() const { return m_flags; }
+
+        /**
+         * Linked SPEL FormID
+         */
+        uint32_t spell() const { return m_spell; }
+
+        /**
+         * Linked LIGH FormID
+         */
+        uint32_t light() const { return m_light; }
+
+        /**
+         * Linked IPDS FormID
+         */
+        uint32_t impact_data_set() const { return m_impact_data_set; }
+
+        /**
+         * Linked SNDR FormID
+         */
+        uint32_t sound() const { return m_sound; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::hazd_field_t* _parent() const { return m__parent; }
+    };
+
     class race_spct_field_t : public kaitai::kstruct {
 
     public:
@@ -8538,6 +9092,33 @@ public:
         tes5_t::txst_field_t* _parent() const { return m__parent; }
     };
 
+    class scrl_form_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_form_t(kaitai::kstream* p__io, tes5_t::form_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_form_t();
+
+    private:
+        std::vector<scrl_field_t*>* m_fields;
+        tes5_t* m__root;
+        tes5_t::form_t* m__parent;
+
+    public:
+
+        /**
+         * Fields contained by SCRL form
+         */
+        std::vector<scrl_field_t*>* fields() const { return m_fields; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::form_t* _parent() const { return m__parent; }
+    };
+
     class race_nam5_field_t : public kaitai::kstruct {
 
     public:
@@ -8569,7 +9150,7 @@ public:
 
     public:
 
-        cobj_bnam_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_bnam_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -8580,7 +9161,7 @@ public:
     private:
         uint32_t m_bench_keyword;
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::cobj_field_t* m__parent;
 
     public:
 
@@ -8589,7 +9170,7 @@ public:
          */
         uint32_t bench_keyword() const { return m_bench_keyword; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::cobj_field_t* _parent() const { return m__parent; }
     };
 
     class race_vnam_equipment_flags_t : public kaitai::kstruct {
@@ -9245,7 +9826,6 @@ public:
          * TX05 - Environment map
          * TX06 - Unknown (does not occur in Skyrim.esm)
          * TX07 - Specularity map (for bodies)
-         *           
          */
         std::string path() const { return m_path; }
         tes5_t* _root() const { return m__root; }
@@ -10393,6 +10973,60 @@ public:
         tes5_t::race_morph_information_t* _parent() const { return m__parent; }
     };
 
+    class scrl_etyp_field_t : public kaitai::kstruct {
+
+    public:
+
+        scrl_etyp_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~scrl_etyp_field_t();
+
+    private:
+        uint32_t m_equip_type;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Equip slot EQUP formID
+         */
+        uint32_t equip_type() const { return m_equip_type; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
+    class dest_field_t : public kaitai::kstruct {
+
+    public:
+
+        dest_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~dest_field_t();
+
+    private:
+        std::string m_destruction_data;
+        tes5_t* m__root;
+        tes5_t::scrl_field_t* m__parent;
+
+    public:
+
+        /**
+         * Destruction Data
+         */
+        std::string destruction_data() const { return m_destruction_data; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::scrl_field_t* _parent() const { return m__parent; }
+    };
+
     class fact_stol_field_t : public kaitai::kstruct {
 
     public:
@@ -10808,6 +11442,33 @@ public:
         std::string icon() const { return m_icon; }
         tes5_t* _root() const { return m__root; }
         tes5_t::clas_field_t* _parent() const { return m__parent; }
+    };
+
+    class hazd_form_t : public kaitai::kstruct {
+
+    public:
+
+        hazd_form_t(kaitai::kstream* p__io, tes5_t::form_t* p__parent = 0, tes5_t* p__root = 0);
+
+    private:
+        void _read();
+
+    public:
+        ~hazd_form_t();
+
+    private:
+        std::vector<hazd_field_t*>* m_fields;
+        tes5_t* m__root;
+        tes5_t::form_t* m__parent;
+
+    public:
+
+        /**
+         * Fields contained by HAZD form
+         */
+        std::vector<hazd_field_t*>* fields() const { return m_fields; }
+        tes5_t* _root() const { return m__root; }
+        tes5_t::form_t* _parent() const { return m__parent; }
     };
 
     class fact_plvd_field_t : public kaitai::kstruct {
@@ -11421,7 +12082,7 @@ public:
 
     public:
 
-        cobj_form_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent = 0, tes5_t* p__root = 0);
+        cobj_form_t(kaitai::kstream* p__io, tes5_t::form_t* p__parent = 0, tes5_t* p__root = 0);
 
     private:
         void _read();
@@ -11432,7 +12093,7 @@ public:
     private:
         std::vector<cobj_field_t*>* m_fields;
         tes5_t* m__root;
-        kaitai::kstruct* m__parent;
+        tes5_t::form_t* m__parent;
 
     public:
 
@@ -11441,7 +12102,7 @@ public:
          */
         std::vector<cobj_field_t*>* fields() const { return m_fields; }
         tes5_t* _root() const { return m__root; }
-        kaitai::kstruct* _parent() const { return m__parent; }
+        tes5_t::form_t* _parent() const { return m__parent; }
     };
 
     class revb_form_t : public kaitai::kstruct {

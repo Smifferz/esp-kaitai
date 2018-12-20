@@ -60,6 +60,25 @@ class FactXnamField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlKsizField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_keywordCount = $this->_io->readU4le();
+    }
+    protected $_m_keywordCount;
+
+    /**
+     * Count of KYWD formIDs in following KWDA field
+     */
+    public function keywordCount() { return $this->_m_keywordCount; }
+}
+
+namespace \Tes5;
+
 class FactDataFlags extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\FactDataField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -113,6 +132,25 @@ class FactDataFlags extends \Kaitai\Struct\Struct {
     public function canBeOwner() { return $this->_m_canBeOwner; }
     public function ignoreWerewolf() { return $this->_m_ignoreWerewolf; }
     public function _unnamed14() { return $this->_m__unnamed14; }
+}
+
+namespace \Tes5;
+
+class ScrlZnamField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_dropSound = $this->_io->readU4le();
+    }
+    protected $_m_dropSound;
+
+    /**
+     * Drop sound
+     */
+    public function dropSound() { return $this->_m_dropSound; }
 }
 
 namespace \Tes5;
@@ -999,6 +1037,25 @@ class LscrNnamField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlDescField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_description = new \Tes5\Lstring($this->_parent()->dataSize(), $this->_io, $this, $this->_root);
+    }
+    protected $_m_description;
+
+    /**
+     * In-game description
+     */
+    public function description() { return $this->_m_description; }
+}
+
+namespace \Tes5;
+
 class RaceKwdaField extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\RaceField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -1131,6 +1188,25 @@ class Tes4SnamField extends \Kaitai\Struct\Struct {
      * Description of file (optional)
      */
     public function description() { return $this->_m_description; }
+}
+
+namespace \Tes5;
+
+class ScrlYnamField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_pickupSound = $this->_io->readU4le();
+    }
+    protected $_m_pickupSound;
+
+    /**
+     * Pickup sound
+     */
+    public function pickupSound() { return $this->_m_pickupSound; }
 }
 
 namespace \Tes5;
@@ -1846,6 +1922,55 @@ class EfshNam9Field extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlDataField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_value = $this->_io->readU4le();
+        $this->_m_weight = $this->_io->readF4le();
+    }
+    protected $_m_value;
+    protected $_m_weight;
+
+    /**
+     * Scroll value
+     */
+    public function value() { return $this->_m_value; }
+
+    /**
+     * Scroll weight
+     */
+    public function weight() { return $this->_m_weight; }
+}
+
+namespace \Tes5;
+
+class ScrlKwdaField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_keyword = [];
+        $n = intval($this->_parent()->dataSize() / 4);
+        for ($i = 0; $i < $n; $i++) {
+            $this->_m_keyword[] = $this->_io->readU4le();
+        }
+    }
+    protected $_m_keyword;
+
+    /**
+     * KYWD formIDs
+     */
+    public function keyword() { return $this->_m_keyword; }
+}
+
+namespace \Tes5;
+
 class EqupPnamField extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\EqupField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -2014,7 +2139,7 @@ class RacePhwtWeights extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjCnamField extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CobjField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -2274,6 +2399,25 @@ class ClasDataField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlMdobField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_menuIcon = $this->_io->readU4le();
+    }
+    protected $_m_menuIcon;
+
+    /**
+     * Menu display object STAT FormID
+     */
+    public function menuIcon() { return $this->_m_menuIcon; }
+}
+
+namespace \Tes5;
+
 class ModsField extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\StatField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -2421,7 +2565,7 @@ class SounSndcField extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjCoctField extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CobjField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -3670,6 +3814,81 @@ class ClfmForm extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlSpitField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_spellCost = $this->_io->readU4le();
+        $this->_m_flags = new \Tes5\ScrlSpitFlags($this->_io, $this, $this->_root);
+        $this->_m_unknown1 = $this->_io->readU4le();
+        $this->_m_chargeTime = $this->_io->readF4le();
+        $this->_m_unknown2 = $this->_io->readU4le();
+        $this->_m_targetType = $this->_io->readU4le();
+        $this->_m_unknown3 = $this->_io->readU4le();
+        $this->_m_unknown4 = $this->_io->readU4le();
+        $this->_m_unknown5 = $this->_io->readU4le();
+    }
+    protected $_m_spellCost;
+    protected $_m_flags;
+    protected $_m_unknown1;
+    protected $_m_chargeTime;
+    protected $_m_unknown2;
+    protected $_m_targetType;
+    protected $_m_unknown3;
+    protected $_m_unknown4;
+    protected $_m_unknown5;
+
+    /**
+     * Spell Cost
+     */
+    public function spellCost() { return $this->_m_spellCost; }
+
+    /**
+     * Scrl item flags
+     */
+    public function flags() { return $this->_m_flags; }
+
+    /**
+     * Unknown - Always 0?
+     */
+    public function unknown1() { return $this->_m_unknown1; }
+
+    /**
+     * Charge time
+     */
+    public function chargeTime() { return $this->_m_chargeTime; }
+
+    /**
+     * Unknown - Always 0x03 or 0x02
+     */
+    public function unknown2() { return $this->_m_unknown2; }
+
+    /**
+     * Target type
+     */
+    public function targetType() { return $this->_m_targetType; }
+
+    /**
+     * Unknown - Always 0?
+     */
+    public function unknown3() { return $this->_m_unknown3; }
+
+    /**
+     * Unknown - Always 0?
+     */
+    public function unknown4() { return $this->_m_unknown4; }
+
+    /**
+     * Unknown - Always 0?
+     */
+    public function unknown5() { return $this->_m_unknown5; }
+}
+
+namespace \Tes5;
+
 class CtdaParameters extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CtdaField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -3880,6 +4099,25 @@ class RaceDftmField extends \Kaitai\Struct\Struct {
      * FormID of associated TXST form
      */
     public function defaultFaceTextureMale() { return $this->_m_defaultFaceTextureMale; }
+}
+
+namespace \Tes5;
+
+class HazdMnamField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\HazdField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_imageSpaceModifier = $this->_io->readU4le();
+    }
+    protected $_m_imageSpaceModifier;
+
+    /**
+     * Linked IMAD FormID
+     */
+    public function imageSpaceModifier() { return $this->_m_imageSpaceModifier; }
 }
 
 namespace \Tes5;
@@ -4315,6 +4553,36 @@ class Tes4HedrField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class HazdDataFlags extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\HazdDataField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_affectsPlayerOnly = $this->_io->readBitsInt(1) != 0;
+        $this->_m_inheritDurationFromSpawnSpell = $this->_io->readBitsInt(1) != 0;
+        $this->_m_alignToImpactNormal = $this->_io->readBitsInt(1) != 0;
+        $this->_m_inheritRadiusFromSpawnSpell = $this->_io->readBitsInt(1) != 0;
+        $this->_m_dropToGround = $this->_io->readBitsInt(1) != 0;
+        $this->_m__unnamed5 = $this->_io->readBitsInt(27);
+    }
+    protected $_m_affectsPlayerOnly;
+    protected $_m_inheritDurationFromSpawnSpell;
+    protected $_m_alignToImpactNormal;
+    protected $_m_inheritRadiusFromSpawnSpell;
+    protected $_m_dropToGround;
+    protected $_m__unnamed5;
+    public function affectsPlayerOnly() { return $this->_m_affectsPlayerOnly; }
+    public function inheritDurationFromSpawnSpell() { return $this->_m_inheritDurationFromSpawnSpell; }
+    public function alignToImpactNormal() { return $this->_m_alignToImpactNormal; }
+    public function inheritRadiusFromSpawnSpell() { return $this->_m_inheritRadiusFromSpawnSpell; }
+    public function dropToGround() { return $this->_m_dropToGround; }
+    public function _unnamed5() { return $this->_m__unnamed5; }
+}
+
+namespace \Tes5;
+
 class CtdaParametersGetEventData extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CtdaField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -4710,7 +4978,7 @@ class RaceFtsfField extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjNam1Field extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CobjField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -4764,6 +5032,61 @@ class Color extends \Kaitai\Struct\Struct {
      * Alpha (?) value
      */
     public function a() { return $this->_m_a; }
+}
+
+namespace \Tes5;
+
+class HazdField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\HazdForm $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_type = \Kaitai\Struct\Stream::bytesToStr($this->_io->readBytes(4), "UTF-8");
+        $this->_m_dataSize = $this->_io->readU2le();
+        switch ($this->type()) {
+            case "EDID":
+                $this->_m_data = new \Tes5\EdidField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+            case "MODT":
+                $this->_m_data = new \Tes5\ModtField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+            case "DATA":
+                $this->_m_data = new \Tes5\HazdDataField($this->_io, $this, $this->_root);
+                break;
+            case "FULL":
+                $this->_m_data = new \Tes5\FullField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+            case "OBND":
+                $this->_m_data = new \Tes5\ObndField($this->_io, $this, $this->_root);
+                break;
+            case "MNAM":
+                $this->_m_data = new \Tes5\HazdMnamField($this->_io, $this, $this->_root);
+                break;
+            case "MODL":
+                $this->_m_data = new \Tes5\ModlField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+        }
+    }
+    protected $_m_type;
+    protected $_m_dataSize;
+    protected $_m_data;
+
+    /**
+     * unique type code
+     */
+    public function type() { return $this->_m_type; }
+
+    /**
+     * Size, in bytes, of field (minus header)
+     */
+    public function dataSize() { return $this->_m_dataSize; }
+
+    /**
+     * Fields contained by HAZD form
+     */
+    public function data() { return $this->_m_data; }
 }
 
 namespace \Tes5;
@@ -5291,7 +5614,7 @@ class SpgdIconField extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjCntoField extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CobjField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -5563,6 +5886,91 @@ class RaceDescField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlForm $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_type = \Kaitai\Struct\Stream::bytesToStr($this->_io->readBytes(4), "UTF-8");
+        $this->_m_dataSize = $this->_io->readU2le();
+        switch ($this->type()) {
+            case "CTDA":
+                $this->_m_data = new \Tes5\CtdaField($this->_io, $this, $this->_root);
+                break;
+            case "EFID":
+                $this->_m_data = new \Tes5\EfidField($this->_io, $this, $this->_root);
+                break;
+            case "EDID":
+                $this->_m_data = new \Tes5\EdidField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+            case "DATA":
+                $this->_m_data = new \Tes5\ScrlDataField($this->_io, $this, $this->_root);
+                break;
+            case "KWDA":
+                $this->_m_data = new \Tes5\ScrlKwdaField($this->_io, $this, $this->_root);
+                break;
+            case "EFIT":
+                $this->_m_data = new \Tes5\EfitField($this->_io, $this, $this->_root);
+                break;
+            case "MDOB":
+                $this->_m_data = new \Tes5\ScrlMdobField($this->_io, $this, $this->_root);
+                break;
+            case "FULL":
+                $this->_m_data = new \Tes5\FullField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+            case "KSIZ":
+                $this->_m_data = new \Tes5\ScrlKsizField($this->_io, $this, $this->_root);
+                break;
+            case "DEST":
+                $this->_m_data = new \Tes5\DestField($this->_io, $this, $this->_root);
+                break;
+            case "ETYP":
+                $this->_m_data = new \Tes5\ScrlEtypField($this->_io, $this, $this->_root);
+                break;
+            case "DESC":
+                $this->_m_data = new \Tes5\ScrlDescField($this->_io, $this, $this->_root);
+                break;
+            case "OBND":
+                $this->_m_data = new \Tes5\ObndField($this->_io, $this, $this->_root);
+                break;
+            case "ZNAM":
+                $this->_m_data = new \Tes5\ScrlZnamField($this->_io, $this, $this->_root);
+                break;
+            case "MODL":
+                $this->_m_data = new \Tes5\ModlField($this->dataSize(), $this->_io, $this, $this->_root);
+                break;
+            case "SPIT":
+                $this->_m_data = new \Tes5\ScrlSpitField($this->_io, $this, $this->_root);
+                break;
+            case "YNAM":
+                $this->_m_data = new \Tes5\ScrlYnamField($this->_io, $this, $this->_root);
+                break;
+        }
+    }
+    protected $_m_type;
+    protected $_m_dataSize;
+    protected $_m_data;
+
+    /**
+     * Unique type code
+     */
+    public function type() { return $this->_m_type; }
+
+    /**
+     * Size, in bytes, of field (minus header)
+     */
+    public function dataSize() { return $this->_m_dataSize; }
+
+    /**
+     * Fields contained by SCRL form
+     */
+    public function data() { return $this->_m_data; }
+}
+
+namespace \Tes5;
+
 class GlobFltvField extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\GlobField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -5626,6 +6034,39 @@ class SpelForm extends \Kaitai\Struct\Struct {
      * Fields contained by SPEL form
      */
     public function fields() { return $this->_m_fields; }
+}
+
+namespace \Tes5;
+
+class ScrlSpitFlags extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlSpitField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_manualCalc = $this->_io->readBitsInt(1) != 0;
+        $this->_m__unnamed1 = $this->_io->readBitsInt(18);
+        $this->_m_areaEffectIgnoresLos = $this->_io->readBitsInt(1) != 0;
+        $this->_m_scriptEffectAlwaysApplies = $this->_io->readBitsInt(1) != 0;
+        $this->_m_noAbsorbReflect = $this->_io->readBitsInt(1) != 0;
+        $this->_m_forceTouchExplode = $this->_io->readBitsInt(1) != 0;
+        $this->_m__unnamed6 = $this->_io->readBitsInt(2);
+    }
+    protected $_m_manualCalc;
+    protected $_m__unnamed1;
+    protected $_m_areaEffectIgnoresLos;
+    protected $_m_scriptEffectAlwaysApplies;
+    protected $_m_noAbsorbReflect;
+    protected $_m_forceTouchExplode;
+    protected $_m__unnamed6;
+    public function manualCalc() { return $this->_m_manualCalc; }
+    public function _unnamed1() { return $this->_m__unnamed1; }
+    public function areaEffectIgnoresLos() { return $this->_m_areaEffectIgnoresLos; }
+    public function scriptEffectAlwaysApplies() { return $this->_m_scriptEffectAlwaysApplies; }
+    public function noAbsorbReflect() { return $this->_m_noAbsorbReflect; }
+    public function forceTouchExplode() { return $this->_m_forceTouchExplode; }
+    public function _unnamed6() { return $this->_m__unnamed6; }
 }
 
 namespace \Tes5;
@@ -6075,7 +6516,7 @@ class GrasDataField extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CoedField extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\LvlnField $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -6436,7 +6877,7 @@ class MpavEyeFlags extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjField extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CobjForm $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -7164,6 +7605,88 @@ class FactPlcnField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class HazdDataField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\HazdField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_limit = $this->_io->readU4le();
+        $this->_m_radius = $this->_io->readF4le();
+        $this->_m_lifetime = $this->_io->readF4le();
+        $this->_m_imageSpaceRadius = $this->_io->readF4le();
+        $this->_m_targetInterval = $this->_io->readF4le();
+        $this->_m_flags = new \Tes5\HazdDataFlags($this->_io, $this, $this->_root);
+        $this->_m_spell = $this->_io->readU4le();
+        $this->_m_light = $this->_io->readU4le();
+        $this->_m_impactDataSet = $this->_io->readU4le();
+        $this->_m_sound = $this->_io->readU4le();
+    }
+    protected $_m_limit;
+    protected $_m_radius;
+    protected $_m_lifetime;
+    protected $_m_imageSpaceRadius;
+    protected $_m_targetInterval;
+    protected $_m_flags;
+    protected $_m_spell;
+    protected $_m_light;
+    protected $_m_impactDataSet;
+    protected $_m_sound;
+
+    /**
+     * Limit
+     */
+    public function limit() { return $this->_m_limit; }
+
+    /**
+     * Radius
+     */
+    public function radius() { return $this->_m_radius; }
+
+    /**
+     * Lifetime
+     */
+    public function lifetime() { return $this->_m_lifetime; }
+
+    /**
+     * Image space radius
+     */
+    public function imageSpaceRadius() { return $this->_m_imageSpaceRadius; }
+
+    /**
+     * Target interval
+     */
+    public function targetInterval() { return $this->_m_targetInterval; }
+
+    /**
+     * Flags
+     */
+    public function flags() { return $this->_m_flags; }
+
+    /**
+     * Linked SPEL FormID
+     */
+    public function spell() { return $this->_m_spell; }
+
+    /**
+     * Linked LIGH FormID
+     */
+    public function light() { return $this->_m_light; }
+
+    /**
+     * Linked IPDS FormID
+     */
+    public function impactDataSet() { return $this->_m_impactDataSet; }
+
+    /**
+     * Linked SNDR FormID
+     */
+    public function sound() { return $this->_m_sound; }
+}
+
+namespace \Tes5;
+
 class RaceSpctField extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\RaceField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -7354,6 +7877,30 @@ class TxstDodtField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlForm extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\Form $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_fields = [];
+        $i = 0;
+        while (!$this->_io->isEof()) {
+            $this->_m_fields[] = new \Tes5\ScrlField($this->_io, $this, $this->_root);
+            $i++;
+        }
+    }
+    protected $_m_fields;
+
+    /**
+     * Fields contained by SCRL form
+     */
+    public function fields() { return $this->_m_fields; }
+}
+
+namespace \Tes5;
+
 class RaceNam5Field extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\RaceField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -7374,7 +7921,7 @@ class RaceNam5Field extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjBnamField extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\CobjField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }
@@ -7945,7 +8492,6 @@ class TxstTxField extends \Kaitai\Struct\Struct {
      * TX05 - Environment map
      * TX06 - Unknown (does not occur in Skyrim.esm)
      * TX07 - Specularity map (for bodies)
-     *           
      */
     public function path() { return $this->_m_path; }
 }
@@ -8576,6 +9122,16 @@ class Form extends \Kaitai\Struct\Struct {
                 $io = new \Kaitai\Struct\Stream($this->_m__raw_formData);
                 $this->_m_formData = new \Tes5\LtexForm($io, $this, $this->_root);
                 break;
+            case "HAZD":
+                $this->_m__raw_formData = $this->_io->readBytes($this->header()->dataSize());
+                $io = new \Kaitai\Struct\Stream($this->_m__raw_formData);
+                $this->_m_formData = new \Tes5\HazdForm($io, $this, $this->_root);
+                break;
+            case "SCRL":
+                $this->_m__raw_formData = $this->_io->readBytes($this->header()->dataSize());
+                $io = new \Kaitai\Struct\Stream($this->_m__raw_formData);
+                $this->_m_formData = new \Tes5\ScrlForm($io, $this, $this->_root);
+                break;
             case "SHOU":
                 $this->_m__raw_formData = $this->_io->readBytes($this->header()->dataSize());
                 $io = new \Kaitai\Struct\Stream($this->_m__raw_formData);
@@ -8635,6 +9191,11 @@ class Form extends \Kaitai\Struct\Struct {
                 $this->_m__raw_formData = $this->_io->readBytes($this->header()->dataSize());
                 $io = new \Kaitai\Struct\Stream($this->_m__raw_formData);
                 $this->_m_formData = new \Tes5\EqupForm($io, $this, $this->_root);
+                break;
+            case "COBJ":
+                $this->_m__raw_formData = $this->_io->readBytes($this->header()->dataSize());
+                $io = new \Kaitai\Struct\Stream($this->_m__raw_formData);
+                $this->_m_formData = new \Tes5\CobjForm($io, $this, $this->_root);
                 break;
             case "HDPT":
                 $this->_m__raw_formData = $this->_io->readBytes($this->header()->dataSize());
@@ -9058,6 +9619,44 @@ class RaceMpavField extends \Kaitai\Struct\Struct {
 
 namespace \Tes5;
 
+class ScrlEtypField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_equipType = $this->_io->readU4le();
+    }
+    protected $_m_equipType;
+
+    /**
+     * Equip slot EQUP formID
+     */
+    public function equipType() { return $this->_m_equipType; }
+}
+
+namespace \Tes5;
+
+class DestField extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\ScrlField $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_destructionData = $this->_io->readBytes(8);
+    }
+    protected $_m_destructionData;
+
+    /**
+     * Destruction Data
+     */
+    public function destructionData() { return $this->_m_destructionData; }
+}
+
+namespace \Tes5;
+
 class FactStolField extends \Kaitai\Struct\Struct {
     public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\FactField $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
@@ -9438,6 +10037,30 @@ class ClasIconField extends \Kaitai\Struct\Struct {
      * Path to menu image
      */
     public function icon() { return $this->_m_icon; }
+}
+
+namespace \Tes5;
+
+class HazdForm extends \Kaitai\Struct\Struct {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\Form $_parent = null, \Tes5 $_root = null) {
+        parent::__construct($_io, $_parent, $_root);
+        $this->_read();
+    }
+
+    private function _read() {
+        $this->_m_fields = [];
+        $i = 0;
+        while (!$this->_io->isEof()) {
+            $this->_m_fields[] = new \Tes5\HazdField($this->_io, $this, $this->_root);
+            $i++;
+        }
+    }
+    protected $_m_fields;
+
+    /**
+     * Fields contained by HAZD form
+     */
+    public function fields() { return $this->_m_fields; }
 }
 
 namespace \Tes5;
@@ -10004,7 +10627,7 @@ class RaceTinvField extends \Kaitai\Struct\Struct {
 namespace \Tes5;
 
 class CobjForm extends \Kaitai\Struct\Struct {
-    public function __construct(\Kaitai\Struct\Stream $_io, \Kaitai\Struct\Struct $_parent = null, \Tes5 $_root = null) {
+    public function __construct(\Kaitai\Struct\Stream $_io, \Tes5\Form $_parent = null, \Tes5 $_root = null) {
         parent::__construct($_io, $_parent, $_root);
         $this->_read();
     }

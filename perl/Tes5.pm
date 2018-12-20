@@ -214,6 +214,44 @@ sub combat {
 }
 
 ########################################################################
+package Tes5::ScrlKsizField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{keyword_count} = $self->{_io}->read_u4le();
+}
+
+sub keyword_count {
+    my ($self) = @_;
+    return $self->{keyword_count};
+}
+
+########################################################################
 package Tes5::FactDataFlags;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -333,6 +371,44 @@ sub ignore_werewolf {
 sub _unnamed14 {
     my ($self) = @_;
     return $self->{_unnamed14};
+}
+
+########################################################################
+package Tes5::ScrlZnamField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{drop_sound} = $self->{_io}->read_u4le();
+}
+
+sub drop_sound {
+    my ($self) = @_;
+    return $self->{drop_sound};
 }
 
 ########################################################################
@@ -1648,6 +1724,44 @@ sub screen_model {
 }
 
 ########################################################################
+package Tes5::ScrlDescField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{description} = Tes5::Lstring->new($self->{_io}, $self, $self->{_root});
+}
+
+sub description {
+    my ($self) = @_;
+    return $self->{description};
+}
+
+########################################################################
 package Tes5::RaceKwdaField;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -1849,6 +1963,44 @@ sub _read {
 sub description {
     my ($self) = @_;
     return $self->{description};
+}
+
+########################################################################
+package Tes5::ScrlYnamField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{pickup_sound} = $self->{_io}->read_u4le();
+}
+
+sub pickup_sound {
+    my ($self) = @_;
+    return $self->{pickup_sound};
 }
 
 ########################################################################
@@ -3184,6 +3336,92 @@ sub end_gradient {
 }
 
 ########################################################################
+package Tes5::ScrlDataField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{value} = $self->{_io}->read_u4le();
+    $self->{weight} = $self->{_io}->read_f4le();
+}
+
+sub value {
+    my ($self) = @_;
+    return $self->{value};
+}
+
+sub weight {
+    my ($self) = @_;
+    return $self->{weight};
+}
+
+########################################################################
+package Tes5::ScrlKwdaField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{keyword} = ();
+    my $n_keyword = int($self->_parent()->data_size() / 4);
+    for (my $i = 0; $i < $n_keyword; $i++) {
+        $self->{keyword}[$i] = $self->{_io}->read_u4le();
+    }
+}
+
+sub keyword {
+    my ($self) = @_;
+    return $self->{keyword};
+}
+
+########################################################################
 package Tes5::EqupPnamField;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -3742,6 +3980,44 @@ sub stamina_weight {
 sub flags {
     my ($self) = @_;
     return $self->{flags};
+}
+
+########################################################################
+package Tes5::ScrlMdobField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{menu_icon} = $self->{_io}->read_u4le();
+}
+
+sub menu_icon {
+    my ($self) = @_;
+    return $self->{menu_icon};
 }
 
 ########################################################################
@@ -6042,6 +6318,92 @@ sub fields {
 }
 
 ########################################################################
+package Tes5::ScrlSpitField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{spell_cost} = $self->{_io}->read_u4le();
+    $self->{flags} = Tes5::ScrlSpitFlags->new($self->{_io}, $self, $self->{_root});
+    $self->{unknown_1} = $self->{_io}->read_u4le();
+    $self->{charge_time} = $self->{_io}->read_f4le();
+    $self->{unknown_2} = $self->{_io}->read_u4le();
+    $self->{target_type} = $self->{_io}->read_u4le();
+    $self->{unknown_3} = $self->{_io}->read_u4le();
+    $self->{unknown_4} = $self->{_io}->read_u4le();
+    $self->{unknown_5} = $self->{_io}->read_u4le();
+}
+
+sub spell_cost {
+    my ($self) = @_;
+    return $self->{spell_cost};
+}
+
+sub flags {
+    my ($self) = @_;
+    return $self->{flags};
+}
+
+sub unknown_1 {
+    my ($self) = @_;
+    return $self->{unknown_1};
+}
+
+sub charge_time {
+    my ($self) = @_;
+    return $self->{charge_time};
+}
+
+sub unknown_2 {
+    my ($self) = @_;
+    return $self->{unknown_2};
+}
+
+sub target_type {
+    my ($self) = @_;
+    return $self->{target_type};
+}
+
+sub unknown_3 {
+    my ($self) = @_;
+    return $self->{unknown_3};
+}
+
+sub unknown_4 {
+    my ($self) = @_;
+    return $self->{unknown_4};
+}
+
+sub unknown_5 {
+    my ($self) = @_;
+    return $self->{unknown_5};
+}
+
+########################################################################
 package Tes5::CtdaParameters;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -6399,6 +6761,44 @@ sub _read {
 sub default_face_texture_male {
     my ($self) = @_;
     return $self->{default_face_texture_male};
+}
+
+########################################################################
+package Tes5::HazdMnamField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{image_space_modifier} = $self->{_io}->read_u4le();
+}
+
+sub image_space_modifier {
+    my ($self) = @_;
+    return $self->{image_space_modifier};
 }
 
 ########################################################################
@@ -7163,6 +7563,74 @@ sub next_object_id {
 }
 
 ########################################################################
+package Tes5::HazdDataFlags;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{affects_player_only} = $self->{_io}->read_bits_int(1);
+    $self->{inherit_duration_from_spawn_spell} = $self->{_io}->read_bits_int(1);
+    $self->{align_to_impact_normal} = $self->{_io}->read_bits_int(1);
+    $self->{inherit_radius_from_spawn_spell} = $self->{_io}->read_bits_int(1);
+    $self->{drop_to_ground} = $self->{_io}->read_bits_int(1);
+    $self->{_unnamed5} = $self->{_io}->read_bits_int(27);
+}
+
+sub affects_player_only {
+    my ($self) = @_;
+    return $self->{affects_player_only};
+}
+
+sub inherit_duration_from_spawn_spell {
+    my ($self) = @_;
+    return $self->{inherit_duration_from_spawn_spell};
+}
+
+sub align_to_impact_normal {
+    my ($self) = @_;
+    return $self->{align_to_impact_normal};
+}
+
+sub inherit_radius_from_spawn_spell {
+    my ($self) = @_;
+    return $self->{inherit_radius_from_spawn_spell};
+}
+
+sub drop_to_ground {
+    my ($self) = @_;
+    return $self->{drop_to_ground};
+}
+
+sub _unnamed5 {
+    my ($self) = @_;
+    return $self->{_unnamed5};
+}
+
+########################################################################
 package Tes5::CtdaParametersGetEventData;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -7920,6 +8388,77 @@ sub b {
 sub a {
     my ($self) = @_;
     return $self->{a};
+}
+
+########################################################################
+package Tes5::HazdField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{type} = Encode::decode("UTF-8", $self->{_io}->read_bytes(4));
+    $self->{data_size} = $self->{_io}->read_u2le();
+    my $_on = $self->type();
+    if ($_on eq "EDID") {
+        $self->{data} = Tes5::EdidField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "MODT") {
+        $self->{data} = Tes5::ModtField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "DATA") {
+        $self->{data} = Tes5::HazdDataField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "FULL") {
+        $self->{data} = Tes5::FullField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "OBND") {
+        $self->{data} = Tes5::ObndField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "MNAM") {
+        $self->{data} = Tes5::HazdMnamField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "MODL") {
+        $self->{data} = Tes5::ModlField->new($self->{_io}, $self, $self->{_root});
+    }
+}
+
+sub type {
+    my ($self) = @_;
+    return $self->{type};
+}
+
+sub data_size {
+    my ($self) = @_;
+    return $self->{data_size};
+}
+
+sub data {
+    my ($self) = @_;
+    return $self->{data};
 }
 
 ########################################################################
@@ -9311,6 +9850,107 @@ sub description {
 }
 
 ########################################################################
+package Tes5::ScrlField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{type} = Encode::decode("UTF-8", $self->{_io}->read_bytes(4));
+    $self->{data_size} = $self->{_io}->read_u2le();
+    my $_on = $self->type();
+    if ($_on eq "CTDA") {
+        $self->{data} = Tes5::CtdaField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "EFID") {
+        $self->{data} = Tes5::EfidField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "EDID") {
+        $self->{data} = Tes5::EdidField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "DATA") {
+        $self->{data} = Tes5::ScrlDataField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "KWDA") {
+        $self->{data} = Tes5::ScrlKwdaField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "EFIT") {
+        $self->{data} = Tes5::EfitField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "MDOB") {
+        $self->{data} = Tes5::ScrlMdobField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "FULL") {
+        $self->{data} = Tes5::FullField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "KSIZ") {
+        $self->{data} = Tes5::ScrlKsizField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "DEST") {
+        $self->{data} = Tes5::DestField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "ETYP") {
+        $self->{data} = Tes5::ScrlEtypField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "DESC") {
+        $self->{data} = Tes5::ScrlDescField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "OBND") {
+        $self->{data} = Tes5::ObndField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "ZNAM") {
+        $self->{data} = Tes5::ScrlZnamField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "MODL") {
+        $self->{data} = Tes5::ModlField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "SPIT") {
+        $self->{data} = Tes5::ScrlSpitField->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on eq "YNAM") {
+        $self->{data} = Tes5::ScrlYnamField->new($self->{_io}, $self, $self->{_root});
+    }
+}
+
+sub type {
+    my ($self) = @_;
+    return $self->{type};
+}
+
+sub data_size {
+    my ($self) = @_;
+    return $self->{data_size};
+}
+
+sub data {
+    my ($self) = @_;
+    return $self->{data};
+}
+
+########################################################################
 package Tes5::GlobFltvField;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -9428,6 +10068,80 @@ sub _read {
 sub fields {
     my ($self) = @_;
     return $self->{fields};
+}
+
+########################################################################
+package Tes5::ScrlSpitFlags;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{manual_calc} = $self->{_io}->read_bits_int(1);
+    $self->{_unnamed1} = $self->{_io}->read_bits_int(18);
+    $self->{area_effect_ignores_los} = $self->{_io}->read_bits_int(1);
+    $self->{script_effect_always_applies} = $self->{_io}->read_bits_int(1);
+    $self->{no_absorb_reflect} = $self->{_io}->read_bits_int(1);
+    $self->{force_touch_explode} = $self->{_io}->read_bits_int(1);
+    $self->{_unnamed6} = $self->{_io}->read_bits_int(2);
+}
+
+sub manual_calc {
+    my ($self) = @_;
+    return $self->{manual_calc};
+}
+
+sub _unnamed1 {
+    my ($self) = @_;
+    return $self->{_unnamed1};
+}
+
+sub area_effect_ignores_los {
+    my ($self) = @_;
+    return $self->{area_effect_ignores_los};
+}
+
+sub script_effect_always_applies {
+    my ($self) = @_;
+    return $self->{script_effect_always_applies};
+}
+
+sub no_absorb_reflect {
+    my ($self) = @_;
+    return $self->{no_absorb_reflect};
+}
+
+sub force_touch_explode {
+    my ($self) = @_;
+    return $self->{force_touch_explode};
+}
+
+sub _unnamed6 {
+    my ($self) = @_;
+    return $self->{_unnamed6};
 }
 
 ########################################################################
@@ -11830,6 +12544,98 @@ sub belongings_chest {
 }
 
 ########################################################################
+package Tes5::HazdDataField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{limit} = $self->{_io}->read_u4le();
+    $self->{radius} = $self->{_io}->read_f4le();
+    $self->{lifetime} = $self->{_io}->read_f4le();
+    $self->{image_space_radius} = $self->{_io}->read_f4le();
+    $self->{target_interval} = $self->{_io}->read_f4le();
+    $self->{flags} = Tes5::HazdDataFlags->new($self->{_io}, $self, $self->{_root});
+    $self->{spell} = $self->{_io}->read_u4le();
+    $self->{light} = $self->{_io}->read_u4le();
+    $self->{impact_data_set} = $self->{_io}->read_u4le();
+    $self->{sound} = $self->{_io}->read_u4le();
+}
+
+sub limit {
+    my ($self) = @_;
+    return $self->{limit};
+}
+
+sub radius {
+    my ($self) = @_;
+    return $self->{radius};
+}
+
+sub lifetime {
+    my ($self) = @_;
+    return $self->{lifetime};
+}
+
+sub image_space_radius {
+    my ($self) = @_;
+    return $self->{image_space_radius};
+}
+
+sub target_interval {
+    my ($self) = @_;
+    return $self->{target_interval};
+}
+
+sub flags {
+    my ($self) = @_;
+    return $self->{flags};
+}
+
+sub spell {
+    my ($self) = @_;
+    return $self->{spell};
+}
+
+sub light {
+    my ($self) = @_;
+    return $self->{light};
+}
+
+sub impact_data_set {
+    my ($self) = @_;
+    return $self->{impact_data_set};
+}
+
+sub sound {
+    my ($self) = @_;
+    return $self->{sound};
+}
+
+########################################################################
 package Tes5::RaceSpctField;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -12099,6 +12905,47 @@ sub unknown {
 sub rgb {
     my ($self) = @_;
     return $self->{rgb};
+}
+
+########################################################################
+package Tes5::ScrlForm;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{fields} = ();
+    while (!$self->{_io}->is_eof()) {
+        push @{$self->{fields}}, Tes5::ScrlField->new($self->{_io}, $self, $self->{_root});
+    }
+}
+
+sub fields {
+    my ($self) = @_;
+    return $self->{fields};
 }
 
 ########################################################################
@@ -14099,6 +14946,16 @@ sub _read {
         my $io__raw_form_data = IO::KaitaiStruct::Stream->new($self->{_raw_form_data});
         $self->{form_data} = Tes5::LtexForm->new($io__raw_form_data, $self, $self->{_root});
     }
+    elsif ($_on eq "HAZD") {
+        $self->{_raw_form_data} = $self->{_io}->read_bytes($self->header()->data_size());
+        my $io__raw_form_data = IO::KaitaiStruct::Stream->new($self->{_raw_form_data});
+        $self->{form_data} = Tes5::HazdForm->new($io__raw_form_data, $self, $self->{_root});
+    }
+    elsif ($_on eq "SCRL") {
+        $self->{_raw_form_data} = $self->{_io}->read_bytes($self->header()->data_size());
+        my $io__raw_form_data = IO::KaitaiStruct::Stream->new($self->{_raw_form_data});
+        $self->{form_data} = Tes5::ScrlForm->new($io__raw_form_data, $self, $self->{_root});
+    }
     elsif ($_on eq "SHOU") {
         $self->{_raw_form_data} = $self->{_io}->read_bytes($self->header()->data_size());
         my $io__raw_form_data = IO::KaitaiStruct::Stream->new($self->{_raw_form_data});
@@ -14158,6 +15015,11 @@ sub _read {
         $self->{_raw_form_data} = $self->{_io}->read_bytes($self->header()->data_size());
         my $io__raw_form_data = IO::KaitaiStruct::Stream->new($self->{_raw_form_data});
         $self->{form_data} = Tes5::EqupForm->new($io__raw_form_data, $self, $self->{_root});
+    }
+    elsif ($_on eq "COBJ") {
+        $self->{_raw_form_data} = $self->{_io}->read_bytes($self->header()->data_size());
+        my $io__raw_form_data = IO::KaitaiStruct::Stream->new($self->{_raw_form_data});
+        $self->{form_data} = Tes5::CobjForm->new($io__raw_form_data, $self, $self->{_root});
     }
     elsif ($_on eq "HDPT") {
         $self->{_raw_form_data} = $self->{_io}->read_bytes($self->header()->data_size());
@@ -14787,6 +15649,82 @@ sub occurence {
 }
 
 ########################################################################
+package Tes5::ScrlEtypField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{equip_type} = $self->{_io}->read_u4le();
+}
+
+sub equip_type {
+    my ($self) = @_;
+    return $self->{equip_type};
+}
+
+########################################################################
+package Tes5::DestField;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{destruction_data} = $self->{_io}->read_bytes(8);
+}
+
+sub destruction_data {
+    my ($self) = @_;
+    return $self->{destruction_data};
+}
+
+########################################################################
 package Tes5::FactStolField;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -15319,6 +16257,47 @@ sub _read {
 sub icon {
     my ($self) = @_;
     return $self->{icon};
+}
+
+########################################################################
+package Tes5::HazdForm;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{fields} = ();
+    while (!$self->{_io}->is_eof()) {
+        push @{$self->{fields}}, Tes5::HazdField->new($self->{_io}, $self, $self->{_root});
+    }
+}
+
+sub fields {
+    my ($self) = @_;
+    return $self->{fields};
 }
 
 ########################################################################

@@ -199,6 +199,22 @@ end
 -- 
 -- Combat behaviour with faction.
 
+Tes5.ScrlKsizField = class.class(KaitaiStruct)
+
+function Tes5.ScrlKsizField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlKsizField:_read()
+  self.keyword_count = self._io:read_u4le()
+end
+
+-- 
+-- Count of KYWD formIDs in following KWDA field.
+
 Tes5.FactDataFlags = class.class(KaitaiStruct)
 
 function Tes5.FactDataFlags:_init(io, parent, root)
@@ -226,6 +242,22 @@ function Tes5.FactDataFlags:_read()
   self._unnamed14 = self._io:read_bits_int(15)
 end
 
+
+Tes5.ScrlZnamField = class.class(KaitaiStruct)
+
+function Tes5.ScrlZnamField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlZnamField:_read()
+  self.drop_sound = self._io:read_u4le()
+end
+
+-- 
+-- Drop sound.
 
 Tes5.Cis1Field = class.class(KaitaiStruct)
 
@@ -854,6 +886,22 @@ end
 -- 
 -- Static model (STAT) FormID.
 
+Tes5.ScrlDescField = class.class(KaitaiStruct)
+
+function Tes5.ScrlDescField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlDescField:_read()
+  self.description = Tes5.Lstring(self._parent.data_size, self._io, self, self._root)
+end
+
+-- 
+-- In-game description.
+
 Tes5.RaceKwdaField = class.class(KaitaiStruct)
 
 function Tes5.RaceKwdaField:_init(io, parent, root)
@@ -944,6 +992,22 @@ end
 
 -- 
 -- Description of file (optional).
+
+Tes5.ScrlYnamField = class.class(KaitaiStruct)
+
+function Tes5.ScrlYnamField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlYnamField:_read()
+  self.pickup_sound = self._io:read_u4le()
+end
+
+-- 
+-- Pickup sound.
 
 Tes5.RaceUnamField = class.class(KaitaiStruct)
 
@@ -1368,6 +1432,44 @@ end
 -- 
 -- Path to end_gradient .dds.
 
+Tes5.ScrlDataField = class.class(KaitaiStruct)
+
+function Tes5.ScrlDataField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlDataField:_read()
+  self.value = self._io:read_u4le()
+  self.weight = self._io:read_f4le()
+end
+
+-- 
+-- Scroll value.
+-- 
+-- Scroll weight.
+
+Tes5.ScrlKwdaField = class.class(KaitaiStruct)
+
+function Tes5.ScrlKwdaField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlKwdaField:_read()
+  self.keyword = {}
+  for i = 1, (self._parent.data_size / 4) do
+    self.keyword[i] = self._io:read_u4le()
+  end
+end
+
+-- 
+-- KYWD formIDs.
+
 Tes5.EqupPnamField = class.class(KaitaiStruct)
 
 function Tes5.EqupPnamField:_init(io, parent, root)
@@ -1631,6 +1733,22 @@ end
 -- Staminca weight, increase attribute each level.
 -- 
 -- Class flags.
+
+Tes5.ScrlMdobField = class.class(KaitaiStruct)
+
+function Tes5.ScrlMdobField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlMdobField:_read()
+  self.menu_icon = self._io:read_u4le()
+end
+
+-- 
+-- Menu display object STAT FormID.
 
 Tes5.ModsField = class.class(KaitaiStruct)
 
@@ -2624,6 +2742,46 @@ end
 -- 
 -- Fields contained by CLFM form.
 
+Tes5.ScrlSpitField = class.class(KaitaiStruct)
+
+function Tes5.ScrlSpitField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlSpitField:_read()
+  self.spell_cost = self._io:read_u4le()
+  self.flags = Tes5.ScrlSpitFlags(self._io, self, self._root)
+  self.unknown_1 = self._io:read_u4le()
+  self.charge_time = self._io:read_f4le()
+  self.unknown_2 = self._io:read_u4le()
+  self.target_type = Tes5.EffectDelivery(self._io:read_u4le())
+  self.unknown_3 = self._io:read_u4le()
+  self.unknown_4 = self._io:read_u4le()
+  self.unknown_5 = self._io:read_u4le()
+end
+
+-- 
+-- Spell Cost.
+-- 
+-- Scrl item flags.
+-- 
+-- Unknown - Always 0?.
+-- 
+-- Charge time.
+-- 
+-- Unknown - Always 0x03 or 0x02.
+-- 
+-- Target type.
+-- 
+-- Unknown - Always 0?.
+-- 
+-- Unknown - Always 0?.
+-- 
+-- Unknown - Always 0?.
+
 Tes5.CtdaParameters = class.class(KaitaiStruct)
 
 function Tes5.CtdaParameters:_init(io, parent, root)
@@ -2782,6 +2940,22 @@ end
 
 -- 
 -- FormID of associated TXST form.
+
+Tes5.HazdMnamField = class.class(KaitaiStruct)
+
+function Tes5.HazdMnamField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.HazdMnamField:_read()
+  self.image_space_modifier = self._io:read_u4le()
+end
+
+-- 
+-- Linked IMAD FormID.
 
 Tes5.FactFnamField = class.class(KaitaiStruct)
 
@@ -3070,6 +3244,25 @@ end
 -- Number of forms.
 -- 
 -- Next form ID.
+
+Tes5.HazdDataFlags = class.class(KaitaiStruct)
+
+function Tes5.HazdDataFlags:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.HazdDataFlags:_read()
+  self.affects_player_only = self._io:read_bits_int(1)
+  self.inherit_duration_from_spawn_spell = self._io:read_bits_int(1)
+  self.align_to_impact_normal = self._io:read_bits_int(1)
+  self.inherit_radius_from_spawn_spell = self._io:read_bits_int(1)
+  self.drop_to_ground = self._io:read_bits_int(1)
+  self._unnamed5 = self._io:read_bits_int(27)
+end
+
 
 Tes5.CtdaParametersGetEventData = class.class(KaitaiStruct)
 
@@ -3376,6 +3569,43 @@ end
 -- Blue value.
 -- 
 -- Alpha (?) value.
+
+Tes5.HazdField = class.class(KaitaiStruct)
+
+function Tes5.HazdField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.HazdField:_read()
+  self.type = str_decode.decode(self._io:read_bytes(4), "UTF-8")
+  self.data_size = self._io:read_u2le()
+  local _on = self.type
+  if _on == "EDID" then
+    self.data = Tes5.EdidField(self.data_size, self._io, self, self._root)
+  elseif _on == "MODT" then
+    self.data = Tes5.ModtField(self.data_size, self._io, self, self._root)
+  elseif _on == "DATA" then
+    self.data = Tes5.HazdDataField(self._io, self, self._root)
+  elseif _on == "FULL" then
+    self.data = Tes5.FullField(self.data_size, self._io, self, self._root)
+  elseif _on == "OBND" then
+    self.data = Tes5.ObndField(self._io, self, self._root)
+  elseif _on == "MNAM" then
+    self.data = Tes5.HazdMnamField(self._io, self, self._root)
+  elseif _on == "MODL" then
+    self.data = Tes5.ModlField(self.data_size, self._io, self, self._root)
+  end
+end
+
+-- 
+-- unique type code.
+-- 
+-- Size, in bytes, of field (minus header).
+-- 
+-- Fields contained by HAZD form.
 
 Tes5.Tes4CnamField = class.class(KaitaiStruct)
 
@@ -3992,6 +4222,63 @@ end
 -- 
 -- Race description (as it appears in-game).
 
+Tes5.ScrlField = class.class(KaitaiStruct)
+
+function Tes5.ScrlField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlField:_read()
+  self.type = str_decode.decode(self._io:read_bytes(4), "UTF-8")
+  self.data_size = self._io:read_u2le()
+  local _on = self.type
+  if _on == "CTDA" then
+    self.data = Tes5.CtdaField(self._io, self, self._root)
+  elseif _on == "EFID" then
+    self.data = Tes5.EfidField(self._io, self, self._root)
+  elseif _on == "EDID" then
+    self.data = Tes5.EdidField(self.data_size, self._io, self, self._root)
+  elseif _on == "DATA" then
+    self.data = Tes5.ScrlDataField(self._io, self, self._root)
+  elseif _on == "KWDA" then
+    self.data = Tes5.ScrlKwdaField(self._io, self, self._root)
+  elseif _on == "EFIT" then
+    self.data = Tes5.EfitField(self._io, self, self._root)
+  elseif _on == "MDOB" then
+    self.data = Tes5.ScrlMdobField(self._io, self, self._root)
+  elseif _on == "FULL" then
+    self.data = Tes5.FullField(self.data_size, self._io, self, self._root)
+  elseif _on == "KSIZ" then
+    self.data = Tes5.ScrlKsizField(self._io, self, self._root)
+  elseif _on == "DEST" then
+    self.data = Tes5.DestField(self._io, self, self._root)
+  elseif _on == "ETYP" then
+    self.data = Tes5.ScrlEtypField(self._io, self, self._root)
+  elseif _on == "DESC" then
+    self.data = Tes5.ScrlDescField(self._io, self, self._root)
+  elseif _on == "OBND" then
+    self.data = Tes5.ObndField(self._io, self, self._root)
+  elseif _on == "ZNAM" then
+    self.data = Tes5.ScrlZnamField(self._io, self, self._root)
+  elseif _on == "MODL" then
+    self.data = Tes5.ModlField(self.data_size, self._io, self, self._root)
+  elseif _on == "SPIT" then
+    self.data = Tes5.ScrlSpitField(self._io, self, self._root)
+  elseif _on == "YNAM" then
+    self.data = Tes5.ScrlYnamField(self._io, self, self._root)
+  end
+end
+
+-- 
+-- Unique type code.
+-- 
+-- Size, in bytes, of field (minus header).
+-- 
+-- Fields contained by SCRL form.
+
 Tes5.GlobFltvField = class.class(KaitaiStruct)
 
 function Tes5.GlobFltvField:_init(io, parent, root)
@@ -4049,6 +4336,26 @@ end
 
 -- 
 -- Fields contained by SPEL form.
+
+Tes5.ScrlSpitFlags = class.class(KaitaiStruct)
+
+function Tes5.ScrlSpitFlags:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlSpitFlags:_read()
+  self.manual_calc = self._io:read_bits_int(1)
+  self._unnamed1 = self._io:read_bits_int(18)
+  self.area_effect_ignores_los = self._io:read_bits_int(1)
+  self.script_effect_always_applies = self._io:read_bits_int(1)
+  self.no_absorb_reflect = self._io:read_bits_int(1)
+  self.force_touch_explode = self._io:read_bits_int(1)
+  self._unnamed6 = self._io:read_bits_int(2)
+end
+
 
 Tes5.TreeField = class.class(KaitaiStruct)
 
@@ -5069,6 +5376,49 @@ end
 -- 
 -- Player inventory chest (REFR).
 
+Tes5.HazdDataField = class.class(KaitaiStruct)
+
+function Tes5.HazdDataField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.HazdDataField:_read()
+  self.limit = self._io:read_u4le()
+  self.radius = self._io:read_f4le()
+  self.lifetime = self._io:read_f4le()
+  self.image_space_radius = self._io:read_f4le()
+  self.target_interval = self._io:read_f4le()
+  self.flags = Tes5.HazdDataFlags(self._io, self, self._root)
+  self.spell = self._io:read_u4le()
+  self.light = self._io:read_u4le()
+  self.impact_data_set = self._io:read_u4le()
+  self.sound = self._io:read_u4le()
+end
+
+-- 
+-- Limit.
+-- 
+-- Radius.
+-- 
+-- Lifetime.
+-- 
+-- Image space radius.
+-- 
+-- Target interval.
+-- 
+-- Flags.
+-- 
+-- Linked SPEL FormID.
+-- 
+-- Linked LIGH FormID.
+-- 
+-- Linked IPDS FormID.
+-- 
+-- Linked SNDR FormID.
+
 Tes5.RaceSpctField = class.class(KaitaiStruct)
 
 function Tes5.RaceSpctField:_init(io, parent, root)
@@ -5191,6 +5541,27 @@ end
 -- Unknown purpose.
 -- 
 -- Decal color.
+
+Tes5.ScrlForm = class.class(KaitaiStruct)
+
+function Tes5.ScrlForm:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlForm:_read()
+  self.fields = {}
+  local i = 1
+  while not self._io:is_eof() do
+    self.fields[i] = Tes5.ScrlField(self._io, self, self._root)
+    i = i + 1
+  end
+end
+
+-- 
+-- Fields contained by SCRL form.
 
 Tes5.RaceNam5Field = class.class(KaitaiStruct)
 
@@ -5621,7 +5992,6 @@ end
 -- TX05 - Environment map
 -- TX06 - Unknown (does not occur in Skyrim.esm)
 -- TX07 - Specularity map (for bodies)
---           
 
 Tes5.RaceSploField = class.class(KaitaiStruct)
 
@@ -6093,6 +6463,14 @@ function Tes5.Form:_read()
     self._raw_form_data = self._io:read_bytes(self.header.data_size)
     local _io = KaitaiStream(stringstream(self._raw_form_data))
     self.form_data = Tes5.LtexForm(_io, self, self._root)
+  elseif _on == "HAZD" then
+    self._raw_form_data = self._io:read_bytes(self.header.data_size)
+    local _io = KaitaiStream(stringstream(self._raw_form_data))
+    self.form_data = Tes5.HazdForm(_io, self, self._root)
+  elseif _on == "SCRL" then
+    self._raw_form_data = self._io:read_bytes(self.header.data_size)
+    local _io = KaitaiStream(stringstream(self._raw_form_data))
+    self.form_data = Tes5.ScrlForm(_io, self, self._root)
   elseif _on == "SHOU" then
     self._raw_form_data = self._io:read_bytes(self.header.data_size)
     local _io = KaitaiStream(stringstream(self._raw_form_data))
@@ -6141,6 +6519,10 @@ function Tes5.Form:_read()
     self._raw_form_data = self._io:read_bytes(self.header.data_size)
     local _io = KaitaiStream(stringstream(self._raw_form_data))
     self.form_data = Tes5.EqupForm(_io, self, self._root)
+  elseif _on == "COBJ" then
+    self._raw_form_data = self._io:read_bytes(self.header.data_size)
+    local _io = KaitaiStream(stringstream(self._raw_form_data))
+    self.form_data = Tes5.CobjForm(_io, self, self._root)
   elseif _on == "HDPT" then
     self._raw_form_data = self._io:read_bytes(self.header.data_size)
     local _io = KaitaiStream(stringstream(self._raw_form_data))
@@ -6426,6 +6808,38 @@ end
 -- 
 -- Number of field occurence.
 
+Tes5.ScrlEtypField = class.class(KaitaiStruct)
+
+function Tes5.ScrlEtypField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.ScrlEtypField:_read()
+  self.equip_type = self._io:read_u4le()
+end
+
+-- 
+-- Equip slot EQUP formID.
+
+Tes5.DestField = class.class(KaitaiStruct)
+
+function Tes5.DestField:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.DestField:_read()
+  self.destruction_data = self._io:read_bytes(8)
+end
+
+-- 
+-- Destruction Data.
+
 Tes5.FactStolField = class.class(KaitaiStruct)
 
 function Tes5.FactStolField:_init(io, parent, root)
@@ -6662,6 +7076,27 @@ end
 
 -- 
 -- Path to menu image.
+
+Tes5.HazdForm = class.class(KaitaiStruct)
+
+function Tes5.HazdForm:_init(io, parent, root)
+  KaitaiStruct._init(self, io)
+  self._parent = parent
+  self._root = root or self
+  self:_read()
+end
+
+function Tes5.HazdForm:_read()
+  self.fields = {}
+  local i = 1
+  while not self._io:is_eof() do
+    self.fields[i] = Tes5.HazdField(self._io, self, self._root)
+    i = i + 1
+  end
+end
+
+-- 
+-- Fields contained by HAZD form.
 
 Tes5.FactPlvdField = class.class(KaitaiStruct)
 

@@ -18,7 +18,16 @@ digraph {
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="faction_form_id_pos">0</TD><TD PORT="faction_form_id_size">4</TD><TD>u4le</TD><TD PORT="faction_form_id_type">faction_form_id</TD></TR>
 				<TR><TD PORT="mod_pos">4</TD><TD PORT="mod_size">4</TD><TD>u4le</TD><TD PORT="mod_type">mod</TD></TR>
-				<TR><TD PORT="combat_pos">8</TD><TD PORT="combat_size">4</TD><TD>u4le→FactXnamCombat</TD><TD PORT="combat_type">combat</TD></TR>
+				<TR><TD PORT="combat_pos">8</TD><TD PORT="combat_size">4</TD><TD>u4le?FactXnamCombat</TD><TD PORT="combat_type">combat</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__scrl_ksiz_field {
+			label="Tes5::ScrlKsizField";
+			graph[style=dotted];
+
+			scrl_ksiz_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="keyword_count_pos">0</TD><TD PORT="keyword_count_size">4</TD><TD>u4le</TD><TD PORT="keyword_count_type">keyword_count</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__fact_data_flags {
@@ -42,6 +51,15 @@ digraph {
 				<TR><TD PORT="can_be_owner_pos">1:7</TD><TD PORT="can_be_owner_size">1b</TD><TD>BitsType1</TD><TD PORT="can_be_owner_type">can_be_owner</TD></TR>
 				<TR><TD PORT="ignore_werewolf_pos">2</TD><TD PORT="ignore_werewolf_size">1b</TD><TD>BitsType1</TD><TD PORT="ignore_werewolf_type">ignore_werewolf</TD></TR>
 				<TR><TD PORT="_unnamed14_pos">2:1</TD><TD PORT="_unnamed14_size">15b</TD><TD>b15</TD><TD PORT="_unnamed14_type">_unnamed14</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__scrl_znam_field {
+			label="Tes5::ScrlZnamField";
+			graph[style=dotted];
+
+			scrl_znam_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="drop_sound_pos">0</TD><TD PORT="drop_sound_size">4</TD><TD>u4le</TD><TD PORT="drop_sound_type">drop_sound</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__cis1_field {
@@ -375,6 +393,15 @@ ltex_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="screen_model_pos">0</TD><TD PORT="screen_model_size">4</TD><TD>u4le</TD><TD PORT="screen_model_type">screen_model</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__scrl_desc_field {
+			label="Tes5::ScrlDescField";
+			graph[style=dotted];
+
+			scrl_desc_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="description_pos">0</TD><TD PORT="description_size">...</TD><TD>Lstring</TD><TD PORT="description_type">description</TD></TR>
+			</TABLE>>];
+		}
 		subgraph cluster__race_kwda_field {
 			label="Tes5::RaceKwdaField";
 			graph[style=dotted];
@@ -391,7 +418,7 @@ ltex_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 
 			hdpt_nam0_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="option_pos">0</TD><TD PORT="option_size">4</TD><TD>u4le→HdptOption</TD><TD PORT="option_type">option</TD></TR>
+				<TR><TD PORT="option_pos">0</TD><TD PORT="option_size">4</TD><TD>u4le?HdptOption</TD><TD PORT="option_type">option</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__spel_spit_field {
@@ -402,10 +429,10 @@ ltex_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="spell_cost_pos">0</TD><TD PORT="spell_cost_size">4</TD><TD>u4le</TD><TD PORT="spell_cost_type">spell_cost</TD></TR>
 				<TR><TD PORT="flags_pos">4</TD><TD PORT="flags_size">4</TD><TD>SpelSpitFlags</TD><TD PORT="flags_type">flags</TD></TR>
-				<TR><TD PORT="spell_type_pos">8</TD><TD PORT="spell_type_size">4</TD><TD>u4le→SpelSpitSpellType</TD><TD PORT="spell_type_type">spell_type</TD></TR>
+				<TR><TD PORT="spell_type_pos">8</TD><TD PORT="spell_type_size">4</TD><TD>u4le?SpelSpitSpellType</TD><TD PORT="spell_type_type">spell_type</TD></TR>
 				<TR><TD PORT="charge_time_pos">12</TD><TD PORT="charge_time_size">4</TD><TD>f4le</TD><TD PORT="charge_time_type">charge_time</TD></TR>
-				<TR><TD PORT="cast_type_pos">16</TD><TD PORT="cast_type_size">4</TD><TD>u4le→EffectCastType</TD><TD PORT="cast_type_type">cast_type</TD></TR>
-				<TR><TD PORT="delivery_pos">20</TD><TD PORT="delivery_size">4</TD><TD>u4le→EffectDelivery</TD><TD PORT="delivery_type">delivery</TD></TR>
+				<TR><TD PORT="cast_type_pos">16</TD><TD PORT="cast_type_size">4</TD><TD>u4le?EffectCastType</TD><TD PORT="cast_type_type">cast_type</TD></TR>
+				<TR><TD PORT="delivery_pos">20</TD><TD PORT="delivery_size">4</TD><TD>u4le?EffectDelivery</TD><TD PORT="delivery_type">delivery</TD></TR>
 				<TR><TD PORT="cast_duration_pos">24</TD><TD PORT="cast_duration_size">4</TD><TD>f4le</TD><TD PORT="cast_duration_type">cast_duration</TD></TR>
 				<TR><TD PORT="range_pos">28</TD><TD PORT="range_size">4</TD><TD>f4le</TD><TD PORT="range_type">range</TD></TR>
 				<TR><TD PORT="perk_pos">32</TD><TD PORT="perk_size">4</TD><TD>u4le</TD><TD PORT="perk_type">perk</TD></TR>
@@ -418,6 +445,15 @@ ltex_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 			tes4_snam_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="description_pos">0</TD><TD PORT="description_size">_parent.data_size</TD><TD>str(UTF-8)</TD><TD PORT="description_type">description</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__scrl_ynam_field {
+			label="Tes5::ScrlYnamField";
+			graph[style=dotted];
+
+			scrl_ynam_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="pickup_sound_pos">0</TD><TD PORT="pickup_sound_size">4</TD><TD>u4le</TD><TD PORT="pickup_sound_type">pickup_sound</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__race_unam_field {
@@ -444,7 +480,7 @@ ltex_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 
 			equp_data_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="use_all_parents_pos">0</TD><TD PORT="use_all_parents_size">4</TD><TD>u4le→EqupDataEnum</TD><TD PORT="use_all_parents_type">use_all_parents</TD></TR>
+				<TR><TD PORT="use_all_parents_pos">0</TD><TD PORT="use_all_parents_size">4</TD><TD>u4le?EqupDataEnum</TD><TD PORT="use_all_parents_type">use_all_parents</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__idlm_form {
@@ -692,6 +728,26 @@ tes4_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="end_gradient_pos">0</TD><TD PORT="end_gradient_size">_parent.data_size</TD><TD>str(UTF-8)</TD><TD PORT="end_gradient_type">end_gradient</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__scrl_data_field {
+			label="Tes5::ScrlDataField";
+			graph[style=dotted];
+
+			scrl_data_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="value_pos">0</TD><TD PORT="value_size">4</TD><TD>u4le</TD><TD PORT="value_type">value</TD></TR>
+				<TR><TD PORT="weight_pos">4</TD><TD PORT="weight_size">4</TD><TD>f4le</TD><TD PORT="weight_type">weight</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__scrl_kwda_field {
+			label="Tes5::ScrlKwdaField";
+			graph[style=dotted];
+
+			scrl_kwda_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="keyword_pos">0</TD><TD PORT="keyword_size">4</TD><TD>u4le</TD><TD PORT="keyword_type">keyword</TD></TR>
+				<TR><TD COLSPAN="4" PORT="keyword__repeat">repeat (_parent.data_size / 4) times</TD></TR>
+			</TABLE>>];
+		}
 		subgraph cluster__equp_pnam_field {
 			label="Tes5::EqupPnamField";
 			graph[style=dotted];
@@ -816,6 +872,15 @@ clas_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="flags_pos">35</TD><TD PORT="flags_size">1</TD><TD>ClasDataFlags</TD><TD PORT="flags_type">flags</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__scrl_mdob_field {
+			label="Tes5::ScrlMdobField";
+			graph[style=dotted];
+
+			scrl_mdob_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="menu_icon_pos">0</TD><TD PORT="menu_icon_size">4</TD><TD>u4le</TD><TD PORT="menu_icon_type">menu_icon</TD></TR>
+			</TABLE>>];
+		}
 		subgraph cluster__mods_field {
 			label="Tes5::ModsField";
 			graph[style=dotted];
@@ -906,10 +971,10 @@ clas_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="enchantment_cost_pos">0</TD><TD PORT="enchantment_cost_size">4</TD><TD>u4le</TD><TD PORT="enchantment_cost_type">enchantment_cost</TD></TR>
 				<TR><TD PORT="flags_pos">4</TD><TD PORT="flags_size">4</TD><TD>EnchEnitFlags</TD><TD PORT="flags_type">flags</TD></TR>
-				<TR><TD PORT="cast_type_pos">8</TD><TD PORT="cast_type_size">4</TD><TD>u4le→EffectCastType</TD><TD PORT="cast_type_type">cast_type</TD></TR>
+				<TR><TD PORT="cast_type_pos">8</TD><TD PORT="cast_type_size">4</TD><TD>u4le?EffectCastType</TD><TD PORT="cast_type_type">cast_type</TD></TR>
 				<TR><TD PORT="enchantment_amount_pos">12</TD><TD PORT="enchantment_amount_size">4</TD><TD>u4le</TD><TD PORT="enchantment_amount_type">enchantment_amount</TD></TR>
-				<TR><TD PORT="delivery_pos">16</TD><TD PORT="delivery_size">4</TD><TD>u4le→EffectDelivery</TD><TD PORT="delivery_type">delivery</TD></TR>
-				<TR><TD PORT="enchant_type_pos">20</TD><TD PORT="enchant_type_size">4</TD><TD>u4le→EnchEnitEnchantType</TD><TD PORT="enchant_type_type">enchant_type</TD></TR>
+				<TR><TD PORT="delivery_pos">16</TD><TD PORT="delivery_size">4</TD><TD>u4le?EffectDelivery</TD><TD PORT="delivery_type">delivery</TD></TR>
+				<TR><TD PORT="enchant_type_pos">20</TD><TD PORT="enchant_type_size">4</TD><TD>u4le?EnchEnitEnchantType</TD><TD PORT="enchant_type_type">enchant_type</TD></TR>
 				<TR><TD PORT="charge_time_pos">24</TD><TD PORT="charge_time_size">4</TD><TD>f4le</TD><TD PORT="charge_time_type">charge_time</TD></TR>
 				<TR><TD PORT="base_enchantment_pos">28</TD><TD PORT="base_enchantment_size">4</TD><TD>u4le</TD><TD PORT="base_enchantment_type">base_enchantment</TD></TR>
 				<TR><TD PORT="worn_restrictions_pos">32</TD><TD PORT="worn_restrictions_size">4</TD><TD>u4le</TD><TD PORT="worn_restrictions_type">worn_restrictions</TD></TR>
@@ -983,7 +1048,7 @@ efsh_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 
 			race_tinp_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="mask_type_pos">0</TD><TD PORT="mask_type_size">2</TD><TD>u2le→RaceTinpMaskType</TD><TD PORT="mask_type_type">mask_type</TD></TR>
+				<TR><TD PORT="mask_type_pos">0</TD><TD PORT="mask_type_size">2</TD><TD>u2le?RaceTinpMaskType</TD><TD PORT="mask_type_type">mask_type</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__spel_desc_field {
@@ -1230,7 +1295,7 @@ flst_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="type_pos">0</TD><TD PORT="type_size">4</TD><TD>47 52 55 50</TD><TD PORT="type_type">type</TD></TR>
 				<TR><TD PORT="group_size_pos">4</TD><TD PORT="group_size_size">4</TD><TD>u4le</TD><TD PORT="group_size_type">group_size</TD></TR>
 				<TR><TD PORT="label_pos">8</TD><TD PORT="label_size">4</TD><TD>u4le</TD><TD PORT="label_type">label</TD></TR>
-				<TR><TD PORT="group_type_pos">12</TD><TD PORT="group_type_size">4</TD><TD>s4le→GroupType</TD><TD PORT="group_type_type">group_type</TD></TR>
+				<TR><TD PORT="group_type_pos">12</TD><TD PORT="group_type_size">4</TD><TD>s4le?GroupType</TD><TD PORT="group_type_type">group_type</TD></TR>
 				<TR><TD PORT="stamp_pos">16</TD><TD PORT="stamp_size">2</TD><TD>u2le</TD><TD PORT="stamp_type">stamp</TD></TR>
 				<TR><TD PORT="_unnamed5_pos">18</TD><TD PORT="_unnamed5_size">2</TD><TD>u2le</TD><TD PORT="_unnamed5_type">_unnamed5</TD></TR>
 				<TR><TD PORT="version_pos">20</TD><TD PORT="version_size">2</TD><TD>u2le</TD><TD PORT="version_type">version</TD></TR>
@@ -1351,6 +1416,23 @@ soun_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD COLSPAN="4" PORT="fields__repeat">repeat to end of stream</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__scrl_spit_field {
+			label="Tes5::ScrlSpitField";
+			graph[style=dotted];
+
+			scrl_spit_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="spell_cost_pos">0</TD><TD PORT="spell_cost_size">4</TD><TD>u4le</TD><TD PORT="spell_cost_type">spell_cost</TD></TR>
+				<TR><TD PORT="flags_pos">4</TD><TD PORT="flags_size">25b</TD><TD>ScrlSpitFlags</TD><TD PORT="flags_type">flags</TD></TR>
+				<TR><TD PORT="unknown_1_pos">7:1</TD><TD PORT="unknown_1_size">4</TD><TD>u4le</TD><TD PORT="unknown_1_type">unknown_1</TD></TR>
+				<TR><TD PORT="charge_time_pos">11:1</TD><TD PORT="charge_time_size">4</TD><TD>f4le</TD><TD PORT="charge_time_type">charge_time</TD></TR>
+				<TR><TD PORT="unknown_2_pos">15:1</TD><TD PORT="unknown_2_size">4</TD><TD>u4le</TD><TD PORT="unknown_2_type">unknown_2</TD></TR>
+				<TR><TD PORT="target_type_pos">19:1</TD><TD PORT="target_type_size">4</TD><TD>u4le?EffectDelivery</TD><TD PORT="target_type_type">target_type</TD></TR>
+				<TR><TD PORT="unknown_3_pos">23:1</TD><TD PORT="unknown_3_size">4</TD><TD>u4le</TD><TD PORT="unknown_3_type">unknown_3</TD></TR>
+				<TR><TD PORT="unknown_4_pos">27:1</TD><TD PORT="unknown_4_size">4</TD><TD>u4le</TD><TD PORT="unknown_4_type">unknown_4</TD></TR>
+				<TR><TD PORT="unknown_5_pos">31:1</TD><TD PORT="unknown_5_size">4</TD><TD>u4le</TD><TD PORT="unknown_5_type">unknown_5</TD></TR>
+			</TABLE>>];
+		}
 		subgraph cluster__ctda_parameters {
 			label="Tes5::CtdaParameters";
 			graph[style=dotted];
@@ -1428,6 +1510,15 @@ soun_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 			race_dftm_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="default_face_texture_male_pos">0</TD><TD PORT="default_face_texture_male_size">4</TD><TD>u4le</TD><TD PORT="default_face_texture_male_type">default_face_texture_male</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__hazd_mnam_field {
+			label="Tes5::HazdMnamField";
+			graph[style=dotted];
+
+			hazd_mnam_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="image_space_modifier_pos">0</TD><TD PORT="image_space_modifier_size">4</TD><TD>u4le</TD><TD PORT="image_space_modifier_type">image_space_modifier</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__fact_fnam_field {
@@ -1595,6 +1686,20 @@ equp_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="version_pos">0</TD><TD PORT="version_size">4</TD><TD>f4le</TD><TD PORT="version_type">version</TD></TR>
 				<TR><TD PORT="num_records_pos">4</TD><TD PORT="num_records_size">4</TD><TD>s4le</TD><TD PORT="num_records_type">num_records</TD></TR>
 				<TR><TD PORT="next_object_id_pos">8</TD><TD PORT="next_object_id_size">4</TD><TD>u4le</TD><TD PORT="next_object_id_type">next_object_id</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__hazd_data_flags {
+			label="Tes5::HazdDataFlags";
+			graph[style=dotted];
+
+			hazd_data_flags__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="affects_player_only_pos">0</TD><TD PORT="affects_player_only_size">1b</TD><TD>BitsType1</TD><TD PORT="affects_player_only_type">affects_player_only</TD></TR>
+				<TR><TD PORT="inherit_duration_from_spawn_spell_pos">0:1</TD><TD PORT="inherit_duration_from_spawn_spell_size">1b</TD><TD>BitsType1</TD><TD PORT="inherit_duration_from_spawn_spell_type">inherit_duration_from_spawn_spell</TD></TR>
+				<TR><TD PORT="align_to_impact_normal_pos">0:2</TD><TD PORT="align_to_impact_normal_size">1b</TD><TD>BitsType1</TD><TD PORT="align_to_impact_normal_type">align_to_impact_normal</TD></TR>
+				<TR><TD PORT="inherit_radius_from_spawn_spell_pos">0:3</TD><TD PORT="inherit_radius_from_spawn_spell_size">1b</TD><TD>BitsType1</TD><TD PORT="inherit_radius_from_spawn_spell_type">inherit_radius_from_spawn_spell</TD></TR>
+				<TR><TD PORT="drop_to_ground_pos">0:4</TD><TD PORT="drop_to_ground_size">1b</TD><TD>BitsType1</TD><TD PORT="drop_to_ground_type">drop_to_ground</TD></TR>
+				<TR><TD PORT="_unnamed5_pos">0:5</TD><TD PORT="_unnamed5_size">27b</TD><TD>b27</TD><TD PORT="_unnamed5_type">_unnamed5</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__ctda_parameters_get_event_data {
@@ -1774,6 +1879,27 @@ aspc_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="a_pos">3</TD><TD PORT="a_size">1</TD><TD>u1</TD><TD PORT="a_type">a</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__hazd_field {
+			label="Tes5::HazdField";
+			graph[style=dotted];
+
+			hazd_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="type_pos">0</TD><TD PORT="type_size">4</TD><TD>str(UTF-8)</TD><TD PORT="type_type">type</TD></TR>
+				<TR><TD PORT="data_size_pos">4</TD><TD PORT="data_size_size">2</TD><TD>u2le</TD><TD PORT="data_size_type">data_size</TD></TR>
+				<TR><TD PORT="data_pos">6</TD><TD PORT="data_size">...</TD><TD>switch (type)</TD><TD PORT="data_type">data</TD></TR>
+			</TABLE>>];
+hazd_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+	<TR><TD BGCOLOR="#F0F2E4">case</TD><TD BGCOLOR="#F0F2E4">type</TD></TR>
+	<TR><TD>&quot;EDID&quot;</TD><TD PORT="case0">EdidField</TD></TR>
+	<TR><TD>&quot;MODT&quot;</TD><TD PORT="case1">ModtField</TD></TR>
+	<TR><TD>&quot;DATA&quot;</TD><TD PORT="case2">HazdDataField</TD></TR>
+	<TR><TD>&quot;FULL&quot;</TD><TD PORT="case3">FullField</TD></TR>
+	<TR><TD>&quot;OBND&quot;</TD><TD PORT="case4">ObndField</TD></TR>
+	<TR><TD>&quot;MNAM&quot;</TD><TD PORT="case5">HazdMnamField</TD></TR>
+	<TR><TD>&quot;MODL&quot;</TD><TD PORT="case6">ModlField</TD></TR>
+</TABLE>>];
+		}
 		subgraph cluster__tes4_cnam_field {
 			label="Tes5::Tes4CnamField";
 			graph[style=dotted];
@@ -1939,7 +2065,7 @@ fact_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="group_size_pos">0</TD><TD PORT="group_size_size">4</TD><TD>u4le</TD><TD PORT="group_size_type">group_size</TD></TR>
 				<TR><TD PORT="label_pos">4</TD><TD PORT="label_size">4</TD><TD>u4le</TD><TD PORT="label_type">label</TD></TR>
-				<TR><TD PORT="group_type_pos">8</TD><TD PORT="group_type_size">4</TD><TD>s4le→GroupType</TD><TD PORT="group_type_type">group_type</TD></TR>
+				<TR><TD PORT="group_type_pos">8</TD><TD PORT="group_type_size">4</TD><TD>s4le?GroupType</TD><TD PORT="group_type_type">group_type</TD></TR>
 				<TR><TD PORT="stamp_pos">12</TD><TD PORT="stamp_size">2</TD><TD>u2le</TD><TD PORT="stamp_type">stamp</TD></TR>
 				<TR><TD PORT="_unnamed4_pos">14</TD><TD PORT="_unnamed4_size">2</TD><TD>u2le</TD><TD PORT="_unnamed4_type">_unnamed4</TD></TR>
 				<TR><TD PORT="version_pos">16</TD><TD PORT="version_size">2</TD><TD>u2le</TD><TD PORT="version_type">version</TD></TR>
@@ -2106,6 +2232,37 @@ rfct_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="description_pos">0</TD><TD PORT="description_size">...</TD><TD>Lstring</TD><TD PORT="description_type">description</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__scrl_field {
+			label="Tes5::ScrlField";
+			graph[style=dotted];
+
+			scrl_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="type_pos">0</TD><TD PORT="type_size">4</TD><TD>str(UTF-8)</TD><TD PORT="type_type">type</TD></TR>
+				<TR><TD PORT="data_size_pos">4</TD><TD PORT="data_size_size">2</TD><TD>u2le</TD><TD PORT="data_size_type">data_size</TD></TR>
+				<TR><TD PORT="data_pos">6</TD><TD PORT="data_size">...</TD><TD>switch (type)</TD><TD PORT="data_type">data</TD></TR>
+			</TABLE>>];
+scrl_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+	<TR><TD BGCOLOR="#F0F2E4">case</TD><TD BGCOLOR="#F0F2E4">type</TD></TR>
+	<TR><TD>&quot;CTDA&quot;</TD><TD PORT="case0">CtdaField</TD></TR>
+	<TR><TD>&quot;EFID&quot;</TD><TD PORT="case1">EfidField</TD></TR>
+	<TR><TD>&quot;EDID&quot;</TD><TD PORT="case2">EdidField</TD></TR>
+	<TR><TD>&quot;DATA&quot;</TD><TD PORT="case3">ScrlDataField</TD></TR>
+	<TR><TD>&quot;KWDA&quot;</TD><TD PORT="case4">ScrlKwdaField</TD></TR>
+	<TR><TD>&quot;EFIT&quot;</TD><TD PORT="case5">EfitField</TD></TR>
+	<TR><TD>&quot;MDOB&quot;</TD><TD PORT="case6">ScrlMdobField</TD></TR>
+	<TR><TD>&quot;FULL&quot;</TD><TD PORT="case7">FullField</TD></TR>
+	<TR><TD>&quot;KSIZ&quot;</TD><TD PORT="case8">ScrlKsizField</TD></TR>
+	<TR><TD>&quot;DEST&quot;</TD><TD PORT="case9">DestField</TD></TR>
+	<TR><TD>&quot;ETYP&quot;</TD><TD PORT="case10">ScrlEtypField</TD></TR>
+	<TR><TD>&quot;DESC&quot;</TD><TD PORT="case11">ScrlDescField</TD></TR>
+	<TR><TD>&quot;OBND&quot;</TD><TD PORT="case12">ObndField</TD></TR>
+	<TR><TD>&quot;ZNAM&quot;</TD><TD PORT="case13">ScrlZnamField</TD></TR>
+	<TR><TD>&quot;MODL&quot;</TD><TD PORT="case14">ModlField</TD></TR>
+	<TR><TD>&quot;SPIT&quot;</TD><TD PORT="case15">ScrlSpitField</TD></TR>
+	<TR><TD>&quot;YNAM&quot;</TD><TD PORT="case16">ScrlYnamField</TD></TR>
+</TABLE>>];
+		}
 		subgraph cluster__glob_fltv_field {
 			label="Tes5::GlobFltvField";
 			graph[style=dotted];
@@ -2133,6 +2290,21 @@ rfct_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="fields_pos">0</TD><TD PORT="fields_size">...</TD><TD>SpelField</TD><TD PORT="fields_type">fields</TD></TR>
 				<TR><TD COLSPAN="4" PORT="fields__repeat">repeat to end of stream</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__scrl_spit_flags {
+			label="Tes5::ScrlSpitFlags";
+			graph[style=dotted];
+
+			scrl_spit_flags__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="manual_calc_pos">0</TD><TD PORT="manual_calc_size">1b</TD><TD>BitsType1</TD><TD PORT="manual_calc_type">manual_calc</TD></TR>
+				<TR><TD PORT="_unnamed1_pos">0:1</TD><TD PORT="_unnamed1_size">18b</TD><TD>b18</TD><TD PORT="_unnamed1_type">_unnamed1</TD></TR>
+				<TR><TD PORT="area_effect_ignores_los_pos">2:3</TD><TD PORT="area_effect_ignores_los_size">1b</TD><TD>BitsType1</TD><TD PORT="area_effect_ignores_los_type">area_effect_ignores_los</TD></TR>
+				<TR><TD PORT="script_effect_always_applies_pos">2:4</TD><TD PORT="script_effect_always_applies_size">1b</TD><TD>BitsType1</TD><TD PORT="script_effect_always_applies_type">script_effect_always_applies</TD></TR>
+				<TR><TD PORT="no_absorb_reflect_pos">2:5</TD><TD PORT="no_absorb_reflect_size">1b</TD><TD>BitsType1</TD><TD PORT="no_absorb_reflect_type">no_absorb_reflect</TD></TR>
+				<TR><TD PORT="force_touch_explode_pos">2:6</TD><TD PORT="force_touch_explode_size">1b</TD><TD>BitsType1</TD><TD PORT="force_touch_explode_type">force_touch_explode</TD></TR>
+				<TR><TD PORT="_unnamed6_pos">2:7</TD><TD PORT="_unnamed6_size">2b</TD><TD>b2</TD><TD PORT="_unnamed6_type">_unnamed6</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__tree_field {
@@ -2277,7 +2449,7 @@ lcrt_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="unused_1_pos">3</TD><TD PORT="unused_1_size">1</TD><TD>u1</TD><TD PORT="unused_1_type">unused_1</TD></TR>
 				<TR><TD PORT="distance_from_water_pos">4</TD><TD PORT="distance_from_water_size">2</TD><TD>u2le</TD><TD PORT="distance_from_water_type">distance_from_water</TD></TR>
 				<TR><TD PORT="unused_2_pos">6</TD><TD PORT="unused_2_size">2</TD><TD>u2le</TD><TD PORT="unused_2_type">unused_2</TD></TR>
-				<TR><TD PORT="distance_application_pos">8</TD><TD PORT="distance_application_size">4</TD><TD>u4le→GrasDataDistanceApplication</TD><TD PORT="distance_application_type">distance_application</TD></TR>
+				<TR><TD PORT="distance_application_pos">8</TD><TD PORT="distance_application_size">4</TD><TD>u4le?GrasDataDistanceApplication</TD><TD PORT="distance_application_type">distance_application</TD></TR>
 				<TR><TD PORT="position_range_pos">12</TD><TD PORT="position_range_size">4</TD><TD>f4le</TD><TD PORT="position_range_type">position_range</TD></TR>
 				<TR><TD PORT="height_range_pos">16</TD><TD PORT="height_range_size">4</TD><TD>f4le</TD><TD PORT="height_range_type">height_range</TD></TR>
 				<TR><TD PORT="color_range_pos">20</TD><TD PORT="color_range_size">4</TD><TD>f4le</TD><TD PORT="color_range_type">color_range</TD></TR>
@@ -2520,7 +2692,7 @@ cobj_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 
 			ctda_operator_info__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="operator_pos">0</TD><TD PORT="operator_size">3b</TD><TD>b3→CtdaOperator</TD><TD PORT="operator_type">operator</TD></TR>
+				<TR><TD PORT="operator_pos">0</TD><TD PORT="operator_size">3b</TD><TD>b3?CtdaOperator</TD><TD PORT="operator_type">operator</TD></TR>
 				<TR><TD PORT="or_pos">0:3</TD><TD PORT="or_size">1b</TD><TD>BitsType1</TD><TD PORT="or_type">or</TD></TR>
 				<TR><TD PORT="parameters_use_aliases_pos">0:4</TD><TD PORT="parameters_use_aliases_size">1b</TD><TD>BitsType1</TD><TD PORT="parameters_use_aliases_type">parameters_use_aliases</TD></TR>
 				<TR><TD PORT="use_global_pos">0:5</TD><TD PORT="use_global_size">1b</TD><TD>BitsType1</TD><TD PORT="use_global_type">use_global</TD></TR>
@@ -2682,6 +2854,24 @@ clfm_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="belongings_chest_pos">0</TD><TD PORT="belongings_chest_size">4</TD><TD>u4le</TD><TD PORT="belongings_chest_type">belongings_chest</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__hazd_data_field {
+			label="Tes5::HazdDataField";
+			graph[style=dotted];
+
+			hazd_data_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="limit_pos">0</TD><TD PORT="limit_size">4</TD><TD>u4le</TD><TD PORT="limit_type">limit</TD></TR>
+				<TR><TD PORT="radius_pos">4</TD><TD PORT="radius_size">4</TD><TD>f4le</TD><TD PORT="radius_type">radius</TD></TR>
+				<TR><TD PORT="lifetime_pos">8</TD><TD PORT="lifetime_size">4</TD><TD>f4le</TD><TD PORT="lifetime_type">lifetime</TD></TR>
+				<TR><TD PORT="image_space_radius_pos">12</TD><TD PORT="image_space_radius_size">4</TD><TD>f4le</TD><TD PORT="image_space_radius_type">image_space_radius</TD></TR>
+				<TR><TD PORT="target_interval_pos">16</TD><TD PORT="target_interval_size">4</TD><TD>f4le</TD><TD PORT="target_interval_type">target_interval</TD></TR>
+				<TR><TD PORT="flags_pos">20</TD><TD PORT="flags_size">4</TD><TD>HazdDataFlags</TD><TD PORT="flags_type">flags</TD></TR>
+				<TR><TD PORT="spell_pos">24</TD><TD PORT="spell_size">4</TD><TD>u4le</TD><TD PORT="spell_type">spell</TD></TR>
+				<TR><TD PORT="light_pos">28</TD><TD PORT="light_size">4</TD><TD>u4le</TD><TD PORT="light_type">light</TD></TR>
+				<TR><TD PORT="impact_data_set_pos">32</TD><TD PORT="impact_data_set_size">4</TD><TD>u4le</TD><TD PORT="impact_data_set_type">impact_data_set</TD></TR>
+				<TR><TD PORT="sound_pos">36</TD><TD PORT="sound_size">4</TD><TD>u4le</TD><TD PORT="sound_type">sound</TD></TR>
+			</TABLE>>];
+		}
 		subgraph cluster__race_spct_field {
 			label="Tes5::RaceSpctField";
 			graph[style=dotted];
@@ -2738,6 +2928,16 @@ clfm_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="flags_pos">29</TD><TD PORT="flags_size">1</TD><TD>TxstDodtFlags</TD><TD PORT="flags_type">flags</TD></TR>
 				<TR><TD PORT="unknown_pos">30</TD><TD PORT="unknown_size">2</TD><TD>u2le</TD><TD PORT="unknown_type">unknown</TD></TR>
 				<TR><TD PORT="rgb_pos">32</TD><TD PORT="rgb_size">4</TD><TD>Color</TD><TD PORT="rgb_type">rgb</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__scrl_form {
+			label="Tes5::ScrlForm";
+			graph[style=dotted];
+
+			scrl_form__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="fields_pos">0</TD><TD PORT="fields_size">...</TD><TD>ScrlField</TD><TD PORT="fields_type">fields</TD></TR>
+				<TR><TD COLSPAN="4" PORT="fields__repeat">repeat to end of stream</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__race_nam5_field {
@@ -3069,7 +3269,7 @@ glob_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
 				<TR><TD PORT="node_flags_pos">0</TD><TD PORT="node_flags_size">4</TD><TD>BodtNodeFlags</TD><TD PORT="node_flags_type">node_flags</TD></TR>
 				<TR><TD PORT="flags_pos">4</TD><TD PORT="flags_size">4</TD><TD>BodtFlags</TD><TD PORT="flags_type">flags</TD></TR>
-				<TR><TD PORT="skill_pos">8</TD><TD PORT="skill_size">4</TD><TD>u4le→BodtSkill</TD><TD PORT="skill_type">skill</TD></TR>
+				<TR><TD PORT="skill_pos">8</TD><TD PORT="skill_size">4</TD><TD>u4le?BodtSkill</TD><TD PORT="skill_type">skill</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__kywd_field {
@@ -3148,7 +3348,7 @@ kywd_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 				<TR><TD PORT="padding_pos">14</TD><TD PORT="padding_size">2</TD><TD>u2le</TD><TD PORT="padding_type">padding</TD></TR>
 				<TR><TD PORT="parameters_pos">16</TD><TD PORT="parameters_size">8</TD><TD>CtdaParameters</TD><TD PORT="parameters_type">parameters</TD></TR>
 				<TR><TD PORT="parameters_get_event_data_pos">24</TD><TD PORT="parameters_get_event_data_size">8</TD><TD>CtdaParametersGetEventData</TD><TD PORT="parameters_get_event_data_type">parameters_get_event_data</TD></TR>
-				<TR><TD PORT="run_on_type_pos">32</TD><TD PORT="run_on_type_size">4</TD><TD>u4le→CtdaRunOnType</TD><TD PORT="run_on_type_type">run_on_type</TD></TR>
+				<TR><TD PORT="run_on_type_pos">32</TD><TD PORT="run_on_type_size">4</TD><TD>u4le?CtdaRunOnType</TD><TD PORT="run_on_type_type">run_on_type</TD></TR>
 				<TR><TD PORT="reference_pos">36</TD><TD PORT="reference_size">4</TD><TD>u4le</TD><TD PORT="reference_type">reference</TD></TR>
 				<TR><TD PORT="unknown_2_pos">40</TD><TD PORT="unknown_2_size">4</TD><TD>s4le</TD><TD PORT="unknown_2_type">unknown_2</TD></TR>
 			</TABLE>>];
@@ -3197,25 +3397,28 @@ form__seq_form_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING=
 	<TR><TD>&quot;FACT&quot;</TD><TD PORT="case11">FactForm</TD></TR>
 	<TR><TD>&quot;RFCT&quot;</TD><TD PORT="case12">RfctForm</TD></TR>
 	<TR><TD>&quot;LTEX&quot;</TD><TD PORT="case13">LtexForm</TD></TR>
-	<TR><TD>&quot;SHOU&quot;</TD><TD PORT="case14">ShouForm</TD></TR>
-	<TR><TD>&quot;SOUN&quot;</TD><TD PORT="case15">SounForm</TD></TR>
-	<TR><TD>&quot;CLFM&quot;</TD><TD PORT="case16">ClfmForm</TD></TR>
-	<TR><TD>&quot;LVLN&quot;</TD><TD PORT="case17">LvlnForm</TD></TR>
-	<TR><TD>&quot;SPEL&quot;</TD><TD PORT="case18">SpelForm</TD></TR>
-	<TR><TD>&quot;ENCH&quot;</TD><TD PORT="case19">EnchForm</TD></TR>
-	<TR><TD>&quot;IDLM&quot;</TD><TD PORT="case20">IdlmForm</TD></TR>
-	<TR><TD>&quot;EYES&quot;</TD><TD PORT="case21">EyesForm</TD></TR>
-	<TR><TD>&quot;RACE&quot;</TD><TD PORT="case22">RaceForm</TD></TR>
-	<TR><TD>&quot;OTFT&quot;</TD><TD PORT="case23">OtftForm</TD></TR>
-	<TR><TD>&quot;CLMT&quot;</TD><TD PORT="case24">ClmtForm</TD></TR>
-	<TR><TD>&quot;EQUP&quot;</TD><TD PORT="case25">EqupForm</TD></TR>
-	<TR><TD>&quot;HDPT&quot;</TD><TD PORT="case26">HdptForm</TD></TR>
-	<TR><TD>&quot;EFSH&quot;</TD><TD PORT="case27">EfshForm</TD></TR>
-	<TR><TD>_</TD><TD PORT="case28">UnknownFormData</TD></TR>
-	<TR><TD>&quot;REVB&quot;</TD><TD PORT="case29">RevbForm</TD></TR>
-	<TR><TD>&quot;LCRT&quot;</TD><TD PORT="case30">LcrtForm</TD></TR>
-	<TR><TD>&quot;SPGD&quot;</TD><TD PORT="case31">SpgdForm</TD></TR>
-	<TR><TD>&quot;TXST&quot;</TD><TD PORT="case32">TxstForm</TD></TR>
+	<TR><TD>&quot;HAZD&quot;</TD><TD PORT="case14">HazdForm</TD></TR>
+	<TR><TD>&quot;SCRL&quot;</TD><TD PORT="case15">ScrlForm</TD></TR>
+	<TR><TD>&quot;SHOU&quot;</TD><TD PORT="case16">ShouForm</TD></TR>
+	<TR><TD>&quot;SOUN&quot;</TD><TD PORT="case17">SounForm</TD></TR>
+	<TR><TD>&quot;CLFM&quot;</TD><TD PORT="case18">ClfmForm</TD></TR>
+	<TR><TD>&quot;LVLN&quot;</TD><TD PORT="case19">LvlnForm</TD></TR>
+	<TR><TD>&quot;SPEL&quot;</TD><TD PORT="case20">SpelForm</TD></TR>
+	<TR><TD>&quot;ENCH&quot;</TD><TD PORT="case21">EnchForm</TD></TR>
+	<TR><TD>&quot;IDLM&quot;</TD><TD PORT="case22">IdlmForm</TD></TR>
+	<TR><TD>&quot;EYES&quot;</TD><TD PORT="case23">EyesForm</TD></TR>
+	<TR><TD>&quot;RACE&quot;</TD><TD PORT="case24">RaceForm</TD></TR>
+	<TR><TD>&quot;OTFT&quot;</TD><TD PORT="case25">OtftForm</TD></TR>
+	<TR><TD>&quot;CLMT&quot;</TD><TD PORT="case26">ClmtForm</TD></TR>
+	<TR><TD>&quot;EQUP&quot;</TD><TD PORT="case27">EqupForm</TD></TR>
+	<TR><TD>&quot;COBJ&quot;</TD><TD PORT="case28">CobjForm</TD></TR>
+	<TR><TD>&quot;HDPT&quot;</TD><TD PORT="case29">HdptForm</TD></TR>
+	<TR><TD>&quot;EFSH&quot;</TD><TD PORT="case30">EfshForm</TD></TR>
+	<TR><TD>_</TD><TD PORT="case31">UnknownFormData</TD></TR>
+	<TR><TD>&quot;REVB&quot;</TD><TD PORT="case32">RevbForm</TD></TR>
+	<TR><TD>&quot;LCRT&quot;</TD><TD PORT="case33">LcrtForm</TD></TR>
+	<TR><TD>&quot;SPGD&quot;</TD><TD PORT="case34">SpgdForm</TD></TR>
+	<TR><TD>&quot;TXST&quot;</TD><TD PORT="case35">TxstForm</TD></TR>
 </TABLE>>];
 		}
 		subgraph cluster__efid_field {
@@ -3296,7 +3499,7 @@ form__seq_form_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING=
 				<TR><TD PORT="initial_rotation_range_pos">24</TD><TD PORT="initial_rotation_range_size">4</TD><TD>f4le</TD><TD PORT="initial_rotation_range_type">initial_rotation_range</TD></TR>
 				<TR><TD PORT="n_subtextures_x_pos">28</TD><TD PORT="n_subtextures_x_size">4</TD><TD>u4le</TD><TD PORT="n_subtextures_x_type">n_subtextures_x</TD></TR>
 				<TR><TD PORT="n_subtextures_y_pos">32</TD><TD PORT="n_subtextures_y_size">4</TD><TD>u4le</TD><TD PORT="n_subtextures_y_type">n_subtextures_y</TD></TR>
-				<TR><TD PORT="shader_type_pos">36</TD><TD PORT="shader_type_size">4</TD><TD>u4le→SpgdDataShaderType</TD><TD PORT="shader_type_type">shader_type</TD></TR>
+				<TR><TD PORT="shader_type_pos">36</TD><TD PORT="shader_type_size">4</TD><TD>u4le?SpgdDataShaderType</TD><TD PORT="shader_type_type">shader_type</TD></TR>
 				<TR><TD PORT="box_size_pos">40</TD><TD PORT="box_size_size">4</TD><TD>u4le</TD><TD PORT="box_size_type">box_size</TD></TR>
 				<TR><TD PORT="particle_density_pos">44</TD><TD PORT="particle_density_size">4</TD><TD>f4le</TD><TD PORT="particle_density_type">particle_density</TD></TR>
 			</TABLE>>];
@@ -3346,6 +3549,24 @@ race_mpav_field__seq_flags_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLS
 	<TR><TD>3</TD><TD PORT="case2">MpavEyeFlags</TD></TR>
 	<TR><TD>4</TD><TD PORT="case3">MpavLipFlags</TD></TR>
 </TABLE>>];
+		}
+		subgraph cluster__scrl_etyp_field {
+			label="Tes5::ScrlEtypField";
+			graph[style=dotted];
+
+			scrl_etyp_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="equip_type_pos">0</TD><TD PORT="equip_type_size">4</TD><TD>u4le</TD><TD PORT="equip_type_type">equip_type</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__dest_field {
+			label="Tes5::DestField";
+			graph[style=dotted];
+
+			dest_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="destruction_data_pos">0</TD><TD PORT="destruction_data_size">8</TD><TD></TD><TD PORT="destruction_data_type">destruction_data</TD></TR>
+			</TABLE>>];
 		}
 		subgraph cluster__fact_stol_field {
 			label="Tes5::FactStolField";
@@ -3407,7 +3628,7 @@ race_mpav_field__seq_flags_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLS
 
 			glob_fnam_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="value_type_pos">0</TD><TD PORT="value_type_size">1</TD><TD>u1→GlobFnamType</TD><TD PORT="value_type_type">value_type</TD></TR>
+				<TR><TD PORT="value_type_pos">0</TD><TD PORT="value_type_size">1</TD><TD>u1?GlobFnamType</TD><TD PORT="value_type_type">value_type</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__race_data_field {
@@ -3431,7 +3652,7 @@ race_mpav_field__seq_flags_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLS
 				<TR><TD PORT="mass_pos">52</TD><TD PORT="mass_size">4</TD><TD>f4le</TD><TD PORT="mass_type">mass</TD></TR>
 				<TR><TD PORT="acceleration_pos">56</TD><TD PORT="acceleration_size">4</TD><TD>f4le</TD><TD PORT="acceleration_type">acceleration</TD></TR>
 				<TR><TD PORT="deceleration_pos">60</TD><TD PORT="deceleration_size">4</TD><TD>f4le</TD><TD PORT="deceleration_type">deceleration</TD></TR>
-				<TR><TD PORT="size_pos">64</TD><TD PORT="size_size">4</TD><TD>u4le→RaceDataSize</TD><TD PORT="size_type">size</TD></TR>
+				<TR><TD PORT="size_pos">64</TD><TD PORT="size_size">4</TD><TD>u4le?RaceDataSize</TD><TD PORT="size_type">size</TD></TR>
 				<TR><TD PORT="head_biped_obj_pos">68</TD><TD PORT="head_biped_obj_size">4</TD><TD>u4le</TD><TD PORT="head_biped_obj_type">head_biped_obj</TD></TR>
 				<TR><TD PORT="hair_biped_obj_pos">72</TD><TD PORT="hair_biped_obj_size">4</TD><TD>u4le</TD><TD PORT="hair_biped_obj_type">hair_biped_obj</TD></TR>
 				<TR><TD PORT="injured_health_pc_pos">76</TD><TD PORT="injured_health_pc_size">4</TD><TD>f4le</TD><TD PORT="injured_health_pc_type">injured_health_pc</TD></TR>
@@ -3460,13 +3681,23 @@ race_mpav_field__seq_flags_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLS
 				<TR><TD PORT="icon_pos">0</TD><TD PORT="icon_size">_parent.data_size</TD><TD>str(UTF-8)</TD><TD PORT="icon_type">icon</TD></TR>
 			</TABLE>>];
 		}
+		subgraph cluster__hazd_form {
+			label="Tes5::HazdForm";
+			graph[style=dotted];
+
+			hazd_form__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="fields_pos">0</TD><TD PORT="fields_size">...</TD><TD>HazdField</TD><TD PORT="fields_type">fields</TD></TR>
+				<TR><TD COLSPAN="4" PORT="fields__repeat">repeat to end of stream</TD></TR>
+			</TABLE>>];
+		}
 		subgraph cluster__fact_plvd_field {
 			label="Tes5::FactPlvdField";
 			graph[style=dotted];
 
 			fact_plvd_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="specification_type_pos">0</TD><TD PORT="specification_type_size">4</TD><TD>u4le→FactPlvdSpecificationType</TD><TD PORT="specification_type_type">specification_type</TD></TR>
+				<TR><TD PORT="specification_type_pos">0</TD><TD PORT="specification_type_size">4</TD><TD>u4le?FactPlvdSpecificationType</TD><TD PORT="specification_type_type">specification_type</TD></TR>
 				<TR><TD PORT="form_id_pos">4</TD><TD PORT="form_id_size">4</TD><TD>u4le</TD><TD PORT="form_id_type">form_id</TD></TR>
 				<TR><TD PORT="unused_pos">8</TD><TD PORT="unused_size">4</TD><TD>u4le</TD><TD PORT="unused_type">unused</TD></TR>
 			</TABLE>>];
@@ -3575,7 +3806,7 @@ txst_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 
 			clfm_fnam_field__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
 				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
-				<TR><TD PORT="playable_pos">0</TD><TD PORT="playable_size">4</TD><TD>u4le→ClfmFnamPlayable</TD><TD PORT="playable_type">playable</TD></TR>
+				<TR><TD PORT="playable_pos">0</TD><TD PORT="playable_size">4</TD><TD>u4le?ClfmFnamPlayable</TD><TD PORT="playable_type">playable</TD></TR>
 			</TABLE>>];
 		}
 		subgraph cluster__rfct_data_flags {
@@ -3862,6 +4093,7 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	ltex_field__seq_data_switch:case5 -> ltex_mnam_field__seq [style=bold];
 	ltex_field__seq:type_type -> ltex_field__seq:data_type [color="#404040"];
 	efsh_form__seq:fields_type -> efsh_field__seq [style=bold];
+	scrl_desc_field__seq:description_type -> lstring__seq [style=bold];
 	race_field__seq:data_size_type -> race_kwda_field__seq:keyword__repeat [color="#404040"];
 	spel_spit_field__seq:flags_type -> spel_spit_flags__seq [style=bold];
 	tes4_field__seq:data_size_type -> tes4_snam_field__seq:description_size [color="#404040"];
@@ -3880,6 +4112,7 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	tes4_field__seq_data_switch:case6 -> tes4_intv_field__seq [style=bold];
 	tes4_field__seq:type_type -> tes4_field__seq:data_type [color="#404040"];
 	efsh_field__seq:data_size_type -> efsh_nam9_field__seq:end_gradient_size [color="#404040"];
+	scrl_field__seq:data_size_type -> scrl_kwda_field__seq:keyword__repeat [color="#404040"];
 	clas_field__seq:data_type -> clas_field__seq_data_switch [style=bold];
 	clas_field__seq_data_switch:case0 -> edid_field__seq [style=bold];
 	clas_field__seq_data_switch:case1 -> clas_data_field__seq [style=bold];
@@ -3943,6 +4176,7 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	soun_field__seq_data_switch:case4 -> soun_sndc_field__seq [style=bold];
 	soun_field__seq:type_type -> soun_field__seq:data_type [color="#404040"];
 	clfm_form__seq:fields_type -> clfm_field__seq [style=bold];
+	scrl_spit_field__seq:flags_type -> scrl_spit_flags__seq [style=bold];
 	modt_field__seq:hashes_type -> modt_texture_hash__seq [style=bold];
 	modt_field__params:data_size_type -> modt_field__seq:hashes__repeat [color="#404040"];
 	mods_alternate_texture__seq:string_length_type -> mods_alternate_texture__seq:three_d_name_size [color="#404040"];
@@ -3983,6 +4217,15 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	aspc_field__seq_data_switch:case4 -> obnd_field__seq [style=bold];
 	aspc_field__seq:type_type -> aspc_field__seq:data_type [color="#404040"];
 	stat_form__seq:fields_type -> stat_field__seq [style=bold];
+	hazd_field__seq:data_type -> hazd_field__seq_data_switch [style=bold];
+	hazd_field__seq_data_switch:case0 -> edid_field__seq [style=bold];
+	hazd_field__seq_data_switch:case1 -> modt_field__seq [style=bold];
+	hazd_field__seq_data_switch:case2 -> hazd_data_field__seq [style=bold];
+	hazd_field__seq_data_switch:case3 -> full_field__seq [style=bold];
+	hazd_field__seq_data_switch:case4 -> obnd_field__seq [style=bold];
+	hazd_field__seq_data_switch:case5 -> hazd_mnam_field__seq [style=bold];
+	hazd_field__seq_data_switch:case6 -> modl_field__seq [style=bold];
+	hazd_field__seq:type_type -> hazd_field__seq:data_type [color="#404040"];
 	tes4_field__seq:data_size_type -> tes4_cnam_field__seq:author_size [color="#404040"];
 	lstring__params:data_size_type -> lstring__seq:string_size [color="#404040"];
 	tes4_field__seq:data_size_type -> tes4_mast_field__seq:master_size [color="#404040"];
@@ -4025,6 +4268,25 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	rfct_field__seq_data_switch:case1 -> rfct_data_field__seq [style=bold];
 	rfct_field__seq:type_type -> rfct_field__seq:data_type [color="#404040"];
 	race_desc_field__seq:description_type -> lstring__seq [style=bold];
+	scrl_field__seq:data_type -> scrl_field__seq_data_switch [style=bold];
+	scrl_field__seq_data_switch:case0 -> ctda_field__seq [style=bold];
+	scrl_field__seq_data_switch:case1 -> efid_field__seq [style=bold];
+	scrl_field__seq_data_switch:case2 -> edid_field__seq [style=bold];
+	scrl_field__seq_data_switch:case3 -> scrl_data_field__seq [style=bold];
+	scrl_field__seq_data_switch:case4 -> scrl_kwda_field__seq [style=bold];
+	scrl_field__seq_data_switch:case5 -> efit_field__seq [style=bold];
+	scrl_field__seq_data_switch:case6 -> scrl_mdob_field__seq [style=bold];
+	scrl_field__seq_data_switch:case7 -> full_field__seq [style=bold];
+	scrl_field__seq_data_switch:case8 -> scrl_ksiz_field__seq [style=bold];
+	scrl_field__seq_data_switch:case9 -> dest_field__seq [style=bold];
+	scrl_field__seq_data_switch:case10 -> scrl_etyp_field__seq [style=bold];
+	scrl_field__seq_data_switch:case11 -> scrl_desc_field__seq [style=bold];
+	scrl_field__seq_data_switch:case12 -> obnd_field__seq [style=bold];
+	scrl_field__seq_data_switch:case13 -> scrl_znam_field__seq [style=bold];
+	scrl_field__seq_data_switch:case14 -> modl_field__seq [style=bold];
+	scrl_field__seq_data_switch:case15 -> scrl_spit_field__seq [style=bold];
+	scrl_field__seq_data_switch:case16 -> scrl_ynam_field__seq [style=bold];
+	scrl_field__seq:type_type -> scrl_field__seq:data_type [color="#404040"];
 	tes4_fields__seq:fields_type -> tes4_field__seq [style=bold];
 	spel_form__seq:fields_type -> spel_field__seq [style=bold];
 	tree_field__seq:data_type -> tree_field__seq_data_switch [style=bold];
@@ -4097,10 +4359,12 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	clfm_field__seq_data_switch:case2 -> color__seq [style=bold];
 	clfm_field__seq_data_switch:case3 -> clfm_fnam_field__seq [style=bold];
 	clfm_field__seq:type_type -> clfm_field__seq:data_type [color="#404040"];
+	hazd_data_field__seq:flags_type -> hazd_data_flags__seq [style=bold];
 	race_phwt_field__seq:phoneme_weights_dragon_type -> race_phwt_weights_dragon__seq [style=bold];
 	race_phwt_field__seq:phoneme_weights_type -> race_phwt_weights__seq [style=bold];
 	txst_dodt_field__seq:flags_type -> txst_dodt_flags__seq [style=bold];
 	txst_dodt_field__seq:rgb_type -> color__seq [style=bold];
+	scrl_form__seq:fields_type -> scrl_field__seq [style=bold];
 	txst_dnam_field__seq:flags_type -> txst_dnam_flags__seq [style=bold];
 	eyes_data_field__seq:flags_type -> eyes_flags__seq [style=bold];
 	gmst_form__seq:fields_type -> gmst_field__seq [style=bold];
@@ -4144,25 +4408,28 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	form__seq_form_data_switch:case11 -> fact_form__seq [style=bold];
 	form__seq_form_data_switch:case12 -> rfct_form__seq [style=bold];
 	form__seq_form_data_switch:case13 -> ltex_form__seq [style=bold];
-	form__seq_form_data_switch:case14 -> shou_form__seq [style=bold];
-	form__seq_form_data_switch:case15 -> soun_form__seq [style=bold];
-	form__seq_form_data_switch:case16 -> clfm_form__seq [style=bold];
-	form__seq_form_data_switch:case17 -> lvln_form__seq [style=bold];
-	form__seq_form_data_switch:case18 -> spel_form__seq [style=bold];
-	form__seq_form_data_switch:case19 -> ench_form__seq [style=bold];
-	form__seq_form_data_switch:case20 -> idlm_form__seq [style=bold];
-	form__seq_form_data_switch:case21 -> eyes_form__seq [style=bold];
-	form__seq_form_data_switch:case22 -> race_form__seq [style=bold];
-	form__seq_form_data_switch:case23 -> otft_form__seq [style=bold];
-	form__seq_form_data_switch:case24 -> clmt_form__seq [style=bold];
-	form__seq_form_data_switch:case25 -> equp_form__seq [style=bold];
-	form__seq_form_data_switch:case26 -> hdpt_form__seq [style=bold];
-	form__seq_form_data_switch:case27 -> efsh_form__seq [style=bold];
-	form__seq_form_data_switch:case28 -> unknown_form_data__seq [style=bold];
-	form__seq_form_data_switch:case29 -> revb_form__seq [style=bold];
-	form__seq_form_data_switch:case30 -> lcrt_form__seq [style=bold];
-	form__seq_form_data_switch:case31 -> spgd_form__seq [style=bold];
-	form__seq_form_data_switch:case32 -> txst_form__seq [style=bold];
+	form__seq_form_data_switch:case14 -> hazd_form__seq [style=bold];
+	form__seq_form_data_switch:case15 -> scrl_form__seq [style=bold];
+	form__seq_form_data_switch:case16 -> shou_form__seq [style=bold];
+	form__seq_form_data_switch:case17 -> soun_form__seq [style=bold];
+	form__seq_form_data_switch:case18 -> clfm_form__seq [style=bold];
+	form__seq_form_data_switch:case19 -> lvln_form__seq [style=bold];
+	form__seq_form_data_switch:case20 -> spel_form__seq [style=bold];
+	form__seq_form_data_switch:case21 -> ench_form__seq [style=bold];
+	form__seq_form_data_switch:case22 -> idlm_form__seq [style=bold];
+	form__seq_form_data_switch:case23 -> eyes_form__seq [style=bold];
+	form__seq_form_data_switch:case24 -> race_form__seq [style=bold];
+	form__seq_form_data_switch:case25 -> otft_form__seq [style=bold];
+	form__seq_form_data_switch:case26 -> clmt_form__seq [style=bold];
+	form__seq_form_data_switch:case27 -> equp_form__seq [style=bold];
+	form__seq_form_data_switch:case28 -> cobj_form__seq [style=bold];
+	form__seq_form_data_switch:case29 -> hdpt_form__seq [style=bold];
+	form__seq_form_data_switch:case30 -> efsh_form__seq [style=bold];
+	form__seq_form_data_switch:case31 -> unknown_form_data__seq [style=bold];
+	form__seq_form_data_switch:case32 -> revb_form__seq [style=bold];
+	form__seq_form_data_switch:case33 -> lcrt_form__seq [style=bold];
+	form__seq_form_data_switch:case34 -> spgd_form__seq [style=bold];
+	form__seq_form_data_switch:case35 -> txst_form__seq [style=bold];
 	esp_form__seq:type_type -> form__seq:form_data_type [color="#404040"];
 	form_header__seq:data_size_type -> unknown_form_data__seq:data_size [color="#404040"];
 	soun_field__seq:data_size_type -> soun_fnam_field__seq:file_name_size [color="#404040"];
@@ -4180,6 +4447,7 @@ race_field__seq_data_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING
 	race_data_field__seq:hostile_flags_type -> race_data_hostile_flags__seq [style=bold];
 	race_field__seq:data_size_type -> race_data_field__seq:unknown_ints__repeat [color="#404040"];
 	clas_field__seq:data_size_type -> clas_icon_field__seq:icon_size [color="#404040"];
+	hazd_form__seq:fields_type -> hazd_field__seq [style=bold];
 	form_header__seq:flags_type -> form_header_flags__seq [style=bold];
 	file_header__seq:header_type -> tes4_header__seq [style=bold];
 	tes4_header__seq:data_size_type -> file_header__seq:fields_size [color="#404040"];

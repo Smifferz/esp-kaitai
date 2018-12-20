@@ -232,6 +232,34 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.FactField M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlKsizField : KaitaiStruct
+        {
+            public static ScrlKsizField FromFile(string fileName)
+            {
+                return new ScrlKsizField(new KaitaiStream(fileName));
+            }
+
+            public ScrlKsizField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _keywordCount = m_io.ReadU4le();
+            }
+            private uint _keywordCount;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Count of KYWD formIDs in following KWDA field
+            /// </summary>
+            public uint KeywordCount { get { return _keywordCount; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
         public partial class FactDataFlags : KaitaiStruct
         {
             public static FactDataFlags FromFile(string fileName)
@@ -297,6 +325,34 @@ namespace Kaitai
             public ulong Unnamed_14 { get { return __unnamed14; } }
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.FactDataField M_Parent { get { return m_parent; } }
+        }
+        public partial class ScrlZnamField : KaitaiStruct
+        {
+            public static ScrlZnamField FromFile(string fileName)
+            {
+                return new ScrlZnamField(new KaitaiStream(fileName));
+            }
+
+            public ScrlZnamField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _dropSound = m_io.ReadU4le();
+            }
+            private uint _dropSound;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Drop sound
+            /// </summary>
+            public uint DropSound { get { return _dropSound; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
         }
         public partial class Cis1Field : KaitaiStruct
         {
@@ -1452,6 +1508,34 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.LscrField M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlDescField : KaitaiStruct
+        {
+            public static ScrlDescField FromFile(string fileName)
+            {
+                return new ScrlDescField(new KaitaiStream(fileName));
+            }
+
+            public ScrlDescField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _description = new Lstring(M_Parent.DataSize, m_io, this, m_root);
+            }
+            private Lstring _description;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// In-game description
+            /// </summary>
+            public Lstring Description { get { return _description; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
         public partial class RaceKwdaField : KaitaiStruct
         {
             public static RaceKwdaField FromFile(string fileName)
@@ -1623,6 +1707,34 @@ namespace Kaitai
             public string Description { get { return _description; } }
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.Tes4Field M_Parent { get { return m_parent; } }
+        }
+        public partial class ScrlYnamField : KaitaiStruct
+        {
+            public static ScrlYnamField FromFile(string fileName)
+            {
+                return new ScrlYnamField(new KaitaiStream(fileName));
+            }
+
+            public ScrlYnamField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _pickupSound = m_io.ReadU4le();
+            }
+            private uint _pickupSound;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Pickup sound
+            /// </summary>
+            public uint PickupSound { get { return _pickupSound; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
         }
         public partial class RaceUnamField : KaitaiStruct
         {
@@ -2492,6 +2604,73 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.EfshField M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlDataField : KaitaiStruct
+        {
+            public static ScrlDataField FromFile(string fileName)
+            {
+                return new ScrlDataField(new KaitaiStream(fileName));
+            }
+
+            public ScrlDataField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _value = m_io.ReadU4le();
+                _weight = m_io.ReadF4le();
+            }
+            private uint _value;
+            private float _weight;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Scroll value
+            /// </summary>
+            public uint Value { get { return _value; } }
+
+            /// <summary>
+            /// Scroll weight
+            /// </summary>
+            public float Weight { get { return _weight; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
+        public partial class ScrlKwdaField : KaitaiStruct
+        {
+            public static ScrlKwdaField FromFile(string fileName)
+            {
+                return new ScrlKwdaField(new KaitaiStream(fileName));
+            }
+
+            public ScrlKwdaField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _keyword = new List<uint>((int) ((M_Parent.DataSize / 4)));
+                for (var i = 0; i < (M_Parent.DataSize / 4); i++)
+                {
+                    _keyword.Add(m_io.ReadU4le());
+                }
+            }
+            private List<uint> _keyword;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// KYWD formIDs
+            /// </summary>
+            public List<uint> Keyword { get { return _keyword; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
         public partial class EqupPnamField : KaitaiStruct
         {
             public static EqupPnamField FromFile(string fileName)
@@ -2695,7 +2874,7 @@ namespace Kaitai
                 return new CobjCnamField(new KaitaiStream(fileName));
             }
 
-            public CobjCnamField(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjCnamField(KaitaiStream p__io, Tes5.CobjField p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -2707,14 +2886,14 @@ namespace Kaitai
             }
             private uint _outputObject;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.CobjField m_parent;
 
             /// <summary>
             /// FormID of resulting output object
             /// </summary>
             public uint OutputObject { get { return _outputObject; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.CobjField M_Parent { get { return m_parent; } }
         }
         public partial class ClasField : KaitaiStruct
         {
@@ -3010,6 +3189,34 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.ClasField M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlMdobField : KaitaiStruct
+        {
+            public static ScrlMdobField FromFile(string fileName)
+            {
+                return new ScrlMdobField(new KaitaiStream(fileName));
+            }
+
+            public ScrlMdobField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _menuIcon = m_io.ReadU4le();
+            }
+            private uint _menuIcon;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Menu display object STAT FormID
+            /// </summary>
+            public uint MenuIcon { get { return _menuIcon; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
         public partial class ModsField : KaitaiStruct
         {
             public static ModsField FromFile(string fileName)
@@ -3217,7 +3424,7 @@ namespace Kaitai
                 return new CobjCoctField(new KaitaiStream(fileName));
             }
 
-            public CobjCoctField(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjCoctField(KaitaiStream p__io, Tes5.CobjField p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -3229,14 +3436,14 @@ namespace Kaitai
             }
             private uint _objectCount;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.CobjField m_parent;
 
             /// <summary>
             /// Number of input objects (CNTO fields) required
             /// </summary>
             public uint ObjectCount { get { return _objectCount; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.CobjField M_Parent { get { return m_parent; } }
         }
         public partial class RaceTiniField : KaitaiStruct
         {
@@ -4855,6 +5062,90 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.Form M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlSpitField : KaitaiStruct
+        {
+            public static ScrlSpitField FromFile(string fileName)
+            {
+                return new ScrlSpitField(new KaitaiStream(fileName));
+            }
+
+            public ScrlSpitField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _spellCost = m_io.ReadU4le();
+                _flags = new ScrlSpitFlags(m_io, this, m_root);
+                _unknown1 = m_io.ReadU4le();
+                _chargeTime = m_io.ReadF4le();
+                _unknown2 = m_io.ReadU4le();
+                _targetType = ((Tes5.EffectDelivery) m_io.ReadU4le());
+                _unknown3 = m_io.ReadU4le();
+                _unknown4 = m_io.ReadU4le();
+                _unknown5 = m_io.ReadU4le();
+            }
+            private uint _spellCost;
+            private ScrlSpitFlags _flags;
+            private uint _unknown1;
+            private float _chargeTime;
+            private uint _unknown2;
+            private EffectDelivery _targetType;
+            private uint _unknown3;
+            private uint _unknown4;
+            private uint _unknown5;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Spell Cost
+            /// </summary>
+            public uint SpellCost { get { return _spellCost; } }
+
+            /// <summary>
+            /// Scrl item flags
+            /// </summary>
+            public ScrlSpitFlags Flags { get { return _flags; } }
+
+            /// <summary>
+            /// Unknown - Always 0?
+            /// </summary>
+            public uint Unknown1 { get { return _unknown1; } }
+
+            /// <summary>
+            /// Charge time
+            /// </summary>
+            public float ChargeTime { get { return _chargeTime; } }
+
+            /// <summary>
+            /// Unknown - Always 0x03 or 0x02
+            /// </summary>
+            public uint Unknown2 { get { return _unknown2; } }
+
+            /// <summary>
+            /// Target type
+            /// </summary>
+            public EffectDelivery TargetType { get { return _targetType; } }
+
+            /// <summary>
+            /// Unknown - Always 0?
+            /// </summary>
+            public uint Unknown3 { get { return _unknown3; } }
+
+            /// <summary>
+            /// Unknown - Always 0?
+            /// </summary>
+            public uint Unknown4 { get { return _unknown4; } }
+
+            /// <summary>
+            /// Unknown - Always 0?
+            /// </summary>
+            public uint Unknown5 { get { return _unknown5; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
         public partial class CtdaParameters : KaitaiStruct
         {
             public static CtdaParameters FromFile(string fileName)
@@ -5130,6 +5421,34 @@ namespace Kaitai
             public uint DefaultFaceTextureMale { get { return _defaultFaceTextureMale; } }
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.RaceField M_Parent { get { return m_parent; } }
+        }
+        public partial class HazdMnamField : KaitaiStruct
+        {
+            public static HazdMnamField FromFile(string fileName)
+            {
+                return new HazdMnamField(new KaitaiStream(fileName));
+            }
+
+            public HazdMnamField(KaitaiStream p__io, Tes5.HazdField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _imageSpaceModifier = m_io.ReadU4le();
+            }
+            private uint _imageSpaceModifier;
+            private Tes5 m_root;
+            private Tes5.HazdField m_parent;
+
+            /// <summary>
+            /// Linked IMAD FormID
+            /// </summary>
+            public uint ImageSpaceModifier { get { return _imageSpaceModifier; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.HazdField M_Parent { get { return m_parent; } }
         }
         public partial class FactFnamField : KaitaiStruct
         {
@@ -5687,6 +6006,45 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.Tes4Field M_Parent { get { return m_parent; } }
         }
+        public partial class HazdDataFlags : KaitaiStruct
+        {
+            public static HazdDataFlags FromFile(string fileName)
+            {
+                return new HazdDataFlags(new KaitaiStream(fileName));
+            }
+
+            public HazdDataFlags(KaitaiStream p__io, Tes5.HazdDataField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _affectsPlayerOnly = m_io.ReadBitsInt(1) != 0;
+                _inheritDurationFromSpawnSpell = m_io.ReadBitsInt(1) != 0;
+                _alignToImpactNormal = m_io.ReadBitsInt(1) != 0;
+                _inheritRadiusFromSpawnSpell = m_io.ReadBitsInt(1) != 0;
+                _dropToGround = m_io.ReadBitsInt(1) != 0;
+                __unnamed5 = m_io.ReadBitsInt(27);
+            }
+            private bool _affectsPlayerOnly;
+            private bool _inheritDurationFromSpawnSpell;
+            private bool _alignToImpactNormal;
+            private bool _inheritRadiusFromSpawnSpell;
+            private bool _dropToGround;
+            private ulong __unnamed5;
+            private Tes5 m_root;
+            private Tes5.HazdDataField m_parent;
+            public bool AffectsPlayerOnly { get { return _affectsPlayerOnly; } }
+            public bool InheritDurationFromSpawnSpell { get { return _inheritDurationFromSpawnSpell; } }
+            public bool AlignToImpactNormal { get { return _alignToImpactNormal; } }
+            public bool InheritRadiusFromSpawnSpell { get { return _inheritRadiusFromSpawnSpell; } }
+            public bool DropToGround { get { return _dropToGround; } }
+            public ulong Unnamed_5 { get { return __unnamed5; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.HazdDataField M_Parent { get { return m_parent; } }
+        }
         public partial class CtdaParametersGetEventData : KaitaiStruct
         {
             public static CtdaParametersGetEventData FromFile(string fileName)
@@ -6202,7 +6560,7 @@ namespace Kaitai
                 return new CobjNam1Field(new KaitaiStream(fileName));
             }
 
-            public CobjNam1Field(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjNam1Field(KaitaiStream p__io, Tes5.CobjField p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -6214,14 +6572,14 @@ namespace Kaitai
             }
             private ushort _outputQuantity;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.CobjField m_parent;
 
             /// <summary>
             /// Quantity of output object created by recipe
             /// </summary>
             public ushort OutputQuantity { get { return _outputQuantity; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.CobjField M_Parent { get { return m_parent; } }
         }
         public partial class Color : KaitaiStruct
         {
@@ -6271,6 +6629,77 @@ namespace Kaitai
             public byte A { get { return _a; } }
             public Tes5 M_Root { get { return m_root; } }
             public KaitaiStruct M_Parent { get { return m_parent; } }
+        }
+        public partial class HazdField : KaitaiStruct
+        {
+            public static HazdField FromFile(string fileName)
+            {
+                return new HazdField(new KaitaiStream(fileName));
+            }
+
+            public HazdField(KaitaiStream p__io, Tes5.HazdForm p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _type = System.Text.Encoding.GetEncoding("UTF-8").GetString(m_io.ReadBytes(4));
+                _dataSize = m_io.ReadU2le();
+                switch (Type) {
+                case "EDID": {
+                    _data = new EdidField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                case "MODT": {
+                    _data = new ModtField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                case "DATA": {
+                    _data = new HazdDataField(m_io, this, m_root);
+                    break;
+                }
+                case "FULL": {
+                    _data = new FullField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                case "OBND": {
+                    _data = new ObndField(m_io, this, m_root);
+                    break;
+                }
+                case "MNAM": {
+                    _data = new HazdMnamField(m_io, this, m_root);
+                    break;
+                }
+                case "MODL": {
+                    _data = new ModlField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                }
+            }
+            private string _type;
+            private ushort _dataSize;
+            private KaitaiStruct _data;
+            private Tes5 m_root;
+            private Tes5.HazdForm m_parent;
+
+            /// <summary>
+            /// unique type code
+            /// </summary>
+            public string Type { get { return _type; } }
+
+            /// <summary>
+            /// Size, in bytes, of field (minus header)
+            /// </summary>
+            public ushort DataSize { get { return _dataSize; } }
+
+            /// <summary>
+            /// Fields contained by HAZD form
+            /// </summary>
+            public KaitaiStruct Data { get { return _data; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.HazdForm M_Parent { get { return m_parent; } }
         }
         public partial class Tes4CnamField : KaitaiStruct
         {
@@ -6988,7 +7417,7 @@ namespace Kaitai
                 return new CobjCntoField(new KaitaiStream(fileName));
             }
 
-            public CobjCntoField(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjCntoField(KaitaiStream p__io, Tes5.CobjField p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -7002,7 +7431,7 @@ namespace Kaitai
             private uint _item;
             private uint _quantity;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.CobjField m_parent;
 
             /// <summary>
             /// FormID of INGR required to craft
@@ -7014,7 +7443,7 @@ namespace Kaitai
             /// </summary>
             public uint Quantity { get { return _quantity; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.CobjField M_Parent { get { return m_parent; } }
         }
         public partial class BodtFlags : KaitaiStruct
         {
@@ -7368,6 +7797,117 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.RaceField M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlField : KaitaiStruct
+        {
+            public static ScrlField FromFile(string fileName)
+            {
+                return new ScrlField(new KaitaiStream(fileName));
+            }
+
+            public ScrlField(KaitaiStream p__io, Tes5.ScrlForm p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _type = System.Text.Encoding.GetEncoding("UTF-8").GetString(m_io.ReadBytes(4));
+                _dataSize = m_io.ReadU2le();
+                switch (Type) {
+                case "CTDA": {
+                    _data = new CtdaField(m_io, this, m_root);
+                    break;
+                }
+                case "EFID": {
+                    _data = new EfidField(m_io, this, m_root);
+                    break;
+                }
+                case "EDID": {
+                    _data = new EdidField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                case "DATA": {
+                    _data = new ScrlDataField(m_io, this, m_root);
+                    break;
+                }
+                case "KWDA": {
+                    _data = new ScrlKwdaField(m_io, this, m_root);
+                    break;
+                }
+                case "EFIT": {
+                    _data = new EfitField(m_io, this, m_root);
+                    break;
+                }
+                case "MDOB": {
+                    _data = new ScrlMdobField(m_io, this, m_root);
+                    break;
+                }
+                case "FULL": {
+                    _data = new FullField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                case "KSIZ": {
+                    _data = new ScrlKsizField(m_io, this, m_root);
+                    break;
+                }
+                case "DEST": {
+                    _data = new DestField(m_io, this, m_root);
+                    break;
+                }
+                case "ETYP": {
+                    _data = new ScrlEtypField(m_io, this, m_root);
+                    break;
+                }
+                case "DESC": {
+                    _data = new ScrlDescField(m_io, this, m_root);
+                    break;
+                }
+                case "OBND": {
+                    _data = new ObndField(m_io, this, m_root);
+                    break;
+                }
+                case "ZNAM": {
+                    _data = new ScrlZnamField(m_io, this, m_root);
+                    break;
+                }
+                case "MODL": {
+                    _data = new ModlField(DataSize, m_io, this, m_root);
+                    break;
+                }
+                case "SPIT": {
+                    _data = new ScrlSpitField(m_io, this, m_root);
+                    break;
+                }
+                case "YNAM": {
+                    _data = new ScrlYnamField(m_io, this, m_root);
+                    break;
+                }
+                }
+            }
+            private string _type;
+            private ushort _dataSize;
+            private KaitaiStruct _data;
+            private Tes5 m_root;
+            private Tes5.ScrlForm m_parent;
+
+            /// <summary>
+            /// Unique type code
+            /// </summary>
+            public string Type { get { return _type; } }
+
+            /// <summary>
+            /// Size, in bytes, of field (minus header)
+            /// </summary>
+            public ushort DataSize { get { return _dataSize; } }
+
+            /// <summary>
+            /// Fields contained by SCRL form
+            /// </summary>
+            public KaitaiStruct Data { get { return _data; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlForm M_Parent { get { return m_parent; } }
+        }
         public partial class GlobFltvField : KaitaiStruct
         {
             public static GlobFltvField FromFile(string fileName)
@@ -7465,6 +8005,48 @@ namespace Kaitai
             public List<SpelField> Fields { get { return _fields; } }
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.Form M_Parent { get { return m_parent; } }
+        }
+        public partial class ScrlSpitFlags : KaitaiStruct
+        {
+            public static ScrlSpitFlags FromFile(string fileName)
+            {
+                return new ScrlSpitFlags(new KaitaiStream(fileName));
+            }
+
+            public ScrlSpitFlags(KaitaiStream p__io, Tes5.ScrlSpitField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _manualCalc = m_io.ReadBitsInt(1) != 0;
+                __unnamed1 = m_io.ReadBitsInt(18);
+                _areaEffectIgnoresLos = m_io.ReadBitsInt(1) != 0;
+                _scriptEffectAlwaysApplies = m_io.ReadBitsInt(1) != 0;
+                _noAbsorbReflect = m_io.ReadBitsInt(1) != 0;
+                _forceTouchExplode = m_io.ReadBitsInt(1) != 0;
+                __unnamed6 = m_io.ReadBitsInt(2);
+            }
+            private bool _manualCalc;
+            private ulong __unnamed1;
+            private bool _areaEffectIgnoresLos;
+            private bool _scriptEffectAlwaysApplies;
+            private bool _noAbsorbReflect;
+            private bool _forceTouchExplode;
+            private ulong __unnamed6;
+            private Tes5 m_root;
+            private Tes5.ScrlSpitField m_parent;
+            public bool ManualCalc { get { return _manualCalc; } }
+            public ulong Unnamed_1 { get { return __unnamed1; } }
+            public bool AreaEffectIgnoresLos { get { return _areaEffectIgnoresLos; } }
+            public bool ScriptEffectAlwaysApplies { get { return _scriptEffectAlwaysApplies; } }
+            public bool NoAbsorbReflect { get { return _noAbsorbReflect; } }
+            public bool ForceTouchExplode { get { return _forceTouchExplode; } }
+            public ulong Unnamed_6 { get { return __unnamed6; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlSpitField M_Parent { get { return m_parent; } }
         }
         public partial class TreeField : KaitaiStruct
         {
@@ -8035,7 +8617,7 @@ namespace Kaitai
                 return new CoedField(new KaitaiStream(fileName));
             }
 
-            public CoedField(KaitaiStream p__io, Tes5.LvlnField p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CoedField(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -8051,7 +8633,7 @@ namespace Kaitai
             private uint _value;
             private float _itemCondition;
             private Tes5 m_root;
-            private Tes5.LvlnField m_parent;
+            private KaitaiStruct m_parent;
 
             /// <summary>
             /// Owner FACT or NPC_ FormID
@@ -8068,7 +8650,7 @@ namespace Kaitai
             /// </summary>
             public float ItemCondition { get { return _itemCondition; } }
             public Tes5 M_Root { get { return m_root; } }
-            public Tes5.LvlnField M_Parent { get { return m_parent; } }
+            public KaitaiStruct M_Parent { get { return m_parent; } }
         }
         public partial class ClmtField : KaitaiStruct
         {
@@ -8477,7 +9059,7 @@ namespace Kaitai
                 return new CobjField(new KaitaiStream(fileName));
             }
 
-            public CobjField(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjField(KaitaiStream p__io, Tes5.CobjForm p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -8526,7 +9108,7 @@ namespace Kaitai
             private ushort _dataSize;
             private KaitaiStruct _data;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.CobjForm m_parent;
 
             /// <summary>
             /// Unique type code
@@ -8543,7 +9125,7 @@ namespace Kaitai
             /// </summary>
             public KaitaiStruct Data { get { return _data; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.CobjForm M_Parent { get { return m_parent; } }
         }
         public partial class EfshIco2Field : KaitaiStruct
         {
@@ -9402,6 +9984,97 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.FactField M_Parent { get { return m_parent; } }
         }
+        public partial class HazdDataField : KaitaiStruct
+        {
+            public static HazdDataField FromFile(string fileName)
+            {
+                return new HazdDataField(new KaitaiStream(fileName));
+            }
+
+            public HazdDataField(KaitaiStream p__io, Tes5.HazdField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _limit = m_io.ReadU4le();
+                _radius = m_io.ReadF4le();
+                _lifetime = m_io.ReadF4le();
+                _imageSpaceRadius = m_io.ReadF4le();
+                _targetInterval = m_io.ReadF4le();
+                _flags = new HazdDataFlags(m_io, this, m_root);
+                _spell = m_io.ReadU4le();
+                _light = m_io.ReadU4le();
+                _impactDataSet = m_io.ReadU4le();
+                _sound = m_io.ReadU4le();
+            }
+            private uint _limit;
+            private float _radius;
+            private float _lifetime;
+            private float _imageSpaceRadius;
+            private float _targetInterval;
+            private HazdDataFlags _flags;
+            private uint _spell;
+            private uint _light;
+            private uint _impactDataSet;
+            private uint _sound;
+            private Tes5 m_root;
+            private Tes5.HazdField m_parent;
+
+            /// <summary>
+            /// Limit
+            /// </summary>
+            public uint Limit { get { return _limit; } }
+
+            /// <summary>
+            /// Radius
+            /// </summary>
+            public float Radius { get { return _radius; } }
+
+            /// <summary>
+            /// Lifetime
+            /// </summary>
+            public float Lifetime { get { return _lifetime; } }
+
+            /// <summary>
+            /// Image space radius
+            /// </summary>
+            public float ImageSpaceRadius { get { return _imageSpaceRadius; } }
+
+            /// <summary>
+            /// Target interval
+            /// </summary>
+            public float TargetInterval { get { return _targetInterval; } }
+
+            /// <summary>
+            /// Flags
+            /// </summary>
+            public HazdDataFlags Flags { get { return _flags; } }
+
+            /// <summary>
+            /// Linked SPEL FormID
+            /// </summary>
+            public uint Spell { get { return _spell; } }
+
+            /// <summary>
+            /// Linked LIGH FormID
+            /// </summary>
+            public uint Light { get { return _light; } }
+
+            /// <summary>
+            /// Linked IPDS FormID
+            /// </summary>
+            public uint ImpactDataSet { get { return _impactDataSet; } }
+
+            /// <summary>
+            /// Linked SNDR FormID
+            /// </summary>
+            public uint Sound { get { return _sound; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.HazdField M_Parent { get { return m_parent; } }
+        }
         public partial class RaceSpctField : KaitaiStruct
         {
             public static RaceSpctField FromFile(string fileName)
@@ -9637,6 +10310,41 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.TxstField M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlForm : KaitaiStruct
+        {
+            public static ScrlForm FromFile(string fileName)
+            {
+                return new ScrlForm(new KaitaiStream(fileName));
+            }
+
+            public ScrlForm(KaitaiStream p__io, Tes5.Form p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _fields = new List<ScrlField>();
+                {
+                    var i = 0;
+                    while (!m_io.IsEof) {
+                        _fields.Add(new ScrlField(m_io, this, m_root));
+                        i++;
+                    }
+                }
+            }
+            private List<ScrlField> _fields;
+            private Tes5 m_root;
+            private Tes5.Form m_parent;
+
+            /// <summary>
+            /// Fields contained by SCRL form
+            /// </summary>
+            public List<ScrlField> Fields { get { return _fields; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.Form M_Parent { get { return m_parent; } }
+        }
         public partial class RaceNam5Field : KaitaiStruct
         {
             public static RaceNam5Field FromFile(string fileName)
@@ -9672,7 +10380,7 @@ namespace Kaitai
                 return new CobjBnamField(new KaitaiStream(fileName));
             }
 
-            public CobjBnamField(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjBnamField(KaitaiStream p__io, Tes5.CobjField p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -9684,14 +10392,14 @@ namespace Kaitai
             }
             private uint _benchKeyword;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.CobjField m_parent;
 
             /// <summary>
             /// KYWD FormID
             /// </summary>
             public uint BenchKeyword { get { return _benchKeyword; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.CobjField M_Parent { get { return m_parent; } }
         }
         public partial class RaceVnamEquipmentFlags : KaitaiStruct
         {
@@ -10425,7 +11133,6 @@ namespace Kaitai
             /// TX05 - Environment map
             /// TX06 - Unknown (does not occur in Skyrim.esm)
             /// TX07 - Specularity map (for bodies)
-            ///           
             /// </summary>
             public string Path { get { return _path; } }
             public Tes5 M_Root { get { return m_root; } }
@@ -11253,6 +11960,18 @@ namespace Kaitai
                     _formData = new LtexForm(io___raw_formData, this, m_root);
                     break;
                 }
+                case "HAZD": {
+                    __raw_formData = m_io.ReadBytes(Header.DataSize);
+                    var io___raw_formData = new KaitaiStream(__raw_formData);
+                    _formData = new HazdForm(io___raw_formData, this, m_root);
+                    break;
+                }
+                case "SCRL": {
+                    __raw_formData = m_io.ReadBytes(Header.DataSize);
+                    var io___raw_formData = new KaitaiStream(__raw_formData);
+                    _formData = new ScrlForm(io___raw_formData, this, m_root);
+                    break;
+                }
                 case "SHOU": {
                     __raw_formData = m_io.ReadBytes(Header.DataSize);
                     var io___raw_formData = new KaitaiStream(__raw_formData);
@@ -11323,6 +12042,12 @@ namespace Kaitai
                     __raw_formData = m_io.ReadBytes(Header.DataSize);
                     var io___raw_formData = new KaitaiStream(__raw_formData);
                     _formData = new EqupForm(io___raw_formData, this, m_root);
+                    break;
+                }
+                case "COBJ": {
+                    __raw_formData = m_io.ReadBytes(Header.DataSize);
+                    var io___raw_formData = new KaitaiStream(__raw_formData);
+                    _formData = new CobjForm(io___raw_formData, this, m_root);
                     break;
                 }
                 case "HDPT": {
@@ -11853,6 +12578,62 @@ namespace Kaitai
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.RaceMorphInformation M_Parent { get { return m_parent; } }
         }
+        public partial class ScrlEtypField : KaitaiStruct
+        {
+            public static ScrlEtypField FromFile(string fileName)
+            {
+                return new ScrlEtypField(new KaitaiStream(fileName));
+            }
+
+            public ScrlEtypField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _equipType = m_io.ReadU4le();
+            }
+            private uint _equipType;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Equip slot EQUP formID
+            /// </summary>
+            public uint EquipType { get { return _equipType; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
+        public partial class DestField : KaitaiStruct
+        {
+            public static DestField FromFile(string fileName)
+            {
+                return new DestField(new KaitaiStream(fileName));
+            }
+
+            public DestField(KaitaiStream p__io, Tes5.ScrlField p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _destructionData = m_io.ReadBytes(8);
+            }
+            private byte[] _destructionData;
+            private Tes5 m_root;
+            private Tes5.ScrlField m_parent;
+
+            /// <summary>
+            /// Destruction Data
+            /// </summary>
+            public byte[] DestructionData { get { return _destructionData; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.ScrlField M_Parent { get { return m_parent; } }
+        }
         public partial class FactStolField : KaitaiStruct
         {
             public static FactStolField FromFile(string fileName)
@@ -12312,6 +13093,41 @@ namespace Kaitai
             public string Icon { get { return _icon; } }
             public Tes5 M_Root { get { return m_root; } }
             public Tes5.ClasField M_Parent { get { return m_parent; } }
+        }
+        public partial class HazdForm : KaitaiStruct
+        {
+            public static HazdForm FromFile(string fileName)
+            {
+                return new HazdForm(new KaitaiStream(fileName));
+            }
+
+            public HazdForm(KaitaiStream p__io, Tes5.Form p__parent = null, Tes5 p__root = null) : base(p__io)
+            {
+                m_parent = p__parent;
+                m_root = p__root;
+                _read();
+            }
+            private void _read()
+            {
+                _fields = new List<HazdField>();
+                {
+                    var i = 0;
+                    while (!m_io.IsEof) {
+                        _fields.Add(new HazdField(m_io, this, m_root));
+                        i++;
+                    }
+                }
+            }
+            private List<HazdField> _fields;
+            private Tes5 m_root;
+            private Tes5.Form m_parent;
+
+            /// <summary>
+            /// Fields contained by HAZD form
+            /// </summary>
+            public List<HazdField> Fields { get { return _fields; } }
+            public Tes5 M_Root { get { return m_root; } }
+            public Tes5.Form M_Parent { get { return m_parent; } }
         }
         public partial class FactPlvdField : KaitaiStruct
         {
@@ -13062,7 +13878,7 @@ namespace Kaitai
                 return new CobjForm(new KaitaiStream(fileName));
             }
 
-            public CobjForm(KaitaiStream p__io, KaitaiStruct p__parent = null, Tes5 p__root = null) : base(p__io)
+            public CobjForm(KaitaiStream p__io, Tes5.Form p__parent = null, Tes5 p__root = null) : base(p__io)
             {
                 m_parent = p__parent;
                 m_root = p__root;
@@ -13081,14 +13897,14 @@ namespace Kaitai
             }
             private List<CobjField> _fields;
             private Tes5 m_root;
-            private KaitaiStruct m_parent;
+            private Tes5.Form m_parent;
 
             /// <summary>
             /// Fields contained by COBJ form
             /// </summary>
             public List<CobjField> Fields { get { return _fields; } }
             public Tes5 M_Root { get { return m_root; } }
-            public KaitaiStruct M_Parent { get { return m_parent; } }
+            public Tes5.Form M_Parent { get { return m_parent; } }
         }
         public partial class RevbForm : KaitaiStruct
         {

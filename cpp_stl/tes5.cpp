@@ -35,6 +35,19 @@ void tes5_t::fact_xnam_field_t::_read() {
 tes5_t::fact_xnam_field_t::~fact_xnam_field_t() {
 }
 
+tes5_t::scrl_ksiz_field_t::scrl_ksiz_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_ksiz_field_t::_read() {
+    m_keyword_count = m__io->read_u4le();
+}
+
+tes5_t::scrl_ksiz_field_t::~scrl_ksiz_field_t() {
+}
+
 tes5_t::fact_data_flags_t::fact_data_flags_t(kaitai::kstream* p__io, tes5_t::fact_data_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -60,6 +73,19 @@ void tes5_t::fact_data_flags_t::_read() {
 }
 
 tes5_t::fact_data_flags_t::~fact_data_flags_t() {
+}
+
+tes5_t::scrl_znam_field_t::scrl_znam_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_znam_field_t::_read() {
+    m_drop_sound = m__io->read_u4le();
+}
+
+tes5_t::scrl_znam_field_t::~scrl_znam_field_t() {
 }
 
 tes5_t::cis1_field_t::cis1_field_t(uint16_t p_data_size, kaitai::kstream* p__io, tes5_t::fact_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
@@ -713,6 +739,20 @@ void tes5_t::lscr_nnam_field_t::_read() {
 tes5_t::lscr_nnam_field_t::~lscr_nnam_field_t() {
 }
 
+tes5_t::scrl_desc_field_t::scrl_desc_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_desc_field_t::_read() {
+    m_description = new lstring_t(_parent()->data_size(), m__io, this, m__root);
+}
+
+tes5_t::scrl_desc_field_t::~scrl_desc_field_t() {
+    delete m_description;
+}
+
 tes5_t::race_kwda_field_t::race_kwda_field_t(kaitai::kstream* p__io, tes5_t::race_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -778,6 +818,19 @@ void tes5_t::tes4_snam_field_t::_read() {
 }
 
 tes5_t::tes4_snam_field_t::~tes4_snam_field_t() {
+}
+
+tes5_t::scrl_ynam_field_t::scrl_ynam_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_ynam_field_t::_read() {
+    m_pickup_sound = m__io->read_u4le();
+}
+
+tes5_t::scrl_ynam_field_t::~scrl_ynam_field_t() {
 }
 
 tes5_t::race_unam_field_t::race_unam_field_t(kaitai::kstream* p__io, tes5_t::race_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
@@ -1214,6 +1267,39 @@ void tes5_t::efsh_nam9_field_t::_read() {
 tes5_t::efsh_nam9_field_t::~efsh_nam9_field_t() {
 }
 
+tes5_t::scrl_data_field_t::scrl_data_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_data_field_t::_read() {
+    m_value = m__io->read_u4le();
+    m_weight = m__io->read_f4le();
+}
+
+tes5_t::scrl_data_field_t::~scrl_data_field_t() {
+}
+
+tes5_t::scrl_kwda_field_t::scrl_kwda_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_kwda_field_t::_read() {
+    int l_keyword = (_parent()->data_size() / 4);
+    m_keyword = new std::vector<uint32_t>();
+    m_keyword->reserve(l_keyword);
+    for (int i = 0; i < l_keyword; i++) {
+        m_keyword->push_back(m__io->read_u4le());
+    }
+}
+
+tes5_t::scrl_kwda_field_t::~scrl_kwda_field_t() {
+    delete m_keyword;
+}
+
 tes5_t::equp_pnam_field_t::equp_pnam_field_t(kaitai::kstream* p__io, tes5_t::equp_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -1276,7 +1362,7 @@ void tes5_t::race_phwt_weights_t::_read() {
 tes5_t::race_phwt_weights_t::~race_phwt_weights_t() {
 }
 
-tes5_t::cobj_cnam_field_t::cobj_cnam_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_cnam_field_t::cobj_cnam_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -1411,6 +1497,19 @@ tes5_t::clas_data_field_t::~clas_data_field_t() {
     delete m_flags;
 }
 
+tes5_t::scrl_mdob_field_t::scrl_mdob_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_mdob_field_t::_read() {
+    m_menu_icon = m__io->read_u4le();
+}
+
+tes5_t::scrl_mdob_field_t::~scrl_mdob_field_t() {
+}
+
 tes5_t::mods_field_t::mods_field_t(kaitai::kstream* p__io, tes5_t::stat_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -1513,7 +1612,7 @@ void tes5_t::soun_sndc_field_t::_read() {
 tes5_t::soun_sndc_field_t::~soun_sndc_field_t() {
 }
 
-tes5_t::cobj_coct_field_t::cobj_coct_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_coct_field_t::cobj_coct_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -2304,6 +2403,28 @@ tes5_t::clfm_form_t::~clfm_form_t() {
     delete m_fields;
 }
 
+tes5_t::scrl_spit_field_t::scrl_spit_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_spit_field_t::_read() {
+    m_spell_cost = m__io->read_u4le();
+    m_flags = new scrl_spit_flags_t(m__io, this, m__root);
+    m_unknown_1 = m__io->read_u4le();
+    m_charge_time = m__io->read_f4le();
+    m_unknown_2 = m__io->read_u4le();
+    m_target_type = static_cast<tes5_t::effect_delivery_t>(m__io->read_u4le());
+    m_unknown_3 = m__io->read_u4le();
+    m_unknown_4 = m__io->read_u4le();
+    m_unknown_5 = m__io->read_u4le();
+}
+
+tes5_t::scrl_spit_field_t::~scrl_spit_field_t() {
+    delete m_flags;
+}
+
 tes5_t::ctda_parameters_t::ctda_parameters_t(kaitai::kstream* p__io, tes5_t::ctda_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -2441,6 +2562,19 @@ void tes5_t::race_dftm_field_t::_read() {
 }
 
 tes5_t::race_dftm_field_t::~race_dftm_field_t() {
+}
+
+tes5_t::hazd_mnam_field_t::hazd_mnam_field_t(kaitai::kstream* p__io, tes5_t::hazd_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::hazd_mnam_field_t::_read() {
+    m_image_space_modifier = m__io->read_u4le();
+}
+
+tes5_t::hazd_mnam_field_t::~hazd_mnam_field_t() {
 }
 
 tes5_t::fact_fnam_field_t::fact_fnam_field_t(kaitai::kstream* p__io, tes5_t::fact_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
@@ -2711,6 +2845,24 @@ void tes5_t::tes4_hedr_field_t::_read() {
 tes5_t::tes4_hedr_field_t::~tes4_hedr_field_t() {
 }
 
+tes5_t::hazd_data_flags_t::hazd_data_flags_t(kaitai::kstream* p__io, tes5_t::hazd_data_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::hazd_data_flags_t::_read() {
+    m_affects_player_only = m__io->read_bits_int(1);
+    m_inherit_duration_from_spawn_spell = m__io->read_bits_int(1);
+    m_align_to_impact_normal = m__io->read_bits_int(1);
+    m_inherit_radius_from_spawn_spell = m__io->read_bits_int(1);
+    m_drop_to_ground = m__io->read_bits_int(1);
+    m__unnamed5 = m__io->read_bits_int(27);
+}
+
+tes5_t::hazd_data_flags_t::~hazd_data_flags_t() {
+}
+
 tes5_t::ctda_parameters_get_event_data_t::ctda_parameters_get_event_data_t(kaitai::kstream* p__io, tes5_t::ctda_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -2979,7 +3131,7 @@ void tes5_t::race_ftsf_field_t::_read() {
 tes5_t::race_ftsf_field_t::~race_ftsf_field_t() {
 }
 
-tes5_t::cobj_nam1_field_t::cobj_nam1_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_nam1_field_t::cobj_nam1_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -3006,6 +3158,55 @@ void tes5_t::color_t::_read() {
 }
 
 tes5_t::color_t::~color_t() {
+}
+
+tes5_t::hazd_field_t::hazd_field_t(kaitai::kstream* p__io, tes5_t::hazd_form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::hazd_field_t::_read() {
+    m_type = kaitai::kstream::bytes_to_str(m__io->read_bytes(4), std::string("UTF-8"));
+    m_data_size = m__io->read_u2le();
+    n_data = true;
+    {
+        std::string on = type();
+        if (on == std::string("EDID")) {
+            n_data = false;
+            m_data = new edid_field_t(data_size(), m__io, this, m__root);
+        }
+        else if (on == std::string("MODT")) {
+            n_data = false;
+            m_data = new modt_field_t(data_size(), m__io, this, m__root);
+        }
+        else if (on == std::string("DATA")) {
+            n_data = false;
+            m_data = new hazd_data_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("FULL")) {
+            n_data = false;
+            m_data = new full_field_t(data_size(), m__io, this, m__root);
+        }
+        else if (on == std::string("OBND")) {
+            n_data = false;
+            m_data = new obnd_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("MNAM")) {
+            n_data = false;
+            m_data = new hazd_mnam_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("MODL")) {
+            n_data = false;
+            m_data = new modl_field_t(data_size(), m__io, this, m__root);
+        }
+    }
+}
+
+tes5_t::hazd_field_t::~hazd_field_t() {
+    if (!n_data) {
+        delete m_data;
+    }
 }
 
 tes5_t::tes4_cnam_field_t::tes4_cnam_field_t(kaitai::kstream* p__io, tes5_t::tes4_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
@@ -3402,7 +3603,7 @@ void tes5_t::spgd_icon_field_t::_read() {
 tes5_t::spgd_icon_field_t::~spgd_icon_field_t() {
 }
 
-tes5_t::cobj_cnto_field_t::cobj_cnto_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_cnto_field_t::cobj_cnto_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -3603,6 +3804,95 @@ tes5_t::race_desc_field_t::~race_desc_field_t() {
     delete m_description;
 }
 
+tes5_t::scrl_field_t::scrl_field_t(kaitai::kstream* p__io, tes5_t::scrl_form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_field_t::_read() {
+    m_type = kaitai::kstream::bytes_to_str(m__io->read_bytes(4), std::string("UTF-8"));
+    m_data_size = m__io->read_u2le();
+    n_data = true;
+    {
+        std::string on = type();
+        if (on == std::string("CTDA")) {
+            n_data = false;
+            m_data = new ctda_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("EFID")) {
+            n_data = false;
+            m_data = new efid_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("EDID")) {
+            n_data = false;
+            m_data = new edid_field_t(data_size(), m__io, this, m__root);
+        }
+        else if (on == std::string("DATA")) {
+            n_data = false;
+            m_data = new scrl_data_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("KWDA")) {
+            n_data = false;
+            m_data = new scrl_kwda_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("EFIT")) {
+            n_data = false;
+            m_data = new efit_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("MDOB")) {
+            n_data = false;
+            m_data = new scrl_mdob_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("FULL")) {
+            n_data = false;
+            m_data = new full_field_t(data_size(), m__io, this, m__root);
+        }
+        else if (on == std::string("KSIZ")) {
+            n_data = false;
+            m_data = new scrl_ksiz_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("DEST")) {
+            n_data = false;
+            m_data = new dest_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("ETYP")) {
+            n_data = false;
+            m_data = new scrl_etyp_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("DESC")) {
+            n_data = false;
+            m_data = new scrl_desc_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("OBND")) {
+            n_data = false;
+            m_data = new obnd_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("ZNAM")) {
+            n_data = false;
+            m_data = new scrl_znam_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("MODL")) {
+            n_data = false;
+            m_data = new modl_field_t(data_size(), m__io, this, m__root);
+        }
+        else if (on == std::string("SPIT")) {
+            n_data = false;
+            m_data = new scrl_spit_field_t(m__io, this, m__root);
+        }
+        else if (on == std::string("YNAM")) {
+            n_data = false;
+            m_data = new scrl_ynam_field_t(m__io, this, m__root);
+        }
+    }
+}
+
+tes5_t::scrl_field_t::~scrl_field_t() {
+    if (!n_data) {
+        delete m_data;
+    }
+}
+
 tes5_t::glob_fltv_field_t::glob_fltv_field_t(kaitai::kstream* p__io, tes5_t::glob_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -3662,6 +3952,25 @@ tes5_t::spel_form_t::~spel_form_t() {
         delete *it;
     }
     delete m_fields;
+}
+
+tes5_t::scrl_spit_flags_t::scrl_spit_flags_t(kaitai::kstream* p__io, tes5_t::scrl_spit_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_spit_flags_t::_read() {
+    m_manual_calc = m__io->read_bits_int(1);
+    m__unnamed1 = m__io->read_bits_int(18);
+    m_area_effect_ignores_los = m__io->read_bits_int(1);
+    m_script_effect_always_applies = m__io->read_bits_int(1);
+    m_no_absorb_reflect = m__io->read_bits_int(1);
+    m_force_touch_explode = m__io->read_bits_int(1);
+    m__unnamed6 = m__io->read_bits_int(2);
+}
+
+tes5_t::scrl_spit_flags_t::~scrl_spit_flags_t() {
 }
 
 tes5_t::tree_field_t::tree_field_t(kaitai::kstream* p__io, tes5_t::tree_form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
@@ -3952,7 +4261,7 @@ tes5_t::gras_data_field_t::~gras_data_field_t() {
     delete m_flags;
 }
 
-tes5_t::coed_field_t::coed_field_t(kaitai::kstream* p__io, tes5_t::lvln_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::coed_field_t::coed_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -4181,7 +4490,7 @@ tes5_t::mpav_eye_flags_t::~mpav_eye_flags_t() {
     delete m_unknown;
 }
 
-tes5_t::cobj_field_t::cobj_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_field_t::cobj_field_t(kaitai::kstream* p__io, tes5_t::cobj_form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -4619,6 +4928,29 @@ void tes5_t::fact_plcn_field_t::_read() {
 tes5_t::fact_plcn_field_t::~fact_plcn_field_t() {
 }
 
+tes5_t::hazd_data_field_t::hazd_data_field_t(kaitai::kstream* p__io, tes5_t::hazd_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::hazd_data_field_t::_read() {
+    m_limit = m__io->read_u4le();
+    m_radius = m__io->read_f4le();
+    m_lifetime = m__io->read_f4le();
+    m_image_space_radius = m__io->read_f4le();
+    m_target_interval = m__io->read_f4le();
+    m_flags = new hazd_data_flags_t(m__io, this, m__root);
+    m_spell = m__io->read_u4le();
+    m_light = m__io->read_u4le();
+    m_impact_data_set = m__io->read_u4le();
+    m_sound = m__io->read_u4le();
+}
+
+tes5_t::hazd_data_field_t::~hazd_data_field_t() {
+    delete m_flags;
+}
+
 tes5_t::race_spct_field_t::race_spct_field_t(kaitai::kstream* p__io, tes5_t::race_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -4713,6 +5045,30 @@ tes5_t::txst_dodt_field_t::~txst_dodt_field_t() {
     delete m_rgb;
 }
 
+tes5_t::scrl_form_t::scrl_form_t(kaitai::kstream* p__io, tes5_t::form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_form_t::_read() {
+    m_fields = new std::vector<scrl_field_t*>();
+    {
+        int i = 0;
+        while (!m__io->is_eof()) {
+            m_fields->push_back(new scrl_field_t(m__io, this, m__root));
+            i++;
+        }
+    }
+}
+
+tes5_t::scrl_form_t::~scrl_form_t() {
+    for (std::vector<scrl_field_t*>::iterator it = m_fields->begin(); it != m_fields->end(); ++it) {
+        delete *it;
+    }
+    delete m_fields;
+}
+
 tes5_t::race_nam5_field_t::race_nam5_field_t(kaitai::kstream* p__io, tes5_t::race_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -4726,7 +5082,7 @@ void tes5_t::race_nam5_field_t::_read() {
 tes5_t::race_nam5_field_t::~race_nam5_field_t() {
 }
 
-tes5_t::cobj_bnam_field_t::cobj_bnam_field_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_bnam_field_t::cobj_bnam_field_t(kaitai::kstream* p__io, tes5_t::cobj_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
@@ -5511,6 +5867,16 @@ void tes5_t::form_t::_read() {
             m__io__raw_form_data = new kaitai::kstream(m__raw_form_data);
             m_form_data = new ltex_form_t(m__io__raw_form_data, this, m__root);
         }
+        else if (on == std::string("HAZD")) {
+            m__raw_form_data = m__io->read_bytes(header()->data_size());
+            m__io__raw_form_data = new kaitai::kstream(m__raw_form_data);
+            m_form_data = new hazd_form_t(m__io__raw_form_data, this, m__root);
+        }
+        else if (on == std::string("SCRL")) {
+            m__raw_form_data = m__io->read_bytes(header()->data_size());
+            m__io__raw_form_data = new kaitai::kstream(m__raw_form_data);
+            m_form_data = new scrl_form_t(m__io__raw_form_data, this, m__root);
+        }
         else if (on == std::string("SHOU")) {
             m__raw_form_data = m__io->read_bytes(header()->data_size());
             m__io__raw_form_data = new kaitai::kstream(m__raw_form_data);
@@ -5570,6 +5936,11 @@ void tes5_t::form_t::_read() {
             m__raw_form_data = m__io->read_bytes(header()->data_size());
             m__io__raw_form_data = new kaitai::kstream(m__raw_form_data);
             m_form_data = new equp_form_t(m__io__raw_form_data, this, m__root);
+        }
+        else if (on == std::string("COBJ")) {
+            m__raw_form_data = m__io->read_bytes(header()->data_size());
+            m__io__raw_form_data = new kaitai::kstream(m__raw_form_data);
+            m_form_data = new cobj_form_t(m__io__raw_form_data, this, m__root);
         }
         else if (on == std::string("HDPT")) {
             m__raw_form_data = m__io->read_bytes(header()->data_size());
@@ -5824,6 +6195,32 @@ tes5_t::race_mpav_field_t::~race_mpav_field_t() {
     }
 }
 
+tes5_t::scrl_etyp_field_t::scrl_etyp_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::scrl_etyp_field_t::_read() {
+    m_equip_type = m__io->read_u4le();
+}
+
+tes5_t::scrl_etyp_field_t::~scrl_etyp_field_t() {
+}
+
+tes5_t::dest_field_t::dest_field_t(kaitai::kstream* p__io, tes5_t::scrl_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::dest_field_t::_read() {
+    m_destruction_data = m__io->read_bytes(8);
+}
+
+tes5_t::dest_field_t::~dest_field_t() {
+}
+
 tes5_t::fact_stol_field_t::fact_stol_field_t(kaitai::kstream* p__io, tes5_t::fact_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
@@ -5987,6 +6384,30 @@ void tes5_t::clas_icon_field_t::_read() {
 }
 
 tes5_t::clas_icon_field_t::~clas_icon_field_t() {
+}
+
+tes5_t::hazd_form_t::hazd_form_t(kaitai::kstream* p__io, tes5_t::form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+    m__parent = p__parent;
+    m__root = p__root;
+    _read();
+}
+
+void tes5_t::hazd_form_t::_read() {
+    m_fields = new std::vector<hazd_field_t*>();
+    {
+        int i = 0;
+        while (!m__io->is_eof()) {
+            m_fields->push_back(new hazd_field_t(m__io, this, m__root));
+            i++;
+        }
+    }
+}
+
+tes5_t::hazd_form_t::~hazd_form_t() {
+    for (std::vector<hazd_field_t*>::iterator it = m_fields->begin(); it != m_fields->end(); ++it) {
+        delete *it;
+    }
+    delete m_fields;
 }
 
 tes5_t::fact_plvd_field_t::fact_plvd_field_t(kaitai::kstream* p__io, tes5_t::fact_field_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
@@ -6378,7 +6799,7 @@ void tes5_t::race_tinv_field_t::_read() {
 tes5_t::race_tinv_field_t::~race_tinv_field_t() {
 }
 
-tes5_t::cobj_form_t::cobj_form_t(kaitai::kstream* p__io, kaitai::kstruct* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
+tes5_t::cobj_form_t::cobj_form_t(kaitai::kstream* p__io, tes5_t::form_t* p__parent, tes5_t* p__root) : kaitai::kstruct(p__io) {
     m__parent = p__parent;
     m__root = p__root;
     _read();
